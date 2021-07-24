@@ -51,8 +51,6 @@ public class AdminFragment_home extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
         viewPager = view.findViewById(R.id.banner);
-        linearLayout = view.findViewById(R.id.san_item);
-        txt_name = view.findViewById(R.id.text_name);
         rcv_pitch = view.findViewById(R.id.rcv_get_all_pitch);
         rcv_news = view.findViewById(R.id.rcv_get_all_new);
 

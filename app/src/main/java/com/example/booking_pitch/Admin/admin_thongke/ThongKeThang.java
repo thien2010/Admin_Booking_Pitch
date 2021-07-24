@@ -105,7 +105,7 @@ public class ThongKeThang extends Fragment {
                         barChart.setVisibleXRangeMaximum(3);
 
                         float barSpace = 0.05f;
-                        float groupSpace = 0.5f;
+                        float groupSpace = 1.2f;
                         barData.setBarWidth(0.8f);
                         barChart.getXAxis().setAxisMinimum(0);
                         barChart.getXAxis().setAxisMaximum(0+barChart.getBarData().getGroupWidth(groupSpace,barSpace)*ngayThangList.size());

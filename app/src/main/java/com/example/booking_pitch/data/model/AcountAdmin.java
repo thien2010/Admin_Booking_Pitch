@@ -3,9 +3,6 @@ package com.example.booking_pitch.data.model;
 public class AcountAdmin {
     private String username;
     private String password;
-    private String userID;
-    private String oldPassword;
-    private String newPassword;
     private boolean success;
     private String message;
 
@@ -14,35 +11,6 @@ public class AcountAdmin {
         this.password = password;
     }
 
-    public AcountAdmin(String userID, String oldPassword, String newPassword) {
-        this.username = userID;
-        this.oldPassword = oldPassword;
-        this.newPassword = newPassword;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
-    }
-
-    public String getOldPassword() {
-        return oldPassword;
-    }
-
-    public void setOldPassword(String oldPassword) {
-        this.oldPassword = oldPassword;
-    }
-
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
 
     public boolean isSuccess() {
         return success;
