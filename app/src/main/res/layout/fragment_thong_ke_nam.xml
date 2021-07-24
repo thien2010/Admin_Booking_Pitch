@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.admin_thongke.ThongKeNam">
+    <LinearLayout
+        android:paddingBottom="@dimen/with_100dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginTop="@dimen/height_50dp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/edt_year"
+                android:layout_marginRight="20dp"
+                android:layout_width="@dimen/with_100dp"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/btn_tk_year"
+                android:text="Xem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tong_year"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_height="wrap_content"/>
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart_nam1"
+                android:layout_marginBottom="@dimen/margin_40dp"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"/>
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart_nam2"
+                android:layout_marginBottom="@dimen/margin_40dp"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

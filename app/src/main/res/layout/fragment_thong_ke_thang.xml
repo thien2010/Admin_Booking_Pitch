@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.admin_thongke.ThongKeThang">
+    <LinearLayout
+        android:layout_marginTop="@dimen/height_50dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Tháng: "
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/edt_thang"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Năm: "
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/edt_nam"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btn_tk_thang"
+            android:text="Xem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tong_thang"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_16dp"
+        android:textStyle="bold"
+        android:layout_marginTop="110dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barchart_thang"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="@dimen/margin_40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "716114888021",
+    "project_id": "appone-6288e",
+    "storage_bucket": "appone-6288e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716114888021:android:a62a4b0f380d18590c5bdc",
+        "android_client_info": {
+          "package_name": "com.example.booking_pitch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "716114888021-sb4fqm97h2nvcmhta8jd6089fd1tl3k4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.booking_pitch",
+            "certificate_hash": "e604428a7c3337d7be45fcea3a0fc0aed48eadc1"
+          }
+        },
+        {
+          "client_id": "716114888021-fu1knd4j0gak7plrq0b5tpfk97j4kpmb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDUlRAAgeHKeeEP4__NLtn5jsv0CkeKhs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "716114888021-fu1knd4j0gak7plrq0b5tpfk97j4kpmb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

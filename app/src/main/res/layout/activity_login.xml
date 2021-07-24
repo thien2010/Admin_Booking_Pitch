@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login.LoginActivity">
+
+    <LinearLayout
+        android:padding="@dimen/margin_20dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:src="@drawable/logo_png"
+            android:layout_width="@dimen/height_200dp"
+            android:layout_height="@dimen/with_200dp"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:background="@drawable/background_login"
+            android:padding="@dimen/padding_15dp"
+            android:layout_marginTop="@dimen/margin_40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:text="Đăng Nhập"
+                android:textSize="@dimen/margin_40dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/margin_30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/user_admin"
+                android:hint="Admin User"
+                android:layout_marginBottom="@dimen/margin_10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"/>
+
+            <EditText
+                android:hint="Admin Password"
+                android:id="@+id/password_admin"
+                android:password="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:id="@+id/remember"
+                android:text="Nhớ mật khẩu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_20dp"
+                android:id="@+id/btn_login_admin"
+                android:text="Đăng nhập"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
