@@ -1,5 +1,6 @@
 package com.example.booking_pitch.Admin.admin_home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.booking_pitch.Admin.AllPitchActivity;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.ViewPager.Photo;
 import com.example.booking_pitch.ViewPager.PhotoAdapter;
@@ -46,13 +48,21 @@ public class AdminFragment_home extends Fragment {
     private AdapterRecyclerView adapterRecyclerView;
     private RecyclerView rcv_pitch, rcv_news;
     private List<PitchClass> pitchClassList;
-    TextView txt_name;
+    TextView tv_hienthi;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
         viewPager = view.findViewById(R.id.banner);
         rcv_pitch = view.findViewById(R.id.rcv_get_all_pitch);
         rcv_news = view.findViewById(R.id.rcv_get_all_new);
+        tv_hienthi = view.findViewById(R.id.tv_hienthi);
+        tv_hienthi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AllPitchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);

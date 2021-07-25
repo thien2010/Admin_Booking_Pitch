@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.booking_pitch.Admin.AdminActivity;
 import com.example.booking_pitch.Home;
 import com.example.booking_pitch.MainActivity;
+import com.example.booking_pitch.MainActivity2;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.model.AcountAdmin;
 import com.example.booking_pitch.data.model.LoginAdminAccount;
@@ -104,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginAdminAccount>() {
             @Override
             public void onResponse(Call<LoginAdminAccount> call, Response<LoginAdminAccount> response) {
-                Intent intent = new Intent(LoginActivity.this,AdminActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
                 startActivity(intent);
             }
             @Override

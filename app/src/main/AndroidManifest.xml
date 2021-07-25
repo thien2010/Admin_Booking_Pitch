@@ -14,7 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking_Pitch"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Admin.AllPitchActivity"></activity>
+        <activity
+            android:name=".MainActivity2"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.Booking_Pitch.NoActionBar"></activity>
+        <activity android:name=".Admin.AllPitchActivity" />
         <activity android:name=".Admin.AdminActivity" />
         <activity
             android:name=".Login.LoginActivity"
