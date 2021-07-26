@@ -17,6 +17,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/edt_year"
+                android:inputType="number"
                 android:layout_marginRight="20dp"
                 android:layout_width="@dimen/with_100dp"
                 android:layout_height="wrap_content"/>

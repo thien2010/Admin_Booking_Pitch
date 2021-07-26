@@ -19,7 +19,8 @@
             android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/edt_thang"
-            android:layout_width="50dp"
+            android:inputType="number"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"/>
         <TextView
             android:text="Năm: "
@@ -30,7 +31,9 @@
             android:layout_height="wrap_content"/>
         <EditText
             android:id="@+id/edt_nam"
-            android:layout_width="50dp"
+            android:inputType="number"
+
+            android:layout_width="70dp"
             android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/btn_tk_thang"

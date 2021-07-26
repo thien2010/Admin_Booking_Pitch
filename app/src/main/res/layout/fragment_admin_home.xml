@@ -17,15 +17,34 @@
         android:padding="@dimen/margin_10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
+            <LinearLayout
+                android:gravity="center|left"
+                android:layout_marginBottom="@dimen/margin_20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/logo_png"
+                    android:layout_marginRight="@dimen/margin_10dp"
+                    android:layout_width="@dimen/with_50dp"
+                    android:layout_height="@dimen/height_50dp"/>
+                <TextView
+                    android:text="Admin Booking Pitch"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/banner"
+                android:layout_marginBottom="@dimen/margin_10dp"
                 android:layout_width="match_parent"
-                android:layout_height="130dp" />
+                android:layout_height="@dimen/height_150dp" />
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -35,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Danh sách sân"
-                    android:textColor="@color/black"
+                    android:textColor="@color/primary_color"
                     android:textSize="@dimen/text_size_20dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -43,21 +62,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
-
-                <TextView
-                    android:id="@+id/tv_hienthi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="133dp"
-                    android:layout_marginLeft="133dp"
-                    android:text="Hiển thị tất cả"
-                    android:textColor="@color/primary_color"
-                    android:textSize="@dimen/text_size_16dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView"
-                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -69,10 +73,8 @@
                 android:text="Tin tức"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_20dp"
-                android:layout_marginLeft="@dimen/margin_10dp"
-                android:layout_marginTop="@dimen/margin_10dp"
                 android:layout_marginBottom="@dimen/margin_10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/primary_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <androidx.recyclerview.widget.RecyclerView

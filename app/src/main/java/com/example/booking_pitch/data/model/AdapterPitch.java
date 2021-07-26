@@ -62,109 +62,81 @@ public class AdapterPitch extends BaseAdapter {
             viewHolder = new ViewHolder();
             viewHolder.btn_xacNhan = view.findViewById(R.id.btn_xacNhan);
             viewHolder.btn_huy = view.findViewById(R.id.btn_huy);
-//            viewHolder.pitchID = view.findViewById(R.id.tv_pitchID);
             viewHolder.pitchName = view.findViewById(R.id.tv_pitchName);
-//            viewHolder.span = view.findViewById(R.id.tv_span);
             viewHolder.userID = view.findViewById(R.id.tv_userID);
             viewHolder.date = view.findViewById(R.id.tv_date);
-//            viewHolder.state = view.findViewById(R.id.tv_state);
             viewHolder.totalPrice = view.findViewById(R.id.tv_totalPrice);
-//            viewHolder.price = view.findViewById(R.id.tv_price);
             viewHolder.umpire = view.findViewById(R.id.umpire_confim);
-//            viewHolder.quantityWater = view.findViewById(R.id.tv_quantityWater);
-//            viewHolder.priceWater = view.findViewById(R.id.tv_priceWater);
-//            viewHolder.image = view.findViewById(R.id.tv_image);
             viewHolder.tshirt = view.findViewById(R.id.tshirt_comfim);
-//            viewHolder.detail = view.findViewById(R.id.tv_detail);
-//            viewHolder.createBy = view.findViewById(R.id.tv_createBy);
 
 
-        String _id = pro.get_id();
-        String date = pro.getDate();
-        String day = date.substring(0,2);
-        String month = date.substring(2,4);
-        String year = date.substring(4,8);
-//        viewHolder.pitchID.setText(pro.getPitchID());
-        viewHolder.pitchName.setText(pro.getPitchName());
-        viewHolder.totalPrice.setText("Giá: "+pro.getTotalPrice());
-        viewHolder.date.setText(day + "-" +month + "-"+year);
-        viewHolder.umpire.setChecked(pro.isUmpire());
-//        viewHolder.span.setText(pro.getSpan());
-        viewHolder.userID.setText(pro.getUserID());
+            String _id = pro.get_id();
+            String date = pro.getDate();
+            String day = date.substring(0,2);
+            String month = date.substring(2,4);
+            String year = date.substring(4,8);
+            viewHolder.pitchName.setText(pro.getPitchName());
+            viewHolder.totalPrice.setText("Giá: "+pro.getTotalPrice());
+            viewHolder.date.setText("Ngày: "+day + "-" +month + "-"+year);
+            viewHolder.umpire.setChecked(pro.isUmpire());
+            viewHolder.userID.setText(pro.getUserID());
+            viewHolder.tshirt.setChecked(pro.isTshirt());
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://datn-2021.herokuapp.com/api/pitch/user/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            RequestAPI requestAPI = retrofit.create(RequestAPI.class);
 
-//        viewHolder.state.setText(pro.getState());
-//        viewHolder.price.setText(pro.getPrice());
-//        viewHolder.quantityWater.setText(pro.getQuantityWater());
-//        viewHolder.priceWater.setText(pro.getPriceWater());
-//        viewHolder.image.setText(pro.getImage());
-        viewHolder.tshirt.setChecked(pro.isTshirt());
-//        viewHolder.detail.setText(pro.getDetail());
-//        viewHolder.createBy.setText(pro.getCreateBy());
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://datn-2021.herokuapp.com/api/pitch/user/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestAPI requestAPI = retrofit.create(RequestAPI.class);
-
-        viewHolder.btn_xacNhan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Call<PitchClass> call = requestAPI.updatePitch(_id,"1");
-                call.enqueue(new Callback<PitchClass>() {
-                    @Override
-                    public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
-                        for (int i = 0 ; i< pitchClassList.size(); i++){
-                            if (pitchClassList.get(i).get_id() == _id){
-                                Log.d("t","ok"+ _id);
-                                pitchClassList.remove(i);
-                                setDatachange(pitchClassList);
+            viewHolder.btn_xacNhan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Call<PitchClass> call = requestAPI.updatePitch(_id,"1");
+                    call.enqueue(new Callback<PitchClass>() {
+                        @Override
+                        public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
+                            for (int i = 0 ; i< pitchClassList.size(); i++){
+                                if (pitchClassList.get(i).get_id() == _id){
+                                    Log.d("t","ok"+ _id);
+                                    pitchClassList.remove(i);
+                                    setDatachange(pitchClassList);
+                                }
                             }
+                            Toast.makeText(context, "Xác nhận thành công", Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(context, "Xác nhận thành công", Toast.LENGTH_SHORT).show();
-                    }
-                    @Override
-                    public void onFailure(Call<PitchClass> call, Throwable t) {
-                        Toast.makeText(context, "Xác nhận thất bại", Toast.LENGTH_SHORT).show();
-                        Log.e("loi", "adad");
-                    }
-                });
-            }
-        });
-        viewHolder.btn_huy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Call<PitchClass> call = requestAPI.updatePitch(_id,"1");
-                call.enqueue(new Callback<PitchClass>() {
-                    @Override
-                    public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
-                        Toast.makeText(context, "Hủy thành công", Toast.LENGTH_SHORT).show();
-                    }
-                    @Override
-                    public void onFailure(Call<PitchClass> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<PitchClass> call, Throwable t) {
+                            Toast.makeText(context, "Xác nhận thất bại", Toast.LENGTH_SHORT).show();
+                            Log.e("loi", "adad");
+                        }
+                    });
+                }
+            });
+            viewHolder.btn_huy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Call<PitchClass> call = requestAPI.updatePitch(_id,"1");
+                    call.enqueue(new Callback<PitchClass>() {
+                        @Override
+                        public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
+                            Toast.makeText(context, "Hủy thành công", Toast.LENGTH_SHORT).show();
+                        }
+                        @Override
+                        public void onFailure(Call<PitchClass> call, Throwable t) {
 
-                    }
-                });
-            }
-        });
-        return view;
+                        }
+                    });
+                }
+            });
+            return view;
     }
 
     private class ViewHolder {
-        TextView pitchID;
         TextView pitchName;
-        TextView span;
         TextView userID;
         TextView date;
-        TextView state;
         TextView totalPrice;
-        TextView price;
         CheckBox umpire;
-        TextView quantityWater;
-        TextView priceWater;
-        TextView image;
         CheckBox tshirt;
-        TextView detail;
-        TextView createBy;
         Button btn_xacNhan;
         Button btn_huy;
     }

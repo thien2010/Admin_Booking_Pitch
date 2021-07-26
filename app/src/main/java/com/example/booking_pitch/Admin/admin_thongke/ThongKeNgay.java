@@ -49,6 +49,7 @@ public class ThongKeNgay extends Fragment {
     Button btn_tk_day;
     TextView tong_ngay;
     List<TKNgayThang> ngayThangList;
+    String date_1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,11 +77,11 @@ public class ThongKeNgay extends Fragment {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         calendar.set(year, month, dayOfMonth);
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
-//                        date_1 = simpleDateFormat.format(calendar.getTime());
-//                        String day1 = date_1.substring(0,2);
-//                        String month1 = date_1.substring(2,4);
-//                        String year1 = date_1.substring(4,8);
-                        edt_day.setText(simpleDateFormat.format(calendar.getTime()));
+                        date_1 = simpleDateFormat.format(calendar.getTime());
+                        String day1 = date_1.substring(0,2);
+                        String month1 = date_1.substring(2,4);
+                        String year1 = date_1.substring(4,8);
+                        edt_day.setText(day1+"-"+month1+"-"+year1);
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -90,7 +91,7 @@ public class ThongKeNgay extends Fragment {
         btn_tk_day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<ResponeGetDay> call = requestAPI.getDay(edt_day.getText().toString());
+                Call<ResponeGetDay> call = requestAPI.getDay(date_1);
                 call.enqueue(new Callback<ResponeGetDay>() {
                     @Override
                     public void onResponse(Call<ResponeGetDay> call, Response<ResponeGetDay> response) {

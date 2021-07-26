@@ -16,6 +16,7 @@
             android:layout_height="@dimen/height_150dp"/>
         <LinearLayout
             android:layout_marginLeft="@dimen/margin_10dp"
+            android:layout_marginTop="@dimen/margin_20dp"
             android:orientation="vertical"
             android:gravity="center_vertical"
             android:layout_width="match_parent"

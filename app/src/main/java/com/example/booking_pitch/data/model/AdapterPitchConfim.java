@@ -57,17 +57,8 @@ public class AdapterPitchConfim extends BaseAdapter {
             viewHolder.pitchName = view.findViewById(R.id.tv_pitchName);
             viewHolder.date = view.findViewById(R.id.tv_date);
             viewHolder.totalPrice = view.findViewById(R.id.tv_totalPrice);
-        //  viewHolder.state = view.findViewById(R.id.tv_state);
-        //  viewHolder.span = view.findViewById(R.id.tv_span);
-        //  viewHolder.userID = view.findViewById(R.id.tv_userID);
-        //  viewHolder.price = view.findViewById(R.id.tv_price);
             viewHolder.umpire = view.findViewById(R.id.umpire_confim);
-        //  viewHolder.quantityWater = view.findViewById(R.id.tv_quantityWater);
-        //  viewHolder.priceWater = view.findViewById(R.id.tv_priceWater);
-        //  viewHolder.image = view.findViewById(R.id.tv_image);
             viewHolder.tshirt = view.findViewById(R.id.tshirt_comfim);
-        //  viewHolder.detail = view.findViewById(R.id.tv_detail);
-        //  viewHolder.createBy = view.findViewById(R.id.tv_createBy);
 
             String state = pro.getState();
             String _id = pro.get_id();
@@ -76,9 +67,8 @@ public class AdapterPitchConfim extends BaseAdapter {
             String month = date.substring(2,4);
             String year = date.substring(4,8);
             viewHolder.userID.setText(pro.getUserID());
-//            viewHolder.pitchID.setText(pro.getPitchID());
             viewHolder.pitchName.setText(pro.getPitchName());
-            viewHolder.date.setText(day + "-" +month + "-"+year);
+            viewHolder.date.setText("Ngày: "+day + "-" +month + "-"+year);
             viewHolder.totalPrice.setText("Giá: "+pro.getTotalPrice());
             viewHolder.tshirt.setChecked(pro.isTshirt());
             viewHolder.umpire.setChecked(pro.isUmpire());
