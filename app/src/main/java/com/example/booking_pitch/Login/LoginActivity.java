@@ -1,6 +1,5 @@
 package com.example.booking_pitch.Login;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,30 +7,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.booking_pitch.Admin.AdminActivity;
-import com.example.booking_pitch.Home;
-import com.example.booking_pitch.MainActivity;
-import com.example.booking_pitch.MainActivity2;
 import com.example.booking_pitch.R;
-import com.example.booking_pitch.data.model.AcountAdmin;
 import com.example.booking_pitch.data.model.LoginAdminAccount;
 import com.example.booking_pitch.data.repository.RequestAPI;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -105,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginAdminAccount>() {
             @Override
             public void onResponse(Call<LoginAdminAccount> call, Response<LoginAdminAccount> response) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity2.class);
+                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                 startActivity(intent);
             }
             @Override

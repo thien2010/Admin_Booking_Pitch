@@ -14,10 +14,10 @@
     android:layout_width="750dp"
     android:layout_height="660dp"/>
     <ScrollView
+        android:layout_marginTop="@dimen/margin_20dp"
         android:padding="@dimen/margin_10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -87,4 +87,5 @@
         </LinearLayout>
 
     </ScrollView>
+
 </FrameLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Booking_Pitch</string>
+    <string name="app_name">Admin_Booking_Pitch</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Trang chủ</string>
     <string name="title_dashboard">Đã lưu</string>
@@ -21,4 +21,19 @@
     <string name="menu_account">Tài khoản</string>
     <string name="menu_showall">Danh sách sân</string>
     <!-- TODO: Remove or change this placeholder text -->
+
+    <string-array name="month">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
 </resources>

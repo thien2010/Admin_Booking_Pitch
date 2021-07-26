@@ -10,7 +10,6 @@ import android.os.Bundle;
 
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.databinding.ActivityAdminBinding;
-import com.example.booking_pitch.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AdminActivity extends AppCompatActivity {

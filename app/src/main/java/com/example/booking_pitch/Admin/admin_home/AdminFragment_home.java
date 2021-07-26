@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -25,6 +26,9 @@ import com.example.booking_pitch.data.model.PitchClass;
 import com.example.booking_pitch.data.repository.ReponeAllSan;
 import com.example.booking_pitch.data.repository.RequestAPI;
 import com.example.booking_pitch.data.repository.ResponeNews;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -98,6 +102,8 @@ public class AdminFragment_home extends Fragment {
 
             }
         });
+
+
         return view;
     }
 

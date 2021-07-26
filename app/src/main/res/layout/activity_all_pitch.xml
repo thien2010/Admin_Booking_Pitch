@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.AllPitchActivity">
+    tools:context=".Admin.admin_home.FragmentAllPitch">
     <TextView
         android:text="Danh sách tất cả sân"
         android:gravity="center"

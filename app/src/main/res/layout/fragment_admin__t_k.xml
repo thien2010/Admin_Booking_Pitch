@@ -7,13 +7,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Admin.admin_thongke.AdminFragment_TK">
-
+    <View
+        android:id="@+id/view"
+        android:background="@color/primary_color"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_20dp"/>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager_tab_thong_ke"
+        android:layout_marginTop="@dimen/margin_20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_thongke"
+        android:layout_below="@id/view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"

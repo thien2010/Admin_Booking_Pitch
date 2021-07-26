@@ -48,8 +48,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ThongKeThang extends Fragment {
     EditText edt_month,edt_nam;
     Button btn_tk_month;
-    Spinner spinner;
+    ImageView img_month;
     TextView tong_thang;
+    String month2;
     List<TKNgayThang> ngayThangList;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,15 +62,38 @@ public class ThongKeThang extends Fragment {
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
         tong_thang = view.findViewById(R.id.tong_thang);
-        edt_month = view.findViewById(R.id.edt_thang);
-        edt_nam = view.findViewById(R.id.edt_nam);
-        btn_tk_month = view.findViewById(R.id.btn_tk_thang);
+        edt_month = view.findViewById(R.id.edt_month);
+        img_month = view.findViewById(R.id.img_date_month);
+//        edt_nam = view.findViewById(R.id.ed);
+        btn_tk_month = view.findViewById(R.id.btn_tk_month);
+        img_month.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                final int day = calendar.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        calendar.set(year, month, dayOfMonth);
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
+                        String date_1 = simpleDateFormat.format(calendar.getTime());
+                        String month1 = date_1.substring(2,4);
+                        String year1 = date_1.substring(4,8);
+                        month2 = month1+year1;
+                        edt_month.setText(month1+"-"+year1);
+                    }
+                }, year, month, day);
+                datePickerDialog.show();
+            }
+        });
+
         btn_tk_month.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String a = edt_month.getText().toString() + edt_nam.getText().toString();
-                Log.e("y",a);
-                Call<ResponeGetDay> call = requestAPI.getMonth(a);
+//                String a = edt_month.getText().toString() + edt_nam.getText().toString();
+                Call<ResponeGetDay> call = requestAPI.getMonth(month2);
                 call.enqueue(new Callback<ResponeGetDay>() {
                     @Override
                     public void onResponse(Call<ResponeGetDay> call, Response<ResponeGetDay> response) {
@@ -88,6 +112,7 @@ public class ThongKeThang extends Fragment {
                             String name = ngayThangList.get(i).getPitchName();
                             day[i] = name;
                         }
+
                         barDataSet = new BarDataSet(chart,"VND");
                         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
                         barDataSet.setValueTextSize(15f);
