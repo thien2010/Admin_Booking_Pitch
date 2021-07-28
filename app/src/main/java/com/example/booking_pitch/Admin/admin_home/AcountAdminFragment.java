@@ -19,6 +19,7 @@ import com.example.booking_pitch.Login.LoginActivity;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.model.AcountAdmin;
 import com.example.booking_pitch.data.repository.RequestAPI;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Call;
@@ -47,9 +48,9 @@ public class AcountAdminFragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 View view = LayoutInflater.from(getContext()).inflate(R.layout.change_password, null);
                 builder.setView(view);
-                EditText user = view.findViewById(R.id.user_admin_change);
-                EditText old_password = view.findViewById(R.id.password_old);
-                EditText new_password = view.findViewById(R.id.password_new);
+                TextInputEditText user = view.findViewById(R.id.user_admin_change);
+                TextInputEditText old_password = view.findViewById(R.id.password_old);
+                TextInputEditText new_password = view.findViewById(R.id.password_new);
                 Button change_password = view.findViewById(R.id.btn_change_admin);
                 change_password.setOnClickListener(new View.OnClickListener() {
                     @Override

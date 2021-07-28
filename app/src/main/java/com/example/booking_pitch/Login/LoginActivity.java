@@ -18,6 +18,7 @@ import com.example.booking_pitch.Admin.AdminActivity;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.model.LoginAdminAccount;
 import com.example.booking_pitch.data.repository.RequestAPI;
+import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,8 +30,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends AppCompatActivity {
     Button btn_login;
     String username, password;
-    EditText userAdmin;
-    EditText passwordAdmin;
+    TextInputEditText userAdmin;
+    TextInputEditText passwordAdmin;
     CheckBox remember;
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
