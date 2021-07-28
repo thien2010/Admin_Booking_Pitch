@@ -46,7 +46,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ThongKeThang extends Fragment {
-    EditText edt_month,edt_nam;
+    TextView edt_month,edt_nam;
     Button btn_tk_month;
     ImageView img_month;
     TextView tong_thang;

@@ -10,11 +10,24 @@
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-                <EditText
+                <TextView
+                    android:text="Ngày: "
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
                     android:id="@+id/edt_day"
-                    android:layout_width="@dimen/height_200dp"
+                    android:gravity="center"
+                    android:hint="--/--/--"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/text_size_20dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"/>
                 <ImageView
+                    android:layout_marginTop="@dimen/margin_5dp"
                     android:layout_marginLeft="@dimen/margin_10dp"
                     android:layout_marginRight="@dimen/margin_10dp"
                     android:id="@+id/img_date"

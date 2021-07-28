@@ -44,7 +44,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ThongKeNgay extends Fragment {
 
-    EditText edt_day;
+    TextView edt_day;
     ImageView img_date;
     Button btn_tk_day;
     TextView tong_ngay;
