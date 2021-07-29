@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.repository.RequestAPI;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import retrofit2.Call;
@@ -59,6 +60,8 @@ public class AdapterPitchConfim extends BaseAdapter {
             viewHolder.totalPrice = view.findViewById(R.id.tv_totalPrice);
             viewHolder.umpire = view.findViewById(R.id.umpire_confim);
             viewHolder.tshirt = view.findViewById(R.id.tshirt_comfim);
+            viewHolder.warter = view.findViewById(R.id.tv_water_confim);
+            viewHolder.span= view.findViewById(R.id.tv_hour);
 
             String state = pro.getState();
             String _id = pro.get_id();
@@ -66,10 +69,14 @@ public class AdapterPitchConfim extends BaseAdapter {
             String day = date.substring(0,2);
             String month = date.substring(2,4);
             String year = date.substring(4,8);
+            if (!pro.getTotalPrice().equals("")){
+                viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
+            }
+            viewHolder.span.setText(pro.getSpan());
+            viewHolder.warter.setText(pro.getQuantityWater()+ " Bình");
             viewHolder.userID.setText(pro.getUserID());
             viewHolder.pitchName.setText(pro.getPitchName());
             viewHolder.date.setText("Ngày: "+day + "-" +month + "-"+year);
-            viewHolder.totalPrice.setText("Giá: "+pro.getTotalPrice());
             viewHolder.tshirt.setChecked(pro.isTshirt());
             viewHolder.umpire.setChecked(pro.isUmpire());
             viewHolder.btn_confim.setOnClickListener(new View.OnClickListener() {
@@ -111,13 +118,18 @@ public class AdapterPitchConfim extends BaseAdapter {
         TextView totalPrice;
         CheckBox umpire;
         CheckBox tshirt;
+        TextView warter;
         Button btn_confim;
+        TextView span;
     }
     @Override
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
     }
-
+    public static String numberMoney(String number){
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,##0");
+        return decimalFormat.format(Double.parseDouble(number));
+    }
     public void setDatachange(List<PitchClass> items) {
         this.pitchClassList = items;
         notifyDataSetChanged();

@@ -15,6 +15,7 @@ import com.example.booking_pitch.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerView.PitchViewHoler>{
@@ -43,7 +44,7 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
             return;
         }
         holder.pitch_name.setText(pitchClass.getPitchName());
-        holder.price.setText("Giá :"+pitchClass.getPrice());
+        holder.price.setText("Giá: "+numberMoney(pitchClass.getPrice())+" VND");
         holder.detail.setText("Chi tiết: "+pitchClass.getDetail());
         Glide.with(context)
                 .load("http://datn-2021.herokuapp.com"+pitchClass.getImage())
@@ -74,5 +75,9 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
             detail = itemView.findViewById(R.id.detail_san);
             recyclerView = itemView.findViewById(R.id.rcv_get_all_pitch);
         }
+    }
+    public static String numberMoney(String number){
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,##0");
+        return decimalFormat.format(Double.parseDouble(number));
     }
 }

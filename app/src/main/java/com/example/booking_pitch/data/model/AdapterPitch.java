@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.repository.RequestAPI;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,15 +69,20 @@ public class AdapterPitch extends BaseAdapter {
             viewHolder.totalPrice = view.findViewById(R.id.tv_totalPrice);
             viewHolder.umpire = view.findViewById(R.id.umpire_confim);
             viewHolder.tshirt = view.findViewById(R.id.tshirt_comfim);
-
+            viewHolder.span= view.findViewById(R.id.tv_hour);
+            viewHolder.water = view.findViewById(R.id.tv_water);
 
             String _id = pro.get_id();
             String date = pro.getDate();
             String day = date.substring(0,2);
             String month = date.substring(2,4);
             String year = date.substring(4,8);
+            if (!pro.getTotalPrice().equals("")){
+                viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
+            }
+            viewHolder.water.setText(pro.getQuantityWater()+" Bình");
+            viewHolder.span.setText(pro.getSpan());
             viewHolder.pitchName.setText(pro.getPitchName());
-            viewHolder.totalPrice.setText("Giá: "+pro.getTotalPrice());
             viewHolder.date.setText("Ngày: "+day + "-" +month + "-"+year);
             viewHolder.umpire.setChecked(pro.isUmpire());
             viewHolder.userID.setText(pro.getUserID());
@@ -131,14 +137,20 @@ public class AdapterPitch extends BaseAdapter {
     }
 
     private class ViewHolder {
+        TextView span;
         TextView pitchName;
         TextView userID;
         TextView date;
         TextView totalPrice;
         CheckBox umpire;
         CheckBox tshirt;
+        TextView water;
         Button btn_xacNhan;
         Button btn_huy;
+    }
+    public static String numberMoney(String number){
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,##0");
+        return decimalFormat.format(Double.parseDouble(number));
     }
     @Override
     public void notifyDataSetChanged() {

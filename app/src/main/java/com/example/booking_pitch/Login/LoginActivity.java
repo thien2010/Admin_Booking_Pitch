@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
             passwordAdmin.setText(loginPreferences.getString("password", ""));
             remember.setChecked(true);
         }
-
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginAdminAccount> call, Response<LoginAdminAccount> response) {
                 Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                 startActivity(intent);
+                finish();
             }
             @Override
             public void onFailure(Call<LoginAdminAccount> call, Throwable t) {
