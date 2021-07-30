@@ -1,8 +1,10 @@
 package com.example.booking_pitch.Admin.quanLyLich;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,12 +31,30 @@ public class ChoXacNhan extends Fragment {
     ListView lv_choXacNhan;
     AdapterPitch adapterPitch;
     List<PitchClass> pitchClassList;
+    ProgressDialog progressDialog;
+    SwipeRefreshLayout swipeRefreshLayout;
+    TextView koco_mang;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cho_xac_nhan, container, false);
-
+        swipeRefreshLayout = view.findViewById(R.id.refreshLayout);
         lv_choXacNhan = view.findViewById(R.id.lv_choXacNhan);
+//        koco_mang = view.findViewById(R.id.koco_mang);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading..., please wait!");
+        progressDialog.show();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                LoadData();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        LoadData();
+        return view;
+    }
+    public void LoadData(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://datn-2021.herokuapp.com/api/pitch/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -47,11 +67,11 @@ public class ChoXacNhan extends Fragment {
                 List<PitchClass> pitchClass = response.body();
                 pitchClassList = new ArrayList<>(pitchClass);
                 if (pitchClassList.size() == 0){
-                   TextView koco_mang = view.findViewById(R.id.koco_mang);
-                   koco_mang.setText("Chưa có sân được đặt");
+                    koco_mang.setText("Chưa có sân được đặt");
                 }else {
                     adapterPitch = new AdapterPitch(getContext(),pitchClassList);
                     lv_choXacNhan.setAdapter(adapterPitch);
+                    progressDialog.cancel();
                 }
 
             }
@@ -60,6 +80,5 @@ public class ChoXacNhan extends Fragment {
 
             }
         });
-        return view;
     }
 }

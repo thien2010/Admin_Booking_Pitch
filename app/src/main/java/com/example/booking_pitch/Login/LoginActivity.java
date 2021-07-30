@@ -2,6 +2,7 @@ package com.example.booking_pitch.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         boolean remem = remember.isChecked();
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
+        progressDialog = new ProgressDialog(LoginActivity.this);
+
         saveLogin = loginPreferences.getBoolean("saveLogin", false);
         if (saveLogin == true) {
             userAdmin.setText(loginPreferences.getString("username", ""));
@@ -59,6 +63,9 @@ public class LoginActivity extends AppCompatActivity {
                 if(userAdmin.getText().toString().isEmpty() || passwordAdmin.getText().toString().isEmpty()){
                     Toast.makeText(LoginActivity.this, "Không được để trống ", Toast.LENGTH_SHORT).show();
                 }else {
+                    progressDialog.setTitle("Đăng nhập");
+                    progressDialog.setMessage("Đang đăng nhập...");
+                    progressDialog.show();
 //                    rememberLogin(userAdmin.getText().toString(), passwordAdmin.getText().toString(), remem);
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(userAdmin.getWindowToken(), 0);
@@ -93,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginAdminAccount> call, Response<LoginAdminAccount> response) {
                 Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                 startActivity(intent);
+                progressDialog.cancel();
                 finish();
             }
             @Override
