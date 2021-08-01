@@ -121,9 +121,12 @@ public class ThongKeThang extends Fragment {
 
                         XAxis xAxis = barChart.getXAxis();
                         xAxis.setValueFormatter(new IndexAxisValueFormatter(day));
+                        xAxis.setLabelCount(day.length);
+                        xAxis.setDrawGridLines(false);
+                        xAxis.setDrawAxisLine(false);
                         xAxis.setCenterAxisLabels(true);
                         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                        xAxis.setGranularity(1);
+                        xAxis.setGranularity(1f);
                         xAxis.setGranularityEnabled(true);
 
                         barChart.setDragEnabled(true);
@@ -131,10 +134,10 @@ public class ThongKeThang extends Fragment {
 
                         float barSpace = 0.05f;
                         float groupSpace = 1.2f;
-                        barData.setBarWidth(0.8f);
-                        barChart.getXAxis().setAxisMinimum(0);
-                        barChart.getXAxis().setAxisMaximum(0+barChart.getBarData().getGroupWidth(groupSpace,barSpace)*ngayThangList.size());
-                        barChart.getAxisLeft().setAxisMinimum(0);
+//                        barData.setBarWidth(0.8f);
+//                        barChart.getXAxis().setAxisMinimum(0);
+//                        barChart.getXAxis().setAxisMaximum(0+barChart.getBarData().getGroupWidth(groupSpace,barSpace)*ngayThangList.size());
+//                        barChart.getAxisLeft().setAxisMinimum(0);
                         barChart.invalidate();
                     }
 

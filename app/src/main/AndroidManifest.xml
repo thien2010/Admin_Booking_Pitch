@@ -10,7 +10,7 @@
         android:allowBackup="true"
         android:icon="@drawable/logo_png"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo_png"
+        android:roundIcon="@drawable/logo_deciption_png"
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking_Pitch"
         android:usesCleartextTraffic="true">

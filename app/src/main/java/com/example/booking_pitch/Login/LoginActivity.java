@@ -2,8 +2,10 @@ package com.example.booking_pitch.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -98,14 +100,35 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginAdminAccount>() {
             @Override
             public void onResponse(Call<LoginAdminAccount> call, Response<LoginAdminAccount> response) {
-                Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                startActivity(intent);
-                progressDialog.cancel();
-                finish();
+                LoginAdminAccount loginAdminAccount1 = response.body();
+                if (loginAdminAccount1.isSuccess() == true){
+                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                    progressDialog.cancel();
+                    finish();
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setMessage("Đăng nhập thất bại")
+                            .setNegativeButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    progressDialog.cancel();
+                                }
+                            });
+                    builder.create().show();
+                }
             }
             @Override
             public void onFailure(Call<LoginAdminAccount> call, Throwable t) {
-                Log.e("ok","Loi");
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setMessage("Đăng nhập thất bại")
+                        .setNegativeButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                progressDialog.cancel();
+                            }
+                        });
+                builder.create().show();
             }
         });
     }

@@ -6,19 +6,16 @@
     android:orientation="vertical"
     tools:context=".Admin.quanLyLich.DaDat_admin">
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="@dimen/with_50dp"
         android:id="@+id/refreshLayout_2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
         <ListView
-            android:layout_marginBottom="@dimen/height_50dp"
             android:id="@+id/lv_confim"
             tools:listitem="@android:layout/simple_expandable_list_item_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
 
 </LinearLayout>

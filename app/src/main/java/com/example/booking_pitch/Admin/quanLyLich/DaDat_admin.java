@@ -1,6 +1,8 @@
 package com.example.booking_pitch.Admin.quanLyLich;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -67,6 +69,15 @@ public class DaDat_admin extends Fragment {
                 List<PitchClass> pitchClass = response.body();
                 pitchClassList = new ArrayList<>(pitchClass);
                 if (pitchClassList.size() == 0){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("Chưa có sân đã đặt")
+                            .setNegativeButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    progressDialog.cancel();
+                                }
+                            });
+                    builder.create().show();
                 }else {
                     adapterPitch = new AdapterPitchConfim(getContext(),pitchClassList);
                     lv_confim.setAdapter(adapterPitch);

@@ -104,7 +104,7 @@ public class ThongKeNgay extends Fragment {
                         BarChart barChart = view.findViewById(R.id.barchart);
                         chart = new ArrayList<>();
                         String[] day = new String[ngayThangList.size()];
-                        for (int i = 0; i<ngayThangList.size();i++){
+                        for (int i = 0; i<ngayThangList.size(); i++){
                             BarEntry barEntry = new BarEntry(i+1,ngayThangList.get(i).getTotalPrice());
                             chart.add(barEntry);
                             String name = ngayThangList.get(i).getPitchName();
@@ -118,20 +118,23 @@ public class ThongKeNgay extends Fragment {
 
                         XAxis xAxis = barChart.getXAxis();
                         xAxis.setValueFormatter(new IndexAxisValueFormatter(day));
+                        xAxis.setLabelCount(day.length);
+                        xAxis.setDrawGridLines(false);
+                        xAxis.setDrawAxisLine(false);
                         xAxis.setCenterAxisLabels(true);
                         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                        xAxis.setGranularity(1);
+                        xAxis.setGranularity(1f);
                         xAxis.setGranularityEnabled(true);
 
                         barChart.setDragEnabled(true);
                         barChart.setVisibleXRangeMaximum(3);
 
-                        float barSpace = 0.05f;
-                        float groupSpace = 1.2f;
+//                        float barSpace = 0.05f;
+//                        float groupSpace = 1.2f;
                         barData.setBarWidth(0.8f);
-                        barChart.getXAxis().setAxisMinimum(0);
-                        barChart.getXAxis().setAxisMaximum(0+barChart.getBarData().getGroupWidth(groupSpace,barSpace)*ngayThangList.size());
-                        barChart.getAxisLeft().setAxisMinimum(0);
+//                        barChart.getXAxis().setAxisMinimum(0);
+//                        barChart.getXAxis().setAxisMaximum(0+barChart.getBarData().getGroupWidth(groupSpace,barSpace)*ngayThangList.size());
+//                        barChart.getAxisLeft().setAxisMinimum(0);
                         barChart.invalidate();
                     }
                     @Override

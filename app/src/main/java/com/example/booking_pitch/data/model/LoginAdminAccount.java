@@ -3,10 +3,19 @@ package com.example.booking_pitch.data.model;
 public class LoginAdminAccount {
     private String username;
     private String password;
+    private boolean success;
 
     public LoginAdminAccount(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 
     public String getUsername() {

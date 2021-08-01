@@ -1,6 +1,8 @@
 package com.example.booking_pitch.Admin.quanLyLich;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -40,7 +42,6 @@ public class ChoXacNhan extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cho_xac_nhan, container, false);
         swipeRefreshLayout = view.findViewById(R.id.refreshLayout);
         lv_choXacNhan = view.findViewById(R.id.lv_choXacNhan);
-//        koco_mang = view.findViewById(R.id.koco_mang);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading..., please wait!");
         progressDialog.show();
@@ -67,7 +68,15 @@ public class ChoXacNhan extends Fragment {
                 List<PitchClass> pitchClass = response.body();
                 pitchClassList = new ArrayList<>(pitchClass);
                 if (pitchClassList.size() == 0){
-                    koco_mang.setText("Chưa có sân được đặt");
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("Chưa có sân được đặt")
+                            .setNegativeButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    progressDialog.cancel();
+                                }
+                            });
+                    builder.create().show();
                 }else {
                     adapterPitch = new AdapterPitch(getContext(),pitchClassList);
                     lv_choXacNhan.setAdapter(adapterPitch);
