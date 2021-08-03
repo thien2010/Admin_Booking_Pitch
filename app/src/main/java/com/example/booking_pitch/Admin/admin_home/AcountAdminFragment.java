@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.example.booking_pitch.Admin.AdminActivity;
 import com.example.booking_pitch.Login.LoginActivity;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.model.AcountAdmin;
+import com.example.booking_pitch.data.model.LoginAdminAccount;
 import com.example.booking_pitch.data.repository.RequestAPI;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,34 +37,41 @@ public class AcountAdminFragment extends Fragment {
     private SharedPreferences.Editor loginPrefsEditor;
     LinearLayout doimk;
     LinearLayout logout;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_acount_admin, container, false);
         doimk = view.findViewById(R.id.doimk);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://datn-2021.herokuapp.com/api/user/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
+
         doimk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 View view = LayoutInflater.from(getContext()).inflate(R.layout.change_password, null);
                 builder.setView(view);
-                TextInputEditText user = view.findViewById(R.id.user_admin_change);
+                TextInputEditText user_name = view.findViewById(R.id.user_admin_change);
                 TextInputEditText old_password = view.findViewById(R.id.password_old);
                 TextInputEditText new_password = view.findViewById(R.id.password_new);
+                TextInputEditText confim_passs = view.findViewById(R.id.password_confim);
                 Button change_password = view.findViewById(R.id.btn_change_admin);
+
                 change_password.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (user.getText().toString().isEmpty() || old_password.getText().toString().isEmpty() || new_password.getText().toString().isEmpty()){
+                        if (user_name.getText().toString().isEmpty() || old_password.getText().toString().isEmpty() || new_password.getText().toString().isEmpty()){
                             Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
-                        }else {
-                            Call<AcountAdmin> call = requestAPI.change_password(user.getText().toString(),old_password.getText().toString(),new_password.getText().toString());
-                            call.enqueue(new Callback<AcountAdmin>() {
+                        }else if(new_password.getText().toString() != confim_passs.getText().toString()){
+                            Toast.makeText(getContext(), "Mật khẩu mới không trung nhau", Toast.LENGTH_SHORT).show();
+                        } else if (new_password.getText().toString().equalsIgnoreCase(confim_passs.getText().toString())){
+                            Call<AcountAdmin> call1 = requestAPI.change_password(user_name.getText().toString(),old_password.getText().toString(),new_password.getText().toString());
+                            call1.enqueue(new Callback<AcountAdmin>() {
                                 @Override
                                 public void onResponse(Call<AcountAdmin> call, Response<AcountAdmin> response) {
                                     AcountAdmin acountAdmin = response.body();

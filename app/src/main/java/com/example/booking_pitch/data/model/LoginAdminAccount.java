@@ -10,6 +10,10 @@ public class LoginAdminAccount {
         this.password = password;
     }
 
+    public LoginAdminAccount() {
+
+    }
+
     public boolean isSuccess() {
         return success;
     }

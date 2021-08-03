@@ -25,6 +25,7 @@ import com.example.booking_pitch.data.model.TKNgayThang;
 import com.example.booking_pitch.data.repository.RequestAPI;
 import com.example.booking_pitch.data.repository.ResponeGetDay;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -118,7 +119,9 @@ public class ThongKeThang extends Fragment {
                         barDataSet.setValueTextSize(15f);
                         barData = new BarData(barDataSet);
                         barChart.setData(barData);
-
+                        Description description = new Description();
+                        description.setText("Tháng");
+                        barChart.setDescription(description);
                         XAxis xAxis = barChart.getXAxis();
                         xAxis.setValueFormatter(new IndexAxisValueFormatter(day));
                         xAxis.setLabelCount(day.length);

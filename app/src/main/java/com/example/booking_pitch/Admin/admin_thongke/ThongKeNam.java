@@ -22,6 +22,7 @@ import com.example.booking_pitch.data.repository.RequestAPI;
 import com.example.booking_pitch.data.repository.ResponeGetDay;
 import com.example.booking_pitch.data.repository.ResponeGetNam;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -86,7 +87,9 @@ public class ThongKeNam extends Fragment {
                         barDataSet.setValueTextSize(15f);
                         barData = new BarData(barDataSet);
                         barChart.setData(barData);
-
+                        Description description = new Description();
+                        description.setText("Năm");
+                        barChart.setDescription(description);
                         XAxis xAxis = barChart.getXAxis();
                         xAxis.setValueFormatter(new IndexAxisValueFormatter(day));
                         xAxis.setLabelCount(day.length);
@@ -126,7 +129,7 @@ public class ThongKeNam extends Fragment {
                         barDataSet1.setValueTextSize(15f);
                         barData1 = new BarData(barDataSet1);
                         barChart1.setData(barData1);
-
+                        barChart1.setDescription(description);
                         XAxis xAxis1 = barChart1.getXAxis();
                         xAxis1.setValueFormatter(new IndexAxisValueFormatter(day1));
                         xAxis1.setCenterAxisLabels(true);

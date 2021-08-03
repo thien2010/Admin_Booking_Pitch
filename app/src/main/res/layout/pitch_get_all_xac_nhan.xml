@@ -34,7 +34,7 @@
                 android:id="@+id/tv_hour"
                 android:text="Giờ"
                 android:textColor="@color/black"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 android:textSize="@dimen/text_size_20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -132,7 +132,7 @@
             <Button
                 android:id="@+id/btn_done"
                 android:layout_marginHorizontal="@dimen/margin_10dp"
-                android:text="Done"
+                android:text="Xong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

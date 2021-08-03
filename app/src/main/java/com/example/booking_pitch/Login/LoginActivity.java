@@ -1,6 +1,7 @@
 package com.example.booking_pitch.Login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.booking_pitch.Admin.AdminActivity;
+import com.example.booking_pitch.Admin.admin_home.AcountAdminFragment;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.model.LoginAdminAccount;
 import com.example.booking_pitch.data.repository.RequestAPI;
@@ -62,9 +64,11 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userAdmin.getText().toString().isEmpty() || passwordAdmin.getText().toString().isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Không được để trống ", Toast.LENGTH_SHORT).show();
-                }else {
+                if(userAdmin.getText().toString().isEmpty()){
+                    Toast.makeText(LoginActivity.this, "User không được để trống ", Toast.LENGTH_SHORT).show();
+                }if (passwordAdmin.getText().toString().isEmpty()){
+                    Toast.makeText(LoginActivity.this, "Pass không được để trống ", Toast.LENGTH_SHORT).show();
+                } else {
                     progressDialog.setTitle("Đăng nhập");
                     progressDialog.setMessage("Đang đăng nhập...");
                     progressDialog.show();
