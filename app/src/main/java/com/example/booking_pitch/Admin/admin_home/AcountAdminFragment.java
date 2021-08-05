@@ -24,6 +24,7 @@ import com.example.booking_pitch.data.model.AcountAdmin;
 import com.example.booking_pitch.data.model.LoginAdminAccount;
 import com.example.booking_pitch.data.repository.RequestAPI;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Call;
@@ -43,7 +44,6 @@ public class AcountAdminFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_acount_admin, container, false);
         doimk = view.findViewById(R.id.doimk);
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://datn-2021.herokuapp.com/api/user/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -61,14 +61,13 @@ public class AcountAdminFragment extends Fragment {
                 TextInputEditText new_password = view.findViewById(R.id.password_new);
                 TextInputEditText confim_passs = view.findViewById(R.id.password_confim);
                 Button change_password = view.findViewById(R.id.btn_change_admin);
-
                 change_password.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (user_name.getText().toString().isEmpty() || old_password.getText().toString().isEmpty() || new_password.getText().toString().isEmpty()){
-                            Toast.makeText(getContext(), "Không được để trống", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Còn thông tin chưa được điền", Toast.LENGTH_SHORT).show();
                         }else if(new_password.getText().toString() != confim_passs.getText().toString()){
-                            Toast.makeText(getContext(), "Mật khẩu mới không trung nhau", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Mật khẩu mới không trùng nhau", Toast.LENGTH_SHORT).show();
                         } else if (new_password.getText().toString().equalsIgnoreCase(confim_passs.getText().toString())){
                             Call<AcountAdmin> call1 = requestAPI.change_password(user_name.getText().toString(),old_password.getText().toString(),new_password.getText().toString());
                             call1.enqueue(new Callback<AcountAdmin>() {
