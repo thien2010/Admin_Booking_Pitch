@@ -45,6 +45,7 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
         }
         holder.pitch_name.setText(pitchClass.getPitchName());
         holder.price.setText("Giá: "+numberMoney(pitchClass.getPrice())+" VND");
+        holder.detail.setText("Chi tiết: "+pitchClass.getDetail());
         Glide.with(context)
                 .load("http://datn-2021.herokuapp.com"+pitchClass.getImage())
                 .into(holder.image);
@@ -71,6 +72,7 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
             image = itemView.findViewById(R.id.img_ctSan);
             pitch_name = itemView.findViewById(R.id.tv_pitchName_all);
             price = itemView.findViewById(R.id.tv_price);
+            detail = itemView.findViewById(R.id.detail_san);
             recyclerView = itemView.findViewById(R.id.rcv_get_all_pitch);
         }
     }

@@ -24,6 +24,7 @@
 
 
     <!--Text size-->
+    <dimen name="text_size_14dp">14dp</dimen>
     <dimen name="text_size_16dp">16dp</dimen>
     <dimen name="text_size_20dp">20dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
