@@ -68,21 +68,10 @@ public class DaDat_admin extends Fragment {
             public void onResponse(Call<List<PitchClass>> call, Response<List<PitchClass>> response) {
                 List<PitchClass> pitchClass = response.body();
                 pitchClassList = new ArrayList<>(pitchClass);
-                if (pitchClassList.size() == 0){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage("Chưa có sân đã đặt")
-                            .setNegativeButton("ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    progressDialog.cancel();
-                                }
-                            });
-                    builder.create().show();
-                }else {
-                    adapterPitch = new AdapterPitchConfim(getContext(),pitchClassList);
-                    lv_confim.setAdapter(adapterPitch);
-                    progressDialog.cancel();
-                }
+                adapterPitch = new AdapterPitchConfim(getContext(),pitchClassList);
+                lv_confim.setAdapter(adapterPitch);
+                progressDialog.cancel();
+
             }
             @Override
             public void onFailure(Call<List<PitchClass>> call, Throwable t) {

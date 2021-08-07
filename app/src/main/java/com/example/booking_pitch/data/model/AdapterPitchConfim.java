@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.repository.RequestAPI;
 
@@ -61,8 +63,11 @@ public class AdapterPitchConfim extends BaseAdapter {
             viewHolder.umpire = view.findViewById(R.id.umpire_confim);
             viewHolder.tshirt = view.findViewById(R.id.tshirt_comfim);
             viewHolder.warter = view.findViewById(R.id.tv_water_confim);
-            viewHolder.span= view.findViewById(R.id.tv_hour);
-
+            viewHolder.span = view.findViewById(R.id.tv_hour);
+            viewHolder.img = view.findViewById(R.id.img_ctSan1);
+            Glide.with(context)
+                    .load(pro.getImage())
+                    .into(viewHolder.img);
             String state = pro.getState();
             String _id = pro.get_id();
             String date = pro.getDate();
@@ -119,6 +124,7 @@ public class AdapterPitchConfim extends BaseAdapter {
         CheckBox umpire;
         CheckBox tshirt;
         TextView warter;
+        ImageView img;
         Button btn_confim;
         TextView span;
     }

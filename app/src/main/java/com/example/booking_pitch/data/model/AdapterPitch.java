@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.repository.RequestAPI;
 
@@ -71,6 +72,7 @@ public class AdapterPitch extends BaseAdapter {
             viewHolder.tshirt = view.findViewById(R.id.tshirt_comfim);
             viewHolder.span= view.findViewById(R.id.tv_hour);
             viewHolder.water = view.findViewById(R.id.tv_water);
+            viewHolder.img = view.findViewById(R.id.img_ctSan);
 
             String _id = pro.get_id();
             String date = pro.getDate();
@@ -80,6 +82,9 @@ public class AdapterPitch extends BaseAdapter {
             if (!pro.getTotalPrice().equals("")){
                 viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
             }
+            Glide.with(context)
+                    .load(pro.getImage())
+                    .into(viewHolder.img);
             viewHolder.water.setText(pro.getQuantityWater()+" Bình");
             viewHolder.span.setText(pro.getSpan());
             viewHolder.pitchName.setText(pro.getPitchName());
@@ -142,6 +147,7 @@ public class AdapterPitch extends BaseAdapter {
         TextView userID;
         TextView date;
         TextView totalPrice;
+        ImageView img;
         CheckBox umpire;
         CheckBox tshirt;
         TextView water;

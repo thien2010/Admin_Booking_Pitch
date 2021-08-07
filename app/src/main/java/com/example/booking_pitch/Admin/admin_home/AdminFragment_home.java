@@ -109,9 +109,9 @@ public class AdminFragment_home extends Fragment {
 
     private List<Photo> getListPhoto(){
         List<Photo> list = new ArrayList<>();
-        list.add(new Photo(R.drawable.img1));
-        list.add(new Photo(R.drawable.img2));
-        list.add(new Photo(R.drawable.img2));
+        list.add(new Photo(R.drawable.banner2));
+        list.add(new Photo(R.drawable.banner3));
+        list.add(new Photo(R.drawable.banner1));
         return list;
     }
 }

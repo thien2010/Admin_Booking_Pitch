@@ -4,7 +4,7 @@
     android:padding="10dp"
     android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="@dimen/height_200dp">
     <LinearLayout
         android:background="@drawable/style_background"
         android:padding="@dimen/margin_10dp"
@@ -12,13 +12,11 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/img_news"
+            android:scaleType="fitXY"
             android:layout_width="@dimen/height_150dp"
             android:layout_height="@dimen/height_150dp"/>
         <LinearLayout
-            android:layout_marginLeft="@dimen/margin_10dp"
-            android:layout_marginTop="@dimen/margin_20dp"
             android:orientation="vertical"
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView

@@ -27,6 +27,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,38 +38,64 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AcountAdminFragment extends Fragment {
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^" +
+                    "(?=.*[0-9])" +         //at least 1 digit
+                    "(?=.*[a-z])" +         //at least 1 lower case letter
+                    "(?=.*[A-Z])" +         //at least 1 upper case letter
+                    "(?=.*[a-zA-Z])" +      //any letter
+//                    "(?=.*[@#$%^&+=])" +    //at least 1 special character
+                    "(?=\\S+$)" +           //no white spaces
+                    ".{6,}" +               //at least 6 characters
+                    "$");
+    TextInputLayout tv_laout1,tv_laout2,tv_laout3;
     LinearLayout doimk;
     LinearLayout logout;
+    LinearLayout info;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_acount_admin, container, false);
         doimk = view.findViewById(R.id.doimk);
+        info = view.findViewById(R.id.info_admin);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://datn-2021.herokuapp.com/api/user/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
-
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.info_app, null);
+                builder.setView(view);
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
         doimk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 View view = LayoutInflater.from(getContext()).inflate(R.layout.change_password, null);
                 builder.setView(view);
+
                 TextInputEditText user_name = view.findViewById(R.id.user_admin_change);
                 TextInputEditText old_password = view.findViewById(R.id.password_old);
                 TextInputEditText new_password = view.findViewById(R.id.password_new);
                 TextInputEditText confim_passs = view.findViewById(R.id.password_confim);
+                tv_laout1 = view.findViewById(R.id.txt_layout1);
+                tv_laout2 = view.findViewById(R.id.txt_layout2);
+                tv_laout3 = view.findViewById(R.id.txt_layout3);
                 Button change_password = view.findViewById(R.id.btn_change_admin);
                 change_password.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (user_name.getText().toString().isEmpty() || old_password.getText().toString().isEmpty() || new_password.getText().toString().isEmpty()){
+                        if (!validatePassword() | !validatePassword1() | !validatePassword3()){
+                            return;
+                        }else if (user_name.getText().toString().isEmpty()){
                             Toast.makeText(getContext(), "Còn thông tin chưa được điền", Toast.LENGTH_SHORT).show();
-                        }else if(new_password.getText().toString() != confim_passs.getText().toString()){
-                            Toast.makeText(getContext(), "Mật khẩu mới không trùng nhau", Toast.LENGTH_SHORT).show();
                         } else if (new_password.getText().toString().equalsIgnoreCase(confim_passs.getText().toString())){
                             Call<AcountAdmin> call1 = requestAPI.change_password(user_name.getText().toString(),old_password.getText().toString(),new_password.getText().toString());
                             call1.enqueue(new Callback<AcountAdmin>() {
@@ -79,7 +107,7 @@ public class AcountAdminFragment extends Fragment {
                                         startActivity(intent);
                                         Toast.makeText(getContext(), acountAdmin.getMessage(), Toast.LENGTH_SHORT).show();
                                     }else {
-                                        Toast.makeText(getContext(), "Tài khoản, Mật Khẩu đúng", Toast.LENGTH_SHORT).show();
+                                        tv_laout1.setError("Mật khẩu sai");
                                     }
                                 }
                                 @Override
@@ -117,5 +145,44 @@ public class AcountAdminFragment extends Fragment {
             }
         });
         return view;
+    }
+    private boolean validatePassword() {
+
+        String passwordInput = tv_laout2.getEditText().getText().toString().trim();
+
+        if (passwordInput.isEmpty()) {
+            tv_laout2.setError("Không được để trống");
+            return false;
+        }  else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
+            tv_laout2.setError("Mật khẩu: 6 ký tự trở lên,A-Z,a-z,0-9");
+            return false;
+        } else {
+            tv_laout2.setError(null);
+            return true;
+        }
+    }
+    private boolean validatePassword1(){
+        String passwordOld = tv_laout1.getEditText().getText().toString().trim();
+        if (passwordOld.isEmpty()) {
+            tv_laout1.setError("Không được để trống");
+            return false;
+        } else {
+            tv_laout1.setError(null);
+            return true;
+        }
+    }
+    private boolean validatePassword3(){
+        String passwordFim = tv_laout3.getEditText().getText().toString().trim();
+        String passwordInput = tv_laout2.getEditText().getText().toString().trim();
+        if (passwordFim.isEmpty()) {
+            tv_laout3.setError("Không được để trống");
+            return false;
+        }else if (!passwordFim.equals(passwordInput)){
+            tv_laout3.setError("Mật khẩu xác nhận sai");
+            return false;
+        }else {
+            tv_laout3.setError(null);
+            return true;
+        }
     }
 }

@@ -42,6 +42,7 @@ public class ChoXacNhan extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cho_xac_nhan, container, false);
         swipeRefreshLayout = view.findViewById(R.id.refreshLayout);
         lv_choXacNhan = view.findViewById(R.id.lv_choXacNhan);
+        LoadData();
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading..., please wait!");
         progressDialog.show();
@@ -52,7 +53,6 @@ public class ChoXacNhan extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-        LoadData();
         return view;
     }
     public void LoadData(){
