@@ -125,10 +125,17 @@ public class AdapterPitch extends BaseAdapter {
             viewHolder.btn_huy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Call<PitchClass> call = requestAPI.updatePitch(_id,"1");
+                    Call<PitchClass> call = requestAPI.updatePitch(_id,"-1");
                     call.enqueue(new Callback<PitchClass>() {
                         @Override
                         public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
+                            for (int i = 0 ; i< pitchClassList.size(); i++){
+                                if (pitchClassList.get(i).get_id() == _id){
+                                    Log.d("t","ok"+ _id);
+                                    pitchClassList.remove(i);
+                                    setDatachange(pitchClassList);
+                                }
+                            }
                             Toast.makeText(context, "Hủy thành công", Toast.LENGTH_SHORT).show();
                         }
                         @Override
