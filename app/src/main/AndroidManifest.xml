@@ -14,9 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking_Pitch"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Admin.NewsActivity"></activity>
+        <activity android:name=".Admin.PitchActivity" />
         <activity android:name=".Admin.AdminActivity" />
-        <activity
-            android:name=".Login.LoginActivity" />
+        <activity android:name=".Login.LoginActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>

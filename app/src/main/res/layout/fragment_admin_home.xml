@@ -66,6 +66,8 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:background="@drawable/background_view"
                 android:id="@+id/rcv_get_all_pitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -73,11 +75,13 @@
                 android:text="Tin tức"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_20dp"
+                android:layout_marginTop="@dimen/margin_10dp"
                 android:layout_marginBottom="@dimen/margin_10dp"
                 android:textColor="@color/primary_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <androidx.recyclerview.widget.RecyclerView
+                android:background="@drawable/background_view"
                 android:id="@+id/rcv_get_all_new"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

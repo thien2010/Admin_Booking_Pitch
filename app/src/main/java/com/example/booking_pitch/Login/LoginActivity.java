@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage("Đăng nhập thất bại")
+                    builder.setMessage("Tài khoản hoặc mật khẩu không chính xác!")
                             .setNegativeButton("ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

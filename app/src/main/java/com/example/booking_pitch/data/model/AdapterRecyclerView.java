@@ -1,6 +1,8 @@
 package com.example.booking_pitch.data.model;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.booking_pitch.Admin.PitchActivity;
 import com.example.booking_pitch.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -50,7 +53,19 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
                 .load("http://datn-2021.herokuapp.com"+pitchClass.getImage())
                 .into(holder.image);
 
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PitchActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("name",pitchClass.getPitchName());
+                bundle.putString("price",pitchClass.getPrice());
+                bundle.putString("img",pitchClass.getImage());
+                bundle.putString("info",pitchClass.getDetail());
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

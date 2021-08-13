@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.NewsActivity">
+    <ImageView
+        android:id="@+id/img_news1"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_150dp"/>
+    <TextView
+        android:id="@+id/title_news"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:text="Title"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/content_news"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:text="Content"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_gravity="center"
+        android:text="Trở về"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

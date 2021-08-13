@@ -1,6 +1,8 @@
 package com.example.booking_pitch.data.model;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.booking_pitch.Admin.NewsActivity;
+import com.example.booking_pitch.Admin.PitchActivity;
 import com.example.booking_pitch.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -47,7 +51,18 @@ public class AdapterRecyclerNews extends RecyclerView.Adapter<AdapterRecyclerNew
         Glide.with(context)
                 .load("http://datn-2021.herokuapp.com"+news.getImage())
                 .into(holder.image);
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, NewsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("title",news.getTitle());
+                bundle.putString("content",news.getContent());
+                bundle.putString("imgnews",news.getImage());
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
 
     }
 
