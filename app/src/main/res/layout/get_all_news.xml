@@ -10,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:layout_margin="@dimen/margin_5dp"
             android:id="@+id/img_news"
             android:scaleType="fitXY"
             android:layout_width="@dimen/height_150dp"
             android:layout_height="@dimen/height_150dp"/>
         <ScrollView
-            android:layout_margin="@dimen/margin_10dp"
+            android:layout_margin="@dimen/margin_5dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_150dp">

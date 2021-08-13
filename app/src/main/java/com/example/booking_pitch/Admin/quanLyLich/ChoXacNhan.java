@@ -44,7 +44,7 @@ public class ChoXacNhan extends Fragment {
         lv_choXacNhan = view.findViewById(R.id.lv_choXacNhan);
         LoadData();
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading..., please wait!");
+        progressDialog.setMessage("Đang tải... Xin đợi!");
         progressDialog.show();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

@@ -140,7 +140,6 @@ public class AdapterPitch extends BaseAdapter {
                         }
                         @Override
                         public void onFailure(Call<PitchClass> call, Throwable t) {
-
                         }
                     });
                 }

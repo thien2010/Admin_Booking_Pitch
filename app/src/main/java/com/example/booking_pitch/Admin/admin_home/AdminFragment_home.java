@@ -58,12 +58,13 @@ public class AdminFragment_home extends Fragment {
         viewPager = view.findViewById(R.id.banner);
         rcv_pitch = view.findViewById(R.id.rcv_get_all_pitch);
         rcv_news = view.findViewById(R.id.rcv_get_all_new);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
-        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
-        rcv_pitch.setLayoutManager(linearLayoutManager);
-        rcv_news.setLayoutManager(linearLayoutManager1);
         photoAdapter = new PhotoAdapter(getContext(),getListPhoto());
         viewPager.setAdapter(photoAdapter);
+        getPitch();
+        getNews();
+        return view;
+    }
+    private void getPitch(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://datn-2021.herokuapp.com/api/pitch/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -76,6 +77,8 @@ public class AdminFragment_home extends Fragment {
                 ReponeAllSan pitchClasses = response.body();
                 pitchClassList = new ArrayList<>(Arrays.asList(pitchClasses.getData()));
                 adapterRecyclerView = new AdapterRecyclerView(getContext(),pitchClassList);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+                rcv_pitch.setLayoutManager(linearLayoutManager);
                 rcv_pitch.setAdapter(adapterRecyclerView);
             }
             @Override
@@ -83,6 +86,8 @@ public class AdminFragment_home extends Fragment {
 
             }
         });
+    }
+    private void getNews(){
         Retrofit retrofit1 = new Retrofit.Builder()
                 .baseUrl("http://datn-2021.herokuapp.com/api/news/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -95,6 +100,8 @@ public class AdminFragment_home extends Fragment {
                 ResponeNews pitchClasses = response.body();
                 newsList = new ArrayList<>(Arrays.asList(pitchClasses.getData()));
                 adapterRecyclerNews = new AdapterRecyclerNews(getContext(),newsList);
+                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+                rcv_news.setLayoutManager(linearLayoutManager1);
                 rcv_news.setAdapter(adapterRecyclerNews);
             }
             @Override
@@ -102,11 +109,7 @@ public class AdminFragment_home extends Fragment {
 
             }
         });
-
-
-        return view;
     }
-
     private List<Photo> getListPhoto(){
         List<Photo> list = new ArrayList<>();
         list.add(new Photo(R.drawable.banner2));
