@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,7 +98,14 @@ public class AdapterPitch extends BaseAdapter {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             RequestAPI requestAPI = retrofit.create(RequestAPI.class);
-
+            viewHolder.userID.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:"+pro.getUserID()));
+                    context.startActivity(intent);
+                }
+            });
             viewHolder.btn_xacNhan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

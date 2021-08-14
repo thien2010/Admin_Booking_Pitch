@@ -1,6 +1,8 @@
 package com.example.booking_pitch.data.model;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,6 +86,14 @@ public class AdapterPitchConfim extends BaseAdapter {
             viewHolder.date.setText("Ngày: "+day + "-" +month + "-"+year);
             viewHolder.tshirt.setChecked(pro.isTshirt());
             viewHolder.umpire.setChecked(pro.isUmpire());
+            viewHolder.userID.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:"+pro.getUserID()));
+                    context.startActivity(intent);
+                }
+            });
             viewHolder.btn_confim.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
