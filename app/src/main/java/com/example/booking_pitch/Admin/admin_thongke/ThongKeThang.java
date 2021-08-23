@@ -33,6 +33,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +51,7 @@ public class ThongKeThang extends Fragment {
     TextView edt_month,edt_nam;
     Button btn_tk_month;
     ImageView img_month;
-    TextView tong_thang;
+    TextView tong_thang,dt_thang;
     String month2;
     List<TKNgayThang> ngayThangList;
     @Override
@@ -62,6 +63,7 @@ public class ThongKeThang extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
+        dt_thang = view.findViewById(R.id.dt_thang);
         tong_thang = view.findViewById(R.id.tong_thang);
         edt_month = view.findViewById(R.id.edt_month);
         img_month = view.findViewById(R.id.img_date_month);
@@ -100,7 +102,9 @@ public class ThongKeThang extends Fragment {
                     public void onResponse(Call<ResponeGetDay> call, Response<ResponeGetDay> response) {
                         ResponeGetDay responeGetDay = response.body();
                         ngayThangList = new ArrayList<>(Arrays.asList(responeGetDay.getArrPitch()));
-                        tong_thang.setText("Tổng: "+responeGetDay.getTotalMoney());
+                        tong_thang.setText("Tổng: "+numberMoney(responeGetDay.getTotalMoney()));
+                        int dt = Integer.valueOf(responeGetDay.getTotalMoney());
+                        dt_thang.setText("Doanh thu: "+(numberMoney(String.valueOf(dt*40/100))));
                         BarData barData;
                         BarDataSet barDataSet;
                         ArrayList chart;
@@ -159,5 +163,9 @@ public class ThongKeThang extends Fragment {
             }
         });
         return view;
+    }
+    public static String numberMoney(String number){
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,##0");
+        return decimalFormat.format(Double.parseDouble(number));
     }
 }

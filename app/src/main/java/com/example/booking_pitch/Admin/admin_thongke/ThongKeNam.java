@@ -30,6 +30,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,7 +45,7 @@ public class ThongKeNam extends Fragment {
 
     EditText edt_year;
     Button btn_tk_year;
-    TextView tong_nam;
+    TextView tong_nam, doanhthu;
     List<TKNgayThang> ngayThangList;
     List<TkThang> tkThangList;
     @Override
@@ -56,6 +57,7 @@ public class ThongKeNam extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
+        doanhthu = view.findViewById(R.id.dt_nam);
         tong_nam = view.findViewById(R.id.tong_year);
         edt_year = view.findViewById(R.id.edt_year);
         btn_tk_year = view.findViewById(R.id.btn_tk_year);
@@ -69,7 +71,9 @@ public class ThongKeNam extends Fragment {
                         ResponeGetNam responeGetNam = response.body();
                         ngayThangList = new ArrayList<>(Arrays.asList(responeGetNam.getArrPitch()));
                         tkThangList = new ArrayList<>(Arrays.asList(responeGetNam.getArrMonth()));
-                        tong_nam.setText("Tổng: "+responeGetNam.getTotalMoney());
+                        tong_nam.setText("Tổng: "+numberMoney(responeGetNam.getTotalMoney()));
+                        int dt = Integer.valueOf(responeGetNam.getTotalMoney());
+                        doanhthu.setText("Doanh thu: "+(numberMoney(String.valueOf(dt*40/100))));
                         BarData barData;
                         BarDataSet barDataSet;
                         ArrayList chart;
@@ -162,5 +166,9 @@ public class ThongKeNam extends Fragment {
             }
         });
         return view;
+    }
+    public static String numberMoney(String number){
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,##0");
+        return decimalFormat.format(Double.parseDouble(number));
     }
 }

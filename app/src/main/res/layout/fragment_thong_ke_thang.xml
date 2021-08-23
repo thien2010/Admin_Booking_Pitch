@@ -39,15 +39,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-    <TextView
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/tong_thang"
-        android:textColor="@color/black"
-        android:textSize="@dimen/text_size_16dp"
-        android:textStyle="bold"
+    <LinearLayout
         android:layout_marginTop="60dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tong_thang"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16dp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/dt_thang"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16dp"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barchart_thang"
         android:layout_marginTop="100dp"
