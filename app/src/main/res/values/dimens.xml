@@ -10,6 +10,7 @@
     <dimen name="height_150dp">150dp</dimen>
     <dimen name="height_200dp">200dp</dimen>
     <dimen name="height_300dp">300dp</dimen>
+    <dimen name="height_500dp">500dp</dimen>
     <dimen name="padding_40dp">40dp</dimen>
     <dimen name="padding_15dp">15dp</dimen>
     <dimen name="padding_5dp">5dp</dimen>

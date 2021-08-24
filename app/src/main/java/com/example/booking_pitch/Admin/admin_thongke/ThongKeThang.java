@@ -48,10 +48,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ThongKeThang extends Fragment {
-    TextView edt_month,edt_nam;
+    TextView edt_month;
     Button btn_tk_month;
     ImageView img_month;
-    TextView tong_thang,dt_thang;
+    TextView tong_thang,dt_thang, trong_tai_t, dv_vs_dien_t, sl_san_t, sl_nuoc_t, chi_phi_t;
     String month2;
     List<TKNgayThang> ngayThangList;
     @Override
@@ -63,6 +63,11 @@ public class ThongKeThang extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
+        chi_phi_t = view.findViewById(R.id.chi_phi_t);
+        trong_tai_t = view.findViewById(R.id.trong_tai_t);
+        dv_vs_dien_t = view.findViewById(R.id.dv_vs_dien_t);
+        sl_nuoc_t =  view.findViewById(R.id.sl_nuoc_t);
+        sl_san_t = view.findViewById(R.id.so_luong_san_t);
         dt_thang = view.findViewById(R.id.dt_thang);
         tong_thang = view.findViewById(R.id.tong_thang);
         edt_month = view.findViewById(R.id.edt_month);
@@ -102,9 +107,18 @@ public class ThongKeThang extends Fragment {
                     public void onResponse(Call<ResponeGetDay> call, Response<ResponeGetDay> response) {
                         ResponeGetDay responeGetDay = response.body();
                         ngayThangList = new ArrayList<>(Arrays.asList(responeGetDay.getArrPitch()));
-                        tong_thang.setText("Tổng: "+numberMoney(responeGetDay.getTotalMoney()));
-                        int dt = Integer.valueOf(responeGetDay.getTotalMoney());
-                        dt_thang.setText("Doanh thu: "+(numberMoney(String.valueOf(dt*40/100))));
+                        tong_thang.setText(numberMoney(responeGetDay.getTotalMoney())+" VND");
+                        float cp = responeGetDay.getTotalCost();
+                        float dt = Float.valueOf(responeGetDay.getTotalMoney());
+                        float loi_nhuan = dt - cp;
+                        float tong_dv = Float.valueOf(responeGetDay.getQuantitySoccer())*65000;
+                        trong_tai_t.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalUmpire())*150000))+" VND");
+                        dv_vs_dien_t.setText(numberMoney(String.valueOf(tong_dv)));
+                        sl_san_t.setText(responeGetDay.getQuantitySoccer());
+                        sl_nuoc_t.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalWater())*18000))+" VND");
+                        chi_phi_t.setText(numberMoney(String.valueOf(responeGetDay.getTotalCost()))+" VND");
+                        dt_thang.setText((numberMoney(String.valueOf(loi_nhuan)))+" VND");
+
                         BarData barData;
                         BarDataSet barDataSet;
                         ArrayList chart;

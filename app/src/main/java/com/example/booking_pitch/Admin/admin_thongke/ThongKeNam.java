@@ -45,7 +45,7 @@ public class ThongKeNam extends Fragment {
 
     EditText edt_year;
     Button btn_tk_year;
-    TextView tong_nam, doanhthu;
+    TextView tong_nam, doanhthu, trong_tai_y, dv_vs_dien_y, sl_san_y, sl_nuoc_y, chi_phi_y;
     List<TKNgayThang> ngayThangList;
     List<TkThang> tkThangList;
     @Override
@@ -57,6 +57,11 @@ public class ThongKeNam extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
+        chi_phi_y = view.findViewById(R.id.chi_phi_y);
+        trong_tai_y = view.findViewById(R.id.trong_tai_y);
+        dv_vs_dien_y = view.findViewById(R.id.dv_vs_dien_y);
+        sl_nuoc_y =  view.findViewById(R.id.sl_nuoc_y);
+        sl_san_y = view.findViewById(R.id.so_luong_san_y);
         doanhthu = view.findViewById(R.id.dt_nam);
         tong_nam = view.findViewById(R.id.tong_year);
         edt_year = view.findViewById(R.id.edt_year);
@@ -71,9 +76,19 @@ public class ThongKeNam extends Fragment {
                         ResponeGetNam responeGetNam = response.body();
                         ngayThangList = new ArrayList<>(Arrays.asList(responeGetNam.getArrPitch()));
                         tkThangList = new ArrayList<>(Arrays.asList(responeGetNam.getArrMonth()));
-                        tong_nam.setText("Tổng: "+numberMoney(responeGetNam.getTotalMoney()));
-                        int dt = Integer.valueOf(responeGetNam.getTotalMoney());
-                        doanhthu.setText("Doanh thu: "+(numberMoney(String.valueOf(dt*40/100))));
+
+                        tong_nam.setText(numberMoney(responeGetNam.getTotalMoney())+" VND");
+                        float cp = responeGetNam.getTotalCost();
+                        float dt = Float.valueOf(responeGetNam.getTotalMoney());
+                        float loi_nhuan = dt - cp;
+                        float tong_dv = Float.valueOf(responeGetNam.getQuantitySoccer())*65000;
+                        trong_tai_y.setText(numberMoney(String.valueOf(Float.valueOf(responeGetNam.getTotalUmpire())*150000))+" VND");
+                        dv_vs_dien_y.setText(numberMoney(String.valueOf(tong_dv)));
+                        sl_san_y.setText(responeGetNam.getQuantitySoccer());
+                        sl_nuoc_y.setText(numberMoney(String.valueOf(Float.valueOf(responeGetNam.getTotalWater())*18000))+" VND");
+                        chi_phi_y.setText(numberMoney(String.valueOf(responeGetNam.getTotalCost()))+" VND");
+                        doanhthu.setText((numberMoney(String.valueOf(loi_nhuan)))+" VND");
+
                         BarData barData;
                         BarDataSet barDataSet;
                         ArrayList chart;

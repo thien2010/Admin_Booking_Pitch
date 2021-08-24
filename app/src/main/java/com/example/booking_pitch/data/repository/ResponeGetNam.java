@@ -7,6 +7,42 @@ public class ResponeGetNam {
     private TKNgayThang[] arrPitch;
     private TkThang[] arrMonth;
     private String totalMoney;
+    private float totalCost;
+    private String quantitySoccer;
+    private String totalWater;
+    private String totalUmpire;
+
+    public float getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(float totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public String getQuantitySoccer() {
+        return quantitySoccer;
+    }
+
+    public void setQuantitySoccer(String quantitySoccer) {
+        this.quantitySoccer = quantitySoccer;
+    }
+
+    public String getTotalWater() {
+        return totalWater;
+    }
+
+    public void setTotalWater(String totalWater) {
+        this.totalWater = totalWater;
+    }
+
+    public String getTotalUmpire() {
+        return totalUmpire;
+    }
+
+    public void setTotalUmpire(String totalUmpire) {
+        this.totalUmpire = totalUmpire;
+    }
 
     public TKNgayThang[] getArrPitch() {
         return arrPitch;

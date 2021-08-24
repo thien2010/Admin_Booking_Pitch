@@ -5,6 +5,42 @@ import com.example.booking_pitch.data.model.TKNgayThang;
 public class ResponeGetDay {
     private TKNgayThang[] arrPitch;
     private String totalMoney;
+    private float totalCost;
+    private String quantitySoccer;
+    private String totalWater;
+    private String totalUmpire;
+
+    public String getTotalUmpire() {
+        return totalUmpire;
+    }
+
+    public void setTotalUmpire(String totalUmpire) {
+        this.totalUmpire = totalUmpire;
+    }
+
+    public String getQuantitySoccer() {
+        return quantitySoccer;
+    }
+
+    public void setQuantitySoccer(String quantitySoccer) {
+        this.quantitySoccer = quantitySoccer;
+    }
+
+    public String getTotalWater() {
+        return totalWater;
+    }
+
+    public void setTotalWater(String totalWater) {
+        this.totalWater = totalWater;
+    }
+
+    public float getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(float totalCost) {
+        this.totalCost = totalCost;
+    }
 
     public String getTotalMoney() {
         return totalMoney;
