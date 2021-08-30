@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Admin_Booking_Pitch</string>
+    <string name="app_name">Quản lý sân bóng</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Trang chủ</string>
     <string name="title_dashboard">Đã lưu</string>
