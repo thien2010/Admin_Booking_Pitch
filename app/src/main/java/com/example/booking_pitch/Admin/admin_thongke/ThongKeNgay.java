@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +46,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ThongKeNgay extends Fragment {
-
+    LinearLayout layout_ngay;
     TextView edt_day, dt_ngay, chi_phi, sl_san, sl_nuoc, dv_vs_dien, trong_tai;
     ImageView img_date;
     Button btn_tk_day;
@@ -62,6 +63,7 @@ public class ThongKeNgay extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
+        layout_ngay = view.findViewById(R.id.layout_ngay);
         trong_tai = view.findViewById(R.id.trong_tai);
         dv_vs_dien = view.findViewById(R.id.dv_vs_dien);
         sl_nuoc = view.findViewById(R.id.sl_nuoc);
@@ -72,6 +74,7 @@ public class ThongKeNgay extends Fragment {
         img_date = view.findViewById(R.id.img_date);
         btn_tk_day = view.findViewById(R.id.btn_tk_ngay);
         tong_ngay = view.findViewById(R.id.tong_ngay);
+        layout_ngay.setVisibility(View.INVISIBLE);
         img_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,13 +108,14 @@ public class ThongKeNgay extends Fragment {
                         ResponeGetDay responeGetDay = response.body();
                         ngayThangList = new ArrayList<>(Arrays.asList(responeGetDay.getArrPitch()));
                         // thong ke
+                        layout_ngay.setVisibility(View.VISIBLE);
                         tong_ngay.setText(numberMoney(responeGetDay.getTotalMoney())+" VND");
                         float cp = responeGetDay.getTotalCost();
                         float dt = Float.valueOf(responeGetDay.getTotalMoney());
                         float loi_nhuan = dt - cp;
                         float tong_dv = Float.valueOf(responeGetDay.getQuantitySoccer())*65000;
                         trong_tai.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalUmpire())*150000))+" VND");
-                        dv_vs_dien.setText(numberMoney(String.valueOf(tong_dv)));
+                        dv_vs_dien.setText(numberMoney(String.valueOf(tong_dv))+" VND");
                         sl_san.setText(responeGetDay.getQuantitySoccer());
                         sl_nuoc.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalWater())*18000))+" VND");
                         chi_phi.setText(numberMoney(String.valueOf(responeGetDay.getTotalCost()))+" VND");

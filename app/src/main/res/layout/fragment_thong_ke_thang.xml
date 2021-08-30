@@ -44,153 +44,159 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="@dimen/margin_20dp"
-            android:padding="@dimen/padding_5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Tổng thu: "
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/tong_thang"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-            android:padding="@dimen/padding_5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Số trận đã đá: "
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16dp"
-                android:textStyle="bold"
-                android:layout_width="@dimen/with_200dp"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/so_luong_san_t"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-            android:padding="@dimen/padding_5dp"
-            android:layout_marginBottom="@dimen/margin_10dp"
+            android:id="@+id/layout_thang"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:text="Chi phí:"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
             <LinearLayout
-                android:padding="@dimen/margin_10dp"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:padding="@dimen/padding_5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="Bảo dưỡng, vệ sinh, điện: "
+                    android:text="Tổng thu: "
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16dp"
-                    android:textStyle="normal"
-                    android:layout_width="@dimen/with_200dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/dv_vs_dien_t"
+                    android:id="@+id/tong_thang"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16dp"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
-                android:padding="@dimen/margin_10dp"
+                android:padding="@dimen/padding_5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="Trọng tài: "
+                    android:text="Số trận đã đá: "
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16dp"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     android:layout_width="@dimen/with_200dp"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/trong_tai_t"
+                    android:id="@+id/so_luong_san_t"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16dp"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
-                android:padding="@dimen/margin_10dp"
+                android:padding="@dimen/padding_5dp"
+                android:layout_marginBottom="@dimen/margin_10dp"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="Nước: "
+                    android:text="Chi phí:"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size_16dp"
-                    android:textStyle="normal"
-                    android:layout_width="@dimen/with_200dp"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/sl_nuoc_t"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_16dp"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:padding="@dimen/margin_10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Bảo dưỡng, vệ sinh, điện: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16dp"
+                        android:textStyle="normal"
+                        android:layout_width="@dimen/with_200dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/dv_vs_dien_t"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16dp"
+                        android:textStyle="normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:padding="@dimen/margin_10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Trọng tài: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16dp"
+                        android:textStyle="normal"
+                        android:layout_width="@dimen/with_200dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/trong_tai_t"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16dp"
+                        android:textStyle="normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:padding="@dimen/margin_10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Nước: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16dp"
+                        android:textStyle="normal"
+                        android:layout_width="@dimen/with_200dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/sl_nuoc_t"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16dp"
+                        android:textStyle="normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:padding="@dimen/margin_10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Tổng: "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16dp"
+                        android:textStyle="normal"
+                        android:layout_width="@dimen/with_200dp"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/chi_phi_t"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_16dp"
+                        android:textStyle="normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:padding="@dimen/margin_10dp"
+                android:padding="@dimen/padding_5dp"
+                android:layout_marginBottom="70dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:text="Tổng: "
-                    android:textColor="@color/black"
+                    android:text="Lợi nhuận: "
+                    android:textColor="#C50023"
                     android:textSize="@dimen/text_size_16dp"
-                    android:textStyle="normal"
-                    android:layout_width="@dimen/with_200dp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/chi_phi_t"
-                    android:textColor="@color/black"
+                    android:id="@+id/dt_thang"
+                    android:textColor="#C50023"
                     android:textSize="@dimen/text_size_16dp"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:padding="@dimen/padding_5dp"
-            android:layout_marginBottom="70dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Lợi nhuận: "
-                android:textColor="#C50023"
-                android:textSize="@dimen/text_size_16dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:id="@+id/dt_thang"
-                android:textColor="#C50023"
-                android:textSize="@dimen/text_size_16dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barchart_thang"

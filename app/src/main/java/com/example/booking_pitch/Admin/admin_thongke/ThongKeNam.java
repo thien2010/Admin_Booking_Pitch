@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,7 +43,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ThongKeNam extends Fragment {
-
+    LinearLayout layout_year;
     EditText edt_year;
     Button btn_tk_year;
     TextView tong_nam, doanhthu, trong_tai_y, dv_vs_dien_y, sl_san_y, sl_nuoc_y, chi_phi_y;
@@ -57,6 +58,7 @@ public class ThongKeNam extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
+        layout_year = view.findViewById(R.id.layout_year);
         chi_phi_y = view.findViewById(R.id.chi_phi_y);
         trong_tai_y = view.findViewById(R.id.trong_tai_y);
         dv_vs_dien_y = view.findViewById(R.id.dv_vs_dien_y);
@@ -66,6 +68,7 @@ public class ThongKeNam extends Fragment {
         tong_nam = view.findViewById(R.id.tong_year);
         edt_year = view.findViewById(R.id.edt_year);
         btn_tk_year = view.findViewById(R.id.btn_tk_year);
+        layout_year.setVisibility(View.INVISIBLE);
         btn_tk_year.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,14 +79,14 @@ public class ThongKeNam extends Fragment {
                         ResponeGetNam responeGetNam = response.body();
                         ngayThangList = new ArrayList<>(Arrays.asList(responeGetNam.getArrPitch()));
                         tkThangList = new ArrayList<>(Arrays.asList(responeGetNam.getArrMonth()));
-
+                        layout_year.setVisibility(View.VISIBLE);
                         tong_nam.setText(numberMoney(responeGetNam.getTotalMoney())+" VND");
                         float cp = responeGetNam.getTotalCost();
                         float dt = Float.valueOf(responeGetNam.getTotalMoney());
                         float loi_nhuan = dt - cp;
                         float tong_dv = Float.valueOf(responeGetNam.getQuantitySoccer())*65000;
                         trong_tai_y.setText(numberMoney(String.valueOf(Float.valueOf(responeGetNam.getTotalUmpire())*150000))+" VND");
-                        dv_vs_dien_y.setText(numberMoney(String.valueOf(tong_dv)));
+                        dv_vs_dien_y.setText(numberMoney(String.valueOf(tong_dv))+" VND");
                         sl_san_y.setText(responeGetNam.getQuantitySoccer());
                         sl_nuoc_y.setText(numberMoney(String.valueOf(Float.valueOf(responeGetNam.getTotalWater())*18000))+" VND");
                         chi_phi_y.setText(numberMoney(String.valueOf(responeGetNam.getTotalCost()))+" VND");

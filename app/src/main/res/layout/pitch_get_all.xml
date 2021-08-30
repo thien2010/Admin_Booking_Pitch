@@ -11,11 +11,21 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:scaleType="fitXY"
-            android:id="@+id/img_ctSan"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_150dp"/>
+            android:layout_height="wrap_content">
+            <ImageView
+                android:padding="@dimen/padding_5dp"
+                android:scaleType="centerCrop"
+                android:id="@+id/img_ctSan"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_150dp"/>
+            <ImageView
+                android:background="@drawable/background_all_img"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_150dp"/>
+        </FrameLayout>
         <LinearLayout
             android:gravity="center"
             android:layout_width="match_parent"
@@ -34,7 +44,7 @@
                 android:id="@+id/tv_hour"
                 android:text="Giờ"
                 android:textColor="@color/black"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 android:textSize="@dimen/text_size_16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -52,9 +62,9 @@
             <TextView
                 android:id="@+id/tv_userID"
                 android:text="User name"
-                android:textColor="@color/black"
+                android:textColor="@color/primary_color"
                 android:textStyle="normal"
-                android:textSize="@dimen/text_size_16dp"
+                android:textSize="@dimen/text_size_20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <LinearLayout
@@ -71,24 +81,45 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
-        <CheckBox
-            android:id="@+id/tshirt_comfim"
-            android:text="Áo đấu"
-            android:enabled="false"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_16dp"
-            android:textStyle="normal"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/margin_30dp"/>
-        <CheckBox
-            android:id="@+id/umpire_confim"
-            android:text="Trọng tài"
-            android:enabled="false"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_16dp"
-            android:textStyle="normal"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/tshirt_comfim"
+                android:text="Áo đấu"
+                android:enabled="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16dp"
+                android:textStyle="normal"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin_30dp"/>
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:src="@drawable/t_sirth"
+                android:layout_width="@dimen/margin_25dp"
+                android:layout_height="@dimen/margin_25dp"/>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/margin_30dp"/>
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/umpire_confim"
+                android:text="Trọng tài"
+                android:enabled="false"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16dp"
+                android:textStyle="normal"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/margin_30dp"/>
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_10dp"
+                android:src="@drawable/trong_tai"
+                android:layout_width="@dimen/margin_25dp"
+                android:layout_height="@dimen/margin_25dp"/>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_marginLeft="@dimen/margin_10dp"
             android:layout_width="wrap_content"

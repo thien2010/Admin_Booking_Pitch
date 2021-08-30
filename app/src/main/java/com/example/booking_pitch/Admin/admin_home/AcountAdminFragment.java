@@ -43,10 +43,10 @@ public class AcountAdminFragment extends Fragment {
                     "(?=.*[0-9])" +         //at least 1 digit
                     "(?=.*[a-z])" +         //at least 1 lower case letter
                     "(?=.*[A-Z])" +         //at least 1 upper case letter
-                    "(?=.*[a-zA-Z])" +      //any letter
-//                    "(?=.*[@#$%^&+=])" +    //at least 1 special character
+                    //"(?=.*[a-zA-Z])" +      //any letter
+                    "(?=.*[@#$%^&+=])" +    //at least 1 special character
                     "(?=\\S+$)" +           //no white spaces
-                    ".{6,}" +               //at least 6 characters
+                    ".{8,}" +               //at least 6 characters
                     "$");
     TextInputLayout tv_laout1,tv_laout2,tv_laout3;
     LinearLayout doimk;
@@ -154,7 +154,7 @@ public class AcountAdminFragment extends Fragment {
             tv_laout2.setError("Không được để trống");
             return false;
         }  else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
-            tv_laout2.setError("Mật khẩu: 6 ký tự trở lên,A-Z,a-z,0-9");
+            tv_laout2.setError("Mật khẩu: 8 ký tự trở lên,A-Z,a-z,0-9,[@#$%^&+=]");
             return false;
         } else {
             tv_laout2.setError(null);
