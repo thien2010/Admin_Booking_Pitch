@@ -43,7 +43,7 @@ public class DaDat_admin extends Fragment {
         View view = inflater.inflate(R.layout.fragment_da_dat_admin, container, false);
         swipeRefreshLayout = view.findViewById(R.id.refreshLayout_2);
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading..., please wait!");
+        progressDialog.setMessage("Đang tải... Xin đợi!");
         progressDialog.show();
         lv_confim = view.findViewById(R.id.lv_confim);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
