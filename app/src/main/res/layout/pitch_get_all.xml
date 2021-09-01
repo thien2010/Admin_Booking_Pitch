@@ -11,21 +11,12 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <FrameLayout
+        <ImageView
+            android:padding="@dimen/padding_5dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/img_ctSan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:padding="@dimen/padding_5dp"
-                android:scaleType="centerCrop"
-                android:id="@+id/img_ctSan"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_150dp"/>
-            <ImageView
-                android:background="@drawable/background_all_img"
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_150dp"/>
-        </FrameLayout>
+            android:layout_height="@dimen/height_150dp"/>
         <LinearLayout
             android:gravity="center"
             android:layout_width="match_parent"
