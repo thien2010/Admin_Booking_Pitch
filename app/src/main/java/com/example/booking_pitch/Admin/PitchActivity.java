@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.booking_pitch.R;
 
+import java.text.DecimalFormat;
+
 public class PitchActivity extends AppCompatActivity {
     ImageView img_pitch;
     TextView name_pitch, price_pitch, info_pitch;
@@ -33,7 +35,7 @@ public class PitchActivity extends AppCompatActivity {
                 .load("http://datn-2021.herokuapp.com"+img)
                 .into(img_pitch);
         name_pitch.setText(name);
-        price_pitch.setText(price);
+        price_pitch.setText(numberMoney(price));
         info_pitch.setText(info);
 
         btn_back = findViewById(R.id.btn_back);
@@ -44,5 +46,9 @@ public class PitchActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    public static String numberMoney(String number){
+        DecimalFormat decimalFormat = new DecimalFormat("###,###,##0");
+        return decimalFormat.format(Double.parseDouble(number));
     }
 }

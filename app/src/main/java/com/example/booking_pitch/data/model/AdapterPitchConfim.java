@@ -67,6 +67,7 @@ public class AdapterPitchConfim extends BaseAdapter {
             viewHolder.warter = view.findViewById(R.id.tv_water_confim);
             viewHolder.span = view.findViewById(R.id.tv_hour);
             viewHolder.img = view.findViewById(R.id.img_ctSan1);
+            viewHolder.userName = view.findViewById(R.id.userName_0);
             Glide.with(context)
                     .load(pro.getImage())
                     .into(viewHolder.img);
@@ -79,6 +80,7 @@ public class AdapterPitchConfim extends BaseAdapter {
             if (!pro.getTotalPrice().equals("")){
                 viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
             }
+            viewHolder.userName.setText("Người đặt: "+pro.getUserName());
             viewHolder.span.setText(pro.getSpan());
             viewHolder.warter.setText(pro.getQuantityWater()+ " Bình");
             viewHolder.userID.setText(pro.getUserID());
@@ -137,6 +139,7 @@ public class AdapterPitchConfim extends BaseAdapter {
         ImageView img;
         Button btn_confim;
         TextView span;
+        TextView userName;
     }
     @Override
     public void notifyDataSetChanged() {

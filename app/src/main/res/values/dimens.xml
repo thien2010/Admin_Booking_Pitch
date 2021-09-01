@@ -15,6 +15,7 @@
     <dimen name="padding_15dp">15dp</dimen>
     <dimen name="padding_5dp">5dp</dimen>
     <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_7dp">7dp</dimen>
     <dimen name="margin_25dp">25dp</dimen>
     <dimen name="margin_20dp">20dp</dimen>
     <dimen name="margin_30dp">30dp</dimen>

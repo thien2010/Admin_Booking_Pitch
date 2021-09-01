@@ -26,14 +26,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_150dp"/>
         </FrameLayout>
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/tv_pitchName"
+            android:text="Sân Số 3"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:gravity="center"
+            android:layout_margin="@dimen/padding_5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_gravity="center"
                 android:id="@+id/tv_date"
                 android:text="Ngày"
+                android:background="@drawable/time_background"
+                android:padding="@dimen/padding_5dp"
                 android:layout_marginRight="@dimen/with_50dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -43,6 +55,8 @@
             <TextView
                 android:id="@+id/tv_hour"
                 android:text="Giờ"
+                android:background="@drawable/time_background"
+                android:padding="@dimen/padding_5dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_16dp"
@@ -53,16 +67,12 @@
             android:layout_marginLeft="@dimen/margin_10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ImageView
-                android:layout_marginRight="@dimen/margin_5dp"
-                android:src="@drawable/ic_baseline_phone_24"
-                android:layout_width="@dimen/margin_20dp"
-                android:layout_height="@dimen/margin_20dp"/>
             <TextView
-                android:id="@+id/tv_userName"
-                android:text="User name"
+                android:layout_gravity="center"
+                android:id="@+id/userName_0"
+                android:text="User Name"
                 android:textColor="@color/primary_color"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 android:textSize="@dimen/text_size_16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -70,11 +80,18 @@
                 android:gravity="right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/margin_5dp"
+                    android:src="@drawable/ic_baseline_phone_24"
+                    android:layout_width="@dimen/margin_20dp"
+                    android:layout_height="@dimen/margin_20dp"/>
                 <TextView
-                    android:id="@+id/tv_pitchName"
-                    android:text="Sân Số 3"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
+                    android:id="@+id/tv_userName"
+                    android:text="User name"
+                    android:layout_marginRight="@dimen/margin_5dp"
+                    android:textColor="@color/primary_color"
+                    android:textStyle="normal"
                     android:textSize="@dimen/text_size_16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -87,6 +104,7 @@
                 android:id="@+id/tshirt_comfim"
                 android:text="Áo đấu"
                 android:enabled="false"
+                android:buttonTint="@color/primary_color"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_16dp"
                 android:textStyle="normal"
@@ -101,6 +119,7 @@
                 android:textColor="@color/black"
                 android:id="@+id/umpire_confim"
                 android:text="Trọng tài"
+                android:buttonTint="@color/primary_color"
                 android:textSize="@dimen/text_size_16dp"
                 android:textStyle="normal"
                 android:layout_width="wrap_content"
@@ -150,83 +169,6 @@
                 android:text="Xong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
         </LinearLayout>
     </LinearLayout>
-<!--    <TextView-->
-<!--        android:id="@+id/tv_pitchID"-->
-<!--        android:text="PitchID"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_pitchName"-->
-<!--        android:text="pitchName"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_span"-->
-<!--        android:text="span"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_userID"-->
-<!--        android:text="userID"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_date"-->
-<!--        android:text="date"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_state"-->
-<!--        android:text="state"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_totalPrice"-->
-<!--        android:text="totalPrice"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_price"-->
-<!--        android:text="price"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_umpire"-->
-<!--        android:text="umpire"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_quantityWater"-->
-<!--        android:text="quantityWater"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_priceWater"-->
-<!--        android:text="priceWater"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_image"-->
-<!--        android:text="image"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_tshirt"-->
-<!--        android:text="tshirt"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_detail"-->
-<!--        android:text="detail"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-<!--    <TextView-->
-<!--        android:id="@+id/tv_createBy"-->
-<!--        android:text="createBy"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
-
 </LinearLayout>

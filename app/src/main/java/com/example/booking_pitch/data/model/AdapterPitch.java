@@ -74,6 +74,7 @@ public class AdapterPitch extends BaseAdapter {
             viewHolder.span= view.findViewById(R.id.tv_hour);
             viewHolder.water = view.findViewById(R.id.tv_water);
             viewHolder.img = view.findViewById(R.id.img_ctSan);
+            viewHolder.userName = view.findViewById(R.id.tv_userName);
 
             String _id = pro.get_id();
             String date = pro.getDate();
@@ -87,6 +88,7 @@ public class AdapterPitch extends BaseAdapter {
                     .load(pro.getImage())
                     .into(viewHolder.img);
             viewHolder.water.setText(pro.getQuantityWater()+" Bình");
+            viewHolder.userName.setText("Người đặt: "+pro.getUserName());
             viewHolder.span.setText(pro.getSpan());
             viewHolder.pitchName.setText(pro.getPitchName());
             viewHolder.date.setText("Ngày: "+day + "-" +month + "-"+year);
@@ -165,6 +167,7 @@ public class AdapterPitch extends BaseAdapter {
         CheckBox umpire;
         CheckBox tshirt;
         TextView water;
+        TextView userName;
         Button btn_xacNhan;
         Button btn_huy;
     }

@@ -15,6 +15,7 @@ public class PitchClass {
     private String image;
     private boolean tshirt;
     private String detail;
+    private String userName;
     private String createBy;
     private String _id;
 
@@ -49,6 +50,14 @@ public class PitchClass {
     public PitchClass(String _id, String state) {
         this.state = state;
         this._id = _id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String get_id() {
