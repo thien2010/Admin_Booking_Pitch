@@ -36,47 +36,59 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <LinearLayout
-            android:gravity="center"
-            android:layout_margin="@dimen/padding_5dp"
+            android:layout_marginBottom="@dimen/padding_5dp"
+            android:layout_marginTop="@dimen/padding_5dp"
+            android:layout_marginLeft="@dimen/margin_7dp"
+            android:layout_marginRight="@dimen/margin_7dp"
+            android:weightSum="4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/margin_10dp"
                 android:id="@+id/tv_date"
                 android:text="Ngày"
                 android:background="@drawable/time_background"
                 android:padding="@dimen/padding_5dp"
-                android:layout_marginRight="@dimen/with_50dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_16dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/tv_hour"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/margin_10dp"
                 android:text="Giờ"
                 android:background="@drawable/time_background"
                 android:padding="@dimen/padding_5dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_16dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout
+            android:weightSum="4"
             android:layout_marginLeft="@dimen/margin_7dp"
+            android:layout_marginRight="@dimen/margin_7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+                android:layout_weight="2"
                 android:layout_gravity="center"
                 android:id="@+id/userName_0"
                 android:text="User Name"
                 android:textColor="@color/primary_color"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_16dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <LinearLayout
+                android:layout_weight="2"
+                android:layout_gravity="center"
                 android:gravity="right"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -89,7 +101,6 @@
                 <TextView
                     android:id="@+id/tv_userName"
                     android:text="User name"
-                    android:layout_marginRight="@dimen/margin_5dp"
                     android:textColor="@color/primary_color"
                     android:textStyle="normal"
                     android:textSize="@dimen/text_size_16dp"
