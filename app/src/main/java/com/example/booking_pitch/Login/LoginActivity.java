@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
     ProgressDialog progressDialog;
+    RequestAPI requestAPI;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,11 @@ public class LoginActivity extends AppCompatActivity {
         loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
         loginPrefsEditor = loginPreferences.edit();
         progressDialog = new ProgressDialog(LoginActivity.this);
-
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://datn-2021.herokuapp.com/api/user/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        requestAPI = retrofit.create(RequestAPI.class);
         saveLogin = loginPreferences.getBoolean("saveLogin", false);
         if (saveLogin == true) {
             userAdmin.setText(loginPreferences.getString("username", ""));
@@ -72,12 +77,12 @@ public class LoginActivity extends AppCompatActivity {
                     progressDialog.setTitle("Đăng nhập");
                     progressDialog.setMessage("Đang đăng nhập...");
                     progressDialog.show();
+                    Login();
 //                    rememberLogin(userAdmin.getText().toString(), passwordAdmin.getText().toString(), remem);
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(userAdmin.getWindowToken(), 0);
                     username = userAdmin.getText().toString();
                     password = passwordAdmin.getText().toString();
-
                     if (remember.isChecked()) {
                         loginPrefsEditor.putBoolean("saveLogin", true);
                         loginPrefsEditor.putString("username", username);
@@ -87,17 +92,11 @@ public class LoginActivity extends AppCompatActivity {
                         loginPrefsEditor.clear();
                         loginPrefsEditor.commit();
                     }
-                    Login();
                 }
             }
         });
     }
     public void Login(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://datn-2021.herokuapp.com/api/user/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestAPI requestAPI = retrofit.create(RequestAPI.class);
         LoginAdminAccount loginAdminAccount = new LoginAdminAccount(userAdmin.getText().toString(),passwordAdmin.getText().toString());
         Log.e("acount", loginAdminAccount.getUsername() +loginAdminAccount.getPassword());
         Call<LoginAdminAccount> call = requestAPI.loginAdmin(loginAdminAccount);
