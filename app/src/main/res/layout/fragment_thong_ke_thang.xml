@@ -142,13 +142,14 @@
                     android:padding="@dimen/margin_10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <TextView
-                        android:text="Nước: "
+                        android:layout_width="@dimen/with_200dp"
+                        android:layout_height="wrap_content"
+                        android:text="Nước uống: "
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size_16dp"
-                        android:textStyle="normal"
-                        android:layout_width="@dimen/with_200dp"
-                        android:layout_height="wrap_content"/>
+                        android:textStyle="normal" />
                     <TextView
                         android:id="@+id/sl_nuoc_t"
                         android:textColor="@color/black"
