@@ -68,6 +68,12 @@ public class AdapterPitchConfim extends BaseAdapter {
             viewHolder.span = view.findViewById(R.id.tv_hour);
             viewHolder.img = view.findViewById(R.id.img_ctSan1);
             viewHolder.userName = view.findViewById(R.id.userName_0);
+            viewHolder.btn_huy_dd = view.findViewById(R.id.btn_huy_dd);
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://datn-2021.herokuapp.com/api/pitch/user/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            RequestAPI requestAPI = retrofit.create(RequestAPI.class);
             Glide.with(context)
                     .load(pro.getImage())
                     .into(viewHolder.img);
@@ -99,12 +105,6 @@ public class AdapterPitchConfim extends BaseAdapter {
             viewHolder.btn_confim.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("http://datn-2021.herokuapp.com/api/pitch/user/")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-                    RequestAPI requestAPI = retrofit.create(RequestAPI.class);
-
                     Call<PitchClass> call = requestAPI.updatePitch(_id,"2");
                     call.enqueue(new Callback<PitchClass>() {
                         @Override
@@ -117,6 +117,29 @@ public class AdapterPitchConfim extends BaseAdapter {
                                 }
                             }
                             Toast.makeText(context, "Xác nhận thành công", Toast.LENGTH_SHORT).show();
+                        }
+                        @Override
+                        public void onFailure(Call<PitchClass> call, Throwable t) {
+                            Log.e("loi", "adad");
+                        }
+                    });
+                }
+            });
+            viewHolder.btn_huy_dd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Call<PitchClass> call = requestAPI.updatePitch(_id,"3");
+                    call.enqueue(new Callback<PitchClass>() {
+                        @Override
+                        public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
+                            for (int i = 0 ; i< pitchClassList.size(); i++){
+                                if (pitchClassList.get(i).get_id() == _id){
+                                    Log.d("t","ok"+ _id);
+                                    pitchClassList.remove(i);
+                                    setDatachange(pitchClassList);
+                                }
+                            }
+                            Toast.makeText(context, "Huỷ sân thành công", Toast.LENGTH_SHORT).show();
                         }
                         @Override
                         public void onFailure(Call<PitchClass> call, Throwable t) {
@@ -138,6 +161,7 @@ public class AdapterPitchConfim extends BaseAdapter {
         TextView warter;
         ImageView img;
         Button btn_confim;
+        Button btn_huy_dd;
         TextView span;
         TextView userName;
     }
