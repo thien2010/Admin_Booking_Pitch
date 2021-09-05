@@ -110,7 +110,7 @@ public class ThongKeNam extends Fragment {
                         barData = new BarData(barDataSet);
                         barChart.setData(barData);
                         Description description = new Description();
-                        description.setText("Năm");
+                        description.setText("VND");
                         barChart.setDescription(description);
                         XAxis xAxis = barChart.getXAxis();
                         xAxis.setValueFormatter(new IndexAxisValueFormatter(day));

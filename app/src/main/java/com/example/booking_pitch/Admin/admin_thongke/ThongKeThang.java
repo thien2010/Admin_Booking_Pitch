@@ -143,7 +143,7 @@ public class ThongKeThang extends Fragment {
                         barData = new BarData(barDataSet);
                         barChart.setData(barData);
                         Description description = new Description();
-                        description.setText("Tháng");
+                        description.setText("VND");
                         barChart.setDescription(description);
                         XAxis xAxis = barChart.getXAxis();
                         xAxis.setValueFormatter(new IndexAxisValueFormatter(day));

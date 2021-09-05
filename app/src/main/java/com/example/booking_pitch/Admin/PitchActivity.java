@@ -35,7 +35,7 @@ public class PitchActivity extends AppCompatActivity {
                 .load("http://datn-2021.herokuapp.com"+img)
                 .into(img_pitch);
         name_pitch.setText(name);
-        price_pitch.setText(numberMoney(price));
+        price_pitch.setText(numberMoney(price)+" VND");
         info_pitch.setText(info);
 
         btn_back = findViewById(R.id.btn_back);
