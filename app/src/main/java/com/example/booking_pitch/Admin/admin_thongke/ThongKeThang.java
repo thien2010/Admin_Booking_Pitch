@@ -53,7 +53,7 @@ public class ThongKeThang extends Fragment {
     TextView edt_month;
     Button btn_tk_month;
     ImageView img_month;
-    TextView tong_thang,dt_thang, trong_tai_t, dv_vs_dien_t, sl_san_t, sl_nuoc_t, chi_phi_t;
+    TextView tong_thang,dt_thang, trong_tai_t, dv_vs_dien_t, sl_san_t, sl_nuoc_t, chi_phi_t, so_coc;
     String month2;
     List<TKNgayThang> ngayThangList;
     @Override
@@ -75,6 +75,7 @@ public class ThongKeThang extends Fragment {
         tong_thang = view.findViewById(R.id.tong_thang);
         edt_month = view.findViewById(R.id.edt_month);
         img_month = view.findViewById(R.id.img_date_month);
+        so_coc = view.findViewById(R.id.so_coc_2);
 //        edt_nam = view.findViewById(R.id.ed);
         btn_tk_month = view.findViewById(R.id.btn_tk_month);
         layout_thang.setVisibility(View.INVISIBLE);
@@ -113,6 +114,7 @@ public class ThongKeThang extends Fragment {
                         ngayThangList = new ArrayList<>(Arrays.asList(responeGetDay.getArrPitch()));
                         layout_thang.setVisibility(View.VISIBLE);
                         tong_thang.setText(numberMoney(responeGetDay.getTotalMoney())+" VND");
+                        so_coc.setText(responeGetDay.getTotalGiveUp());
                         float cp = responeGetDay.getTotalCost();
                         float dt = Float.valueOf(responeGetDay.getTotalMoney());
                         float loi_nhuan = dt - cp;

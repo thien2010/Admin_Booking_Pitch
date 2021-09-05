@@ -47,7 +47,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ThongKeNgay extends Fragment {
     LinearLayout layout_ngay;
-    TextView edt_day, dt_ngay, chi_phi, sl_san, sl_nuoc, dv_vs_dien, trong_tai;
+    TextView edt_day, dt_ngay, chi_phi, sl_san, sl_nuoc, dv_vs_dien, trong_tai, so_coc;
     ImageView img_date;
     Button btn_tk_day;
     TextView tong_ngay;
@@ -75,6 +75,7 @@ public class ThongKeNgay extends Fragment {
         btn_tk_day = view.findViewById(R.id.btn_tk_ngay);
         tong_ngay = view.findViewById(R.id.tong_ngay);
         layout_ngay.setVisibility(View.INVISIBLE);
+        so_coc = view.findViewById(R.id.so_coc_1);
         img_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,6 +117,7 @@ public class ThongKeNgay extends Fragment {
                         float tong_dv = Float.valueOf(responeGetDay.getQuantitySoccer())*65000;
                         trong_tai.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalUmpire())*150000))+" VND");
                         dv_vs_dien.setText(numberMoney(String.valueOf(tong_dv))+" VND");
+                        so_coc.setText(responeGetDay.getTotalGiveUp());
                         sl_san.setText(responeGetDay.getQuantitySoccer());
                         sl_nuoc.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalWater())*18000))+" VND");
                         chi_phi.setText(numberMoney(String.valueOf(responeGetDay.getTotalCost()))+" VND");

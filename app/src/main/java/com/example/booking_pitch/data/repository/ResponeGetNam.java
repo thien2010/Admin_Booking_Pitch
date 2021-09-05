@@ -11,6 +11,15 @@ public class ResponeGetNam {
     private String quantitySoccer;
     private String totalWater;
     private String totalUmpire;
+    private String totalGiveUp;
+
+    public String getTotalGiveUp() {
+        return totalGiveUp;
+    }
+
+    public void setTotalGiveUp(String totalGiveUp) {
+        this.totalGiveUp = totalGiveUp;
+    }
 
     public float getTotalCost() {
         return totalCost;

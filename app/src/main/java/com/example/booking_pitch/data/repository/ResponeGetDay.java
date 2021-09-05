@@ -9,6 +9,16 @@ public class ResponeGetDay {
     private String quantitySoccer;
     private String totalWater;
     private String totalUmpire;
+    private String totalGiveUp;
+
+
+    public String getTotalGiveUp() {
+        return totalGiveUp;
+    }
+
+    public void setTotalGiveUp(String totalGiveUp) {
+        this.totalGiveUp = totalGiveUp;
+    }
 
     public String getTotalUmpire() {
         return totalUmpire;

@@ -46,7 +46,7 @@ public class ThongKeNam extends Fragment {
     LinearLayout layout_year;
     EditText edt_year;
     Button btn_tk_year;
-    TextView tong_nam, doanhthu, trong_tai_y, dv_vs_dien_y, sl_san_y, sl_nuoc_y, chi_phi_y;
+    TextView tong_nam, doanhthu, trong_tai_y, dv_vs_dien_y, sl_san_y, sl_nuoc_y, chi_phi_y, so_coc;
     List<TKNgayThang> ngayThangList;
     List<TkThang> tkThangList;
     @Override
@@ -69,6 +69,7 @@ public class ThongKeNam extends Fragment {
         edt_year = view.findViewById(R.id.edt_year);
         btn_tk_year = view.findViewById(R.id.btn_tk_year);
         layout_year.setVisibility(View.INVISIBLE);
+        so_coc = view.findViewById(R.id.so_coc_3);
         btn_tk_year.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +82,7 @@ public class ThongKeNam extends Fragment {
                         tkThangList = new ArrayList<>(Arrays.asList(responeGetNam.getArrMonth()));
                         layout_year.setVisibility(View.VISIBLE);
                         tong_nam.setText(numberMoney(responeGetNam.getTotalMoney())+" VND");
+                        so_coc.setText(responeGetNam.getTotalGiveUp());
                         float cp = responeGetNam.getTotalCost();
                         float dt = Float.valueOf(responeGetNam.getTotalMoney());
                         float loi_nhuan = dt - cp;
@@ -91,7 +93,6 @@ public class ThongKeNam extends Fragment {
                         sl_nuoc_y.setText(numberMoney(String.valueOf(Float.valueOf(responeGetNam.getTotalWater())*18000))+" VND");
                         chi_phi_y.setText(numberMoney(String.valueOf(responeGetNam.getTotalCost()))+" VND");
                         doanhthu.setText((numberMoney(String.valueOf(loi_nhuan)))+" VND");
-
                         BarData barData;
                         BarDataSet barDataSet;
                         ArrayList chart;
