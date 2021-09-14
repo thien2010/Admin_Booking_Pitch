@@ -56,6 +56,7 @@ public class AdapterRecyclerNews extends RecyclerView.Adapter<AdapterRecyclerNew
             public void onClick(View v) {
                 Intent intent = new Intent(context, NewsActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putString("_id",news.get_id());
                 bundle.putString("title",news.getTitle());
                 bundle.putString("content",news.getContent());
                 bundle.putString("imgnews",news.getImage());

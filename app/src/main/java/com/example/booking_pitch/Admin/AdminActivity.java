@@ -22,7 +22,6 @@ public class AdminActivity extends AppCompatActivity {
 
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         BottomNavigationView navViewAdmin = findViewById(R.id.nav_view_admin);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

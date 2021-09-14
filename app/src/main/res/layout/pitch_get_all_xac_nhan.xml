@@ -20,11 +20,12 @@
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_150dp"/>
+
             <ImageView
-                android:background="@drawable/background_all_img"
-                android:scaleType="fitXY"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/height_150dp"/>
+                android:layout_height="@dimen/height_150dp"
+                android:background="@drawable/background_all_img"
+                android:scaleType="fitXY" />
         </FrameLayout>
         <TextView
             android:layout_gravity="center"

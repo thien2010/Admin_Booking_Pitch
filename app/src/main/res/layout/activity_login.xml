@@ -52,7 +52,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:startIconDrawable="@drawable/ic_baseline_lock_24"
                 android:layout_width="match_parent"
-                android:hint="Password"
+                android:hint="Mật khẩu"
                 android:layout_marginTop="5dp"
                 app:counterMaxLength="10"
                 app:endIconMode="password_toggle"

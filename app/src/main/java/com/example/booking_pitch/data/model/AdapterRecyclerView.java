@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.booking_pitch.Admin.PitchActivity;
+import com.example.booking_pitch.InsertPitch;
 import com.example.booking_pitch.R;
 
 import org.jetbrains.annotations.NotNull;
@@ -58,12 +59,17 @@ public class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerVie
             public void onClick(View v) {
                 Intent intent = new Intent(context, PitchActivity.class);
                 Bundle bundle = new Bundle();
+                bundle.putString("_id",pitchClass.get_id());
                 bundle.putString("name",pitchClass.getPitchName());
                 bundle.putString("price",pitchClass.getPrice());
+                bundle.putString("priceWater",pitchClass.getPriceWater());
                 bundle.putString("img",pitchClass.getImage());
                 bundle.putString("info",pitchClass.getDetail());
+                bundle.putString("id",pitchClass.getPitchID());
                 intent.putExtras(bundle);
                 context.startActivity(intent);
+//                Intent intent = new Intent(context, InsertPitch.class);
+//                context.startActivity(intent);
             }
         });
     }

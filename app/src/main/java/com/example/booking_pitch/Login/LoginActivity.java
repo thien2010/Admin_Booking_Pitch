@@ -70,9 +70,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(userAdmin.getText().toString().isEmpty()){
-                    Toast.makeText(LoginActivity.this, "User không được để trống ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "SĐT không được để trống ", Toast.LENGTH_SHORT).show();
                 }if (passwordAdmin.getText().toString().isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Pass không được để trống ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Mật khẩu không được để trống ", Toast.LENGTH_SHORT).show();
                 } else {
                     progressDialog.setTitle("Đăng nhập");
                     progressDialog.setMessage("Đang đăng nhập...");

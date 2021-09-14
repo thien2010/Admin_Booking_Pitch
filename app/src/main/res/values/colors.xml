@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="btn">#00CC33</color>
+    <color name="gray">#888</color>
+    <color name="blue">#0000FF</color>
     <color name="primary_color">#005D00</color>
     <color name="sub_color">#31BE3E</color>
     <color name="color1">#F1755B</color>

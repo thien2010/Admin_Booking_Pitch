@@ -15,8 +15,12 @@ public class PitchClass {
     private String image;
     private boolean tshirt;
     private String detail;
+    private String dayOfWeek;
     private String userName;
     private String createBy;
+    private String codeSpecial;
+    private boolean success;
+    private String message;
     private String _id;
 
     public PitchClass() {
@@ -50,6 +54,38 @@ public class PitchClass {
     public PitchClass(String _id, String state) {
         this.state = state;
         this._id = _id;
+    }
+
+    public String getCodeSpecial() {
+        return codeSpecial;
+    }
+
+    public void setCodeSpecial(String codeSpecial) {
+        this.codeSpecial = codeSpecial;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public void setDayOfWeek(String dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 
     public String getUserName() {

@@ -3,10 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="@dimen/margin_10dp"
+    android:paddingLeft="@dimen/margin_10dp"
+    android:paddingRight="@dimen/margin_10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Admin.PitchActivity">
+    <LinearLayout
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/btn_update"
+            android:src="@drawable/ic_baseline_edit_24"
+            android:layout_marginRight="@dimen/margin_10dp"
+            android:layout_width="@dimen/margin_30dp"
+            android:layout_height="@dimen/margin_30dp"/>
+        <ImageView
+            android:src="@drawable/ic_baseline_delete_24"
+            android:id="@+id/btn_delete"
+            android:layout_width="@dimen/margin_30dp"
+            android:layout_height="@dimen/margin_30dp"/>
+    </LinearLayout>
     <ImageView
         android:id="@+id/img_pitch"
         android:scaleType="fitXY"
@@ -22,9 +39,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
+        android:id="@+id/price_water"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:text="Giá nước"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
         android:id="@+id/price_pitch"
         android:layout_marginTop="@dimen/margin_10dp"
-        android:text="Giá"
+        android:text="Giá Sân"
         android:textStyle="normal"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_20dp"
@@ -45,6 +71,12 @@
         android:enabled="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
     <Button
         android:id="@+id/btn_back"
         android:layout_marginTop="@dimen/margin_10dp"

@@ -78,9 +78,10 @@ public class AdapterPitch extends BaseAdapter {
 
             String _id = pro.get_id();
             String date = pro.getDate();
-            String day = date.substring(0,2);
-            String month = date.substring(2,4);
-            String year = date.substring(4,8);
+            Log.e("TTT",date);
+            String many_date[] = date.split("/");
+
+            viewHolder.date.setText("Ngày: "+date);
             if (!pro.getTotalPrice().equals("")){
                 viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
             }
@@ -91,12 +92,12 @@ public class AdapterPitch extends BaseAdapter {
             viewHolder.userName.setText("Người đặt: "+pro.getUserName());
             viewHolder.span.setText(pro.getSpan());
             viewHolder.pitchName.setText(pro.getPitchName());
-            viewHolder.date.setText("Ngày: "+day + "-" +month + "-"+year);
+
             viewHolder.umpire.setChecked(pro.isUmpire());
             viewHolder.userID.setText(pro.getUserID());
             viewHolder.tshirt.setChecked(pro.isTshirt());
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("http://datn-2021.herokuapp.com/api/pitch/user/")
+                    .baseUrl("https://datn-2021.herokuapp.com/api/pitch/user/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             RequestAPI requestAPI = retrofit.create(RequestAPI.class);
@@ -111,47 +112,90 @@ public class AdapterPitch extends BaseAdapter {
             viewHolder.btn_xacNhan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Call<PitchClass> call = requestAPI.updatePitch(_id,"1");
-                    call.enqueue(new Callback<PitchClass>() {
-                        @Override
-                        public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
-                            for (int i = 0 ; i< pitchClassList.size(); i++){
-                                if (pitchClassList.get(i).get_id() == _id){
-                                    Log.d("t","ok"+ _id);
-                                    pitchClassList.remove(i);
-                                    setDatachange(pitchClassList);
+                    if (pro.getDayOfWeek().isEmpty()){
+                        Call<PitchClass> call = requestAPI.updatePitch(_id,"1","one");
+                        call.enqueue(new Callback<PitchClass>() {
+                            @Override
+                            public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
+                                for (int i = 0 ; i< pitchClassList.size(); i++){
+                                    if (pitchClassList.get(i).get_id() == _id){
+                                        Log.d("t","ok"+ _id);
+                                        pitchClassList.remove(i);
+                                        setDatachange(pitchClassList);
+                                    }
                                 }
+                                Toast.makeText(context, "Xác nhận thành công", Toast.LENGTH_SHORT).show();
                             }
-                            Toast.makeText(context, "Xác nhận thành công", Toast.LENGTH_SHORT).show();
-                        }
-                        @Override
-                        public void onFailure(Call<PitchClass> call, Throwable t) {
-                            Toast.makeText(context, "Xác nhận thất bại", Toast.LENGTH_SHORT).show();
-                            Log.e("loi", "adad");
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<PitchClass> call, Throwable t) {
+                                Toast.makeText(context, "Xác nhận thất bại", Toast.LENGTH_SHORT).show();
+                                Log.e("loi", "one");
+                            }
+                        });
+                    }else {
+                        Call<PitchClass> call = requestAPI.updatePitch(pro.getCodeSpecial(),"1","many");
+                        call.enqueue(new Callback<PitchClass>() {
+                            @Override
+                            public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
+                                for (int i = 0 ; i< pitchClassList.size(); i++){
+                                    if (pitchClassList.get(i).get_id() == _id){
+                                        Log.d("t","ok"+ _id);
+                                        pitchClassList.remove(i);
+                                        setDatachange(pitchClassList);
+                                    }
+                                }
+                                Toast.makeText(context, "Xác nhận thành công", Toast.LENGTH_SHORT).show();
+                            }
+                            @Override
+                            public void onFailure(Call<PitchClass> call, Throwable t) {
+                                Toast.makeText(context, "Xác nhận thất bại", Toast.LENGTH_SHORT).show();
+                                Log.e("loi", "many");
+                            }
+                        });
+                    }
+
                 }
             });
             viewHolder.btn_huy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Call<PitchClass> call = requestAPI.updatePitch(_id,"-1");
-                    call.enqueue(new Callback<PitchClass>() {
-                        @Override
-                        public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
-                            for (int i = 0 ; i< pitchClassList.size(); i++){
-                                if (pitchClassList.get(i).get_id() == _id){
-                                    Log.d("t","ok"+ _id);
-                                    pitchClassList.remove(i);
-                                    setDatachange(pitchClassList);
+                    if (pro.getDayOfWeek().isEmpty()){
+                        Call<PitchClass> call = requestAPI.updatePitch(_id,"-1","one");
+                        call.enqueue(new Callback<PitchClass>() {
+                            @Override
+                            public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
+                                for (int i = 0 ; i< pitchClassList.size(); i++){
+                                    if (pitchClassList.get(i).get_id() == _id){
+                                        Log.d("t","ok"+ _id);
+                                        pitchClassList.remove(i);
+                                        setDatachange(pitchClassList);
+                                    }
                                 }
+                                Toast.makeText(context, "Hủy thành công", Toast.LENGTH_SHORT).show();
                             }
-                            Toast.makeText(context, "Hủy thành công", Toast.LENGTH_SHORT).show();
-                        }
-                        @Override
-                        public void onFailure(Call<PitchClass> call, Throwable t) {
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<PitchClass> call, Throwable t) {
+                            }
+                        });
+                    }else {
+                        Call<PitchClass> call = requestAPI.updatePitch(pro.getCodeSpecial(),"-1","many");
+                        call.enqueue(new Callback<PitchClass>() {
+                            @Override
+                            public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
+                                for (int i = 0 ; i< pitchClassList.size(); i++){
+                                    if (pitchClassList.get(i).getCodeSpecial() == pro.getCodeSpecial()){
+                                        Log.d("t","ok"+ pro.getCodeSpecial());
+                                        pitchClassList.remove(i);
+                                        setDatachange(pitchClassList);
+                                    }
+                                }
+                                Toast.makeText(context, "Hủy thành công", Toast.LENGTH_SHORT).show();
+                            }
+                            @Override
+                            public void onFailure(Call<PitchClass> call, Throwable t) {
+                            }
+                        });
+                    }
                 }
             });
             return view;
