@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -56,7 +57,7 @@ public class PitchActivity extends AppCompatActivity {
     Button btn_back;
     String id;
     String parth;
-
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,10 +132,12 @@ public class PitchActivity extends AppCompatActivity {
                 btn_editPitch.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!validatePassword1() | !validatePassword2() | !validatePassword3() | !validatePassword4()) {
+                        if (!validatePassword1() | !validatePassword2() | !validatePassword3() | !validatePassword4() | !validatePassword6()) {
                             return;
                         } else {
-
+                            progressDialog = new ProgressDialog(PitchActivity.this);
+                            progressDialog.setMessage("Đang sửa sân...!");
+                            progressDialog.show();
                             String name = edt_name.getText().toString();
                             String price = edit_price.getText().toString();
                             String priceWater = edit_priceWater.getText().toString();
@@ -162,6 +165,9 @@ public class PitchActivity extends AppCompatActivity {
                                     AddPitch addPitch = response.body();
                                     if (addPitch.isSuccess()==true){
                                         Toast.makeText(PitchActivity.this, addPitch.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(PitchActivity.this, AdminActivity.class);
+                                        startActivity(intent);
+                                        progressDialog.cancel();
                                     }else {
                                         Toast.makeText(PitchActivity.this, addPitch.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
@@ -187,6 +193,9 @@ public class PitchActivity extends AppCompatActivity {
                         .setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                progressDialog = new ProgressDialog(PitchActivity.this);
+                                progressDialog.setMessage("Đang xóa sân...!");
+                                progressDialog.show();
                                 Retrofit retrofit = new Retrofit.Builder()
                                         .baseUrl("https://datn-2021.herokuapp.com/api/pitch/")
                                         .addConverterFactory(GsonConverterFactory.create())
@@ -199,6 +208,9 @@ public class PitchActivity extends AppCompatActivity {
                                         AddPitch pitchClass = response.body();
                                         if (pitchClass.isSuccess()==true){
                                             Toast.makeText(PitchActivity.this, pitchClass.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(PitchActivity.this, AdminActivity.class);
+                                            startActivity(intent);
+                                            progressDialog.cancel();
                                         }else {
                                             Toast.makeText(PitchActivity.this, pitchClass.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
@@ -295,6 +307,15 @@ public class PitchActivity extends AppCompatActivity {
             return false;
         } else {
             layout_edit_detail.setError(null);
+            return true;
+        }
+    }
+    private boolean validatePassword6(){
+        String passwordOld = tv_image.getText().toString().trim();
+        if (passwordOld.isEmpty()) {
+            tv_image.setText("Bạn chưa chọn ảnh");
+            return false;
+        } else {
             return true;
         }
     }

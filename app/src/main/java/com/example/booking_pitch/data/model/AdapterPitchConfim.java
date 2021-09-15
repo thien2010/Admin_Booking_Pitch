@@ -75,7 +75,7 @@ public class AdapterPitchConfim extends BaseAdapter {
                     .build();
             RequestAPI requestAPI = retrofit.create(RequestAPI.class);
             Glide.with(context)
-                    .load(pro.getImage())
+                    .load("https://datn-2021.herokuapp.com"+pro.getImage())
                     .into(viewHolder.img);
             String state = pro.getState();
             String _id = pro.get_id();

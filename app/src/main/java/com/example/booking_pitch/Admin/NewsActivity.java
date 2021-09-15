@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.booking_pitch.InsertPitch;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.RealPathUtil;
 import com.example.booking_pitch.data.model.AddPitch;
@@ -56,6 +58,7 @@ public class NewsActivity extends AppCompatActivity {
     Button btn_back;
     ImageView edit_news,delete;
     String parth;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,9 +108,12 @@ public class NewsActivity extends AppCompatActivity {
                 btn_editNews.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!validatePassword1() | !validatePassword2() ) {
+                        if (!validatePassword1() | !validatePassword2() | !validatePassword6()) {
                             return;
                         } else{
+                            progressDialog = new ProgressDialog(NewsActivity.this);
+                            progressDialog.setMessage("Xin đợi!");
+                            progressDialog.show();
                             String title = edt_title.getText().toString();
                             String content = edit_content.getText().toString();
                             File file = new File(parth);
@@ -127,6 +133,9 @@ public class NewsActivity extends AppCompatActivity {
                                     News news = response.body();
                                     if (news.isSuccess()==true){
                                         Toast.makeText(NewsActivity.this, news.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(NewsActivity.this, AdminActivity.class);
+                                        startActivity(intent);
+                                        progressDialog.cancel();
                                     }else {
                                         Toast.makeText(NewsActivity.this, news.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
@@ -152,6 +161,9 @@ public class NewsActivity extends AppCompatActivity {
                         .setNegativeButton("Xóa", new DialogInterface.OnClickListener() {
                                 @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                    progressDialog = new ProgressDialog(NewsActivity.this);
+                                    progressDialog.setMessage("Đang xóa...!");
+                                    progressDialog.show();
                                 Retrofit retrofit = new Retrofit.Builder()
                                         .baseUrl("https://datn-2021.herokuapp.com/api/news/")
                                         .addConverterFactory(GsonConverterFactory.create())
@@ -164,6 +176,9 @@ public class NewsActivity extends AppCompatActivity {
                                         News news = response.body();
                                         if (news.isSuccess()==true){
                                             Toast.makeText(NewsActivity.this, news.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(NewsActivity.this, AdminActivity.class);
+                                            startActivity(intent);
+                                            progressDialog.cancel();
                                         }else {
                                             Toast.makeText(NewsActivity.this, news.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
@@ -247,6 +262,15 @@ public class NewsActivity extends AppCompatActivity {
             return false;
         } else {
             layout_edit_content.setError(null);
+            return true;
+        }
+    }
+    private boolean validatePassword6(){
+        String passwordOld = tv_image.getText().toString().trim();
+        if (passwordOld.isEmpty()) {
+            tv_image.setText("Bạn chưa chọn ảnh");
+            return false;
+        } else {
             return true;
         }
     }

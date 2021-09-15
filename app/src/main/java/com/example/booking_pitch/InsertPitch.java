@@ -2,11 +2,14 @@ package com.example.booking_pitch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -23,6 +26,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.booking_pitch.Admin.AdminActivity;
+import com.example.booking_pitch.Admin.NewsActivity;
+import com.example.booking_pitch.Admin.PitchActivity;
 import com.example.booking_pitch.data.RealPathUtil;
 import com.example.booking_pitch.data.model.AddPitch;
 import com.example.booking_pitch.data.model.PitchClass;
@@ -54,6 +60,7 @@ public class InsertPitch extends AppCompatActivity {
     String sImage;
     TextInputLayout layout_id,layout_name,layout_gia,layout_gianc,layout_detail;
     String parth;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,9 +98,12 @@ public class InsertPitch extends AppCompatActivity {
 //                byte[] bytes = Base64.decode(sImage,Base64.DEFAULT);
 //                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
 //                load_img.setImageBitmap(bitmap);
-                if (!validatePassword1() | !validatePassword2() | !validatePassword3() | !validatePassword4() | !validatePassword5()) {
+                if (!validatePassword1() | !validatePassword2() | !validatePassword3() | !validatePassword4() | !validatePassword5() | !validatePassword6()) {
                     return;
                 } else {
+                    progressDialog = new ProgressDialog(InsertPitch.this);
+                    progressDialog.setMessage("Xin đợi...!");
+                    progressDialog.show();
                     String id = edt_pitchID.getText().toString();
                     String name = edt_pitchName.getText().toString();
                     String price = edt_price.getText().toString();
@@ -122,6 +132,9 @@ public class InsertPitch extends AppCompatActivity {
                             AddPitch pitchClass = response.body();
                             if (pitchClass.isSuccess() == true) {
                                 Toast.makeText(InsertPitch.this, pitchClass.getMessage(), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(InsertPitch.this, AdminActivity.class);
+                                startActivity(intent);
+                                progressDialog.cancel();
                             } else {
                                 Toast.makeText(InsertPitch.this, pitchClass.getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -225,6 +238,15 @@ public class InsertPitch extends AppCompatActivity {
             return false;
         } else {
             layout_detail.setError(null);
+            return true;
+        }
+    }
+    private boolean validatePassword6(){
+        String passwordOld = tv_image.getText().toString().trim();
+        if (passwordOld.isEmpty()) {
+            tv_image.setText("Bạn chưa chọn ảnh");
+            return false;
+        } else {
             return true;
         }
     }

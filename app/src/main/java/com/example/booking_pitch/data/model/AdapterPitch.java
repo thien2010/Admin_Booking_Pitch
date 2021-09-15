@@ -86,7 +86,7 @@ public class AdapterPitch extends BaseAdapter {
                 viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
             }
             Glide.with(context)
-                    .load(pro.getImage())
+                    .load("https://datn-2021.herokuapp.com"+pro.getImage())
                     .into(viewHolder.img);
             viewHolder.water.setText(pro.getQuantityWater()+" Bình");
             viewHolder.userName.setText("Người đặt: "+pro.getUserName());

@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -19,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.booking_pitch.Admin.AdminActivity;
+import com.example.booking_pitch.Admin.NewsActivity;
 import com.example.booking_pitch.data.RealPathUtil;
 import com.example.booking_pitch.data.model.AddPitch;
 import com.example.booking_pitch.data.model.News;
@@ -48,6 +51,7 @@ public class InsertNews extends AppCompatActivity {
     ImageView load_img;
     TextInputEditText edt_title, edt_content;
     TextInputLayout layout_title,layout_content;
+    ProgressDialog progressDialog;
 
     String sImage;
     String parth;
@@ -81,9 +85,12 @@ public class InsertNews extends AppCompatActivity {
 //                byte[] bytes = Base64.decode(sImage,Base64.DEFAULT);
 //                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
 //                load_img.setImageBitmap(bitmap);
-                if (!validatePassword1() | !validatePassword2() ) {
+                if (!validatePassword1() | !validatePassword2() | validatePassword6()) {
                     return;
                 } else{
+                    progressDialog = new ProgressDialog(InsertNews.this);
+                    progressDialog.setMessage("Xin đợi...!");
+                    progressDialog.show();
                     String title = edt_title.getText().toString();
                     String content = edt_content.getText().toString();
                     File file = new File(parth);
@@ -103,6 +110,9 @@ public class InsertNews extends AppCompatActivity {
                             News news = response.body();
                             if (news.isSuccess()==true){
                                 Toast.makeText(InsertNews.this, news.getMessage(), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(InsertNews.this, AdminActivity.class);
+                                startActivity(intent);
+                                progressDialog.cancel();
                             }else {
                                 Toast.makeText(InsertNews.this, news.getMessage(), Toast.LENGTH_SHORT).show();
                             }
@@ -172,6 +182,15 @@ public class InsertNews extends AppCompatActivity {
             return false;
         } else {
             layout_content.setError(null);
+            return true;
+        }
+    }
+    private boolean validatePassword6(){
+        String passwordOld = tv_image.getText().toString().trim();
+        if (passwordOld.isEmpty()) {
+            tv_image.setText("Bạn chưa chọn ảnh");
+            return false;
+        } else {
             return true;
         }
     }

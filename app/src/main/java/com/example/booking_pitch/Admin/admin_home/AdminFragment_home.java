@@ -84,8 +84,6 @@ public class AdminFragment_home extends Fragment {
         date_picker = view.findViewById(R.id.datePickerButton);
         today.setText("Lịch Hôm Nay");
         getToday();
-
-
         Log.e("day",getTodaysDate());
         date_picker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,8 +107,6 @@ public class AdminFragment_home extends Fragment {
                             today.setText(day1+"-"+month1+"-"+year1);
                         }
                         getWithDay(date_piker);
-
-
                     }
                 }, year, month, day);
                 datePickerDialog.show();
@@ -260,5 +256,4 @@ public class AdminFragment_home extends Fragment {
     {
         return  day+ "" + month+ year;
     }
-
 }
