@@ -132,12 +132,12 @@ public class NewsActivity extends AppCompatActivity {
                                 public void onResponse(Call<News> call, Response<News> response) {
                                     News news = response.body();
                                     if (news.isSuccess()==true){
-                                        Toast.makeText(NewsActivity.this, news.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(NewsActivity.this, "Sửa tin tức thành công", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(NewsActivity.this, AdminActivity.class);
                                         startActivity(intent);
                                         progressDialog.cancel();
                                     }else {
-                                        Toast.makeText(NewsActivity.this, news.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(NewsActivity.this, "Sửa tin tức thất bại", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 @Override

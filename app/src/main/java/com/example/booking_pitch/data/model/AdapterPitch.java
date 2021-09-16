@@ -9,10 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import com.example.booking_pitch.data.repository.RequestAPI;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -36,7 +39,7 @@ public class AdapterPitch extends BaseAdapter {
     public Context context;
     PitchClass pitchClass;
     public List<PitchClass> pitchClassList;
-
+    List<String> all_date = new ArrayList<>();
     public AdapterPitch(Context context, List<PitchClass> pitchClassList) {
         this.context = context;
         this.pitchClassList = pitchClassList;
@@ -75,24 +78,52 @@ public class AdapterPitch extends BaseAdapter {
             viewHolder.water = view.findViewById(R.id.tv_water);
             viewHolder.img = view.findViewById(R.id.img_ctSan);
             viewHolder.userName = view.findViewById(R.id.tv_userName);
-
-            String _id = pro.get_id();
+                String _id = pro.get_id();
             String date = pro.getDate();
-            Log.e("TTT",date);
-            String many_date[] = date.split("/");
 
-            viewHolder.date.setText("Ngày: "+date);
+
+            if (pro.getCodeSpecial().isEmpty()){
+                String day = date.substring(0,2);
+                String month = date.substring(2,4);
+                String year = date.substring(4,8);
+
+                viewHolder.date.setText("Ngày: "+day +"-"+month+"-"+year);
+            }else {
+                String date3="";
+                List<String> many_date = new ArrayList<>(Arrays.asList(date.split("/")));
+                Log.e("date",many_date+"");
+                for (String date5 : many_date){
+                    String day = date5.substring(0,2);
+                    String month = date5.substring(2,4);
+                    String year = date5.substring(4,8);
+                    String date6 =", "+ day +"/" +month +"/"+year;
+                    date3 += date6;
+                    Log.e("date",date5+"");
+                }
+                viewHolder.date.setText("15/09/2021"+date3);
+            }
+
             if (!pro.getTotalPrice().equals("")){
                 viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
+            }
+            if (pro.getSpan().equals("1")){
+                viewHolder.span.setText("Ca 1: 7:00 - 9:00");
+            }else if (pro.getSpan().equals("2")){
+                viewHolder.span.setText("Ca 2: 9:30 - 11:30");
+            }else if (pro.getSpan().equals("3")){
+                viewHolder.span.setText("Ca 3: 13:30 - 15:30");
+            }else if (pro.getSpan().equals("4")){
+                viewHolder.span.setText("Ca 4: 16:00 - 18:00");
+            }else if (pro.getSpan().equals("5")){
+                viewHolder.span.setText("Ca 5: 19:00 - 21:00");
             }
             Glide.with(context)
                     .load("https://datn-2021.herokuapp.com"+pro.getImage())
                     .into(viewHolder.img);
             viewHolder.water.setText(pro.getQuantityWater()+" Bình");
             viewHolder.userName.setText("Người đặt: "+pro.getUserName());
-            viewHolder.span.setText(pro.getSpan());
-            viewHolder.pitchName.setText(pro.getPitchName());
 
+            viewHolder.pitchName.setText(pro.getPitchName());
             viewHolder.umpire.setChecked(pro.isUmpire());
             viewHolder.userID.setText(pro.getUserID());
             viewHolder.tshirt.setChecked(pro.isTshirt());
@@ -214,6 +245,7 @@ public class AdapterPitch extends BaseAdapter {
         TextView userName;
         Button btn_xacNhan;
         Button btn_huy;
+        ListView lv_date;
     }
     public static String numberMoney(String number){
         DecimalFormat decimalFormat = new DecimalFormat("###,###,##0");

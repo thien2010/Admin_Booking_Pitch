@@ -38,6 +38,8 @@ public interface RequestAPI {
     //https://datn-2021.herokuapp.com/api/news/deleteNewsByAdmin/613f6c906fdb530023b0df1a
     //https://datn-2021.herokuapp.com/api/pitch/user/editPitch/
 
+
+
     @GET("deleteNewsByAdmin/{id}")
     Call<News> deleteNews(@Path("id")String id);
 
@@ -78,11 +80,14 @@ public interface RequestAPI {
                                  @Part MultipartBody.Part image,
                                  @Part("detail")RequestBody detail,
                                  @Part("createBy")RequestBody createBy);
-
+    //https://datn-2021.herokuapp.com/api/pitch/getAllA2
     @GET("getAllNews")
     Call<ResponeNews> getAllNew();
-    @GET("getAllA")
-    Call<List<PitchClass>> getAllA();
+    @GET("getAllA2")
+    Call<List<PitchClass>> getAllA2();
+    //https://datn-2021.herokuapp.com/api/user/getAll
+    @GET("getAll")
+    Call<ResponeAllUser> getAllUser();
 
     @GET("getAllA0")
     Call<List<PitchClass>> getAllA0();

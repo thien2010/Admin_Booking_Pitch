@@ -9,14 +9,16 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import org.jetbrains.annotations.NotNull;
 
 public class ViewPagerAdmin extends FragmentStatePagerAdapter {
-    String listTab[] = {"Chờ xác nhận", "Đã đặt"};
+    String listTab[] = {"Chờ xác nhận", "Đã đặt", "Lịch sử đã đá"};
     private ChoXacNhan choXacNhan;
     private DaDat_admin daDat_admin;
+    private LichSuXong lichSuXong;
 
     public ViewPagerAdmin(@NonNull @NotNull FragmentManager fm) {
         super(fm);
         choXacNhan = new ChoXacNhan();
         daDat_admin = new DaDat_admin();
+        lichSuXong = new LichSuXong();
     }
 
     @NonNull
@@ -27,14 +29,16 @@ public class ViewPagerAdmin extends FragmentStatePagerAdapter {
             return choXacNhan;
         }else if (position == 1){
             return daDat_admin;
-        }else {
+        }else if (position == 2){
+            return lichSuXong;
+        } else {
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Nullable

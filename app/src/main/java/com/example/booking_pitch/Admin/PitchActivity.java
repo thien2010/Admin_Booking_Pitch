@@ -164,17 +164,17 @@ public class PitchActivity extends AppCompatActivity {
                                 public void onResponse(Call<AddPitch> call, Response<AddPitch> response) {
                                     AddPitch addPitch = response.body();
                                     if (addPitch.isSuccess()==true){
-                                        Toast.makeText(PitchActivity.this, addPitch.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PitchActivity.this, "Sửa sân thành công", Toast.LENGTH_SHORT).show();
                                         Intent intent = new Intent(PitchActivity.this, AdminActivity.class);
                                         startActivity(intent);
                                         progressDialog.cancel();
                                     }else {
-                                        Toast.makeText(PitchActivity.this, addPitch.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PitchActivity.this, "Sửa sân thất bại", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 @Override
                                 public void onFailure(Call<AddPitch> call, Throwable t) {
-                                    Toast.makeText(PitchActivity.this, "Thất bại" +id + id_pitch, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PitchActivity.this, "Kết nối thất bại", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }

@@ -64,6 +64,28 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/get_all_user"
+        android:paddingVertical="@dimen/padding_15dp"
+        android:layout_margin="@dimen/margin_5dp"
+        android:background="@drawable/background_acount"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            android:layout_width="20dp"
+            android:layout_height="20dp"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold|italic"
+            android:textSize="@dimen/text_size_16dp"
+            android:textColor="@color/black"
+            android:text="Thông tin các thành viên"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
         android:paddingVertical="@dimen/padding_15dp"
         android:layout_margin="@dimen/margin_5dp"
         android:background="@drawable/background_acount"

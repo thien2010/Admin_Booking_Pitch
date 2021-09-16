@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,18 +17,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.booking_pitch.Admin.AdminActivity;
 import com.example.booking_pitch.Login.LoginActivity;
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.model.AcountAdmin;
+import com.example.booking_pitch.data.model.AdapterAllUser;
 import com.example.booking_pitch.data.model.LoginAdminAccount;
+import com.example.booking_pitch.data.model.Users;
 import com.example.booking_pitch.data.repository.RequestAPI;
+import com.example.booking_pitch.data.repository.ResponeAllUser;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import retrofit2.Call;
@@ -38,6 +47,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AcountAdminFragment extends Fragment {
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
+    AdapterAllUser adapterAllUser;
+    List<Users> usersList;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
                     "(?=.*[0-9])" +         //at least 1 digit
@@ -52,6 +63,7 @@ public class AcountAdminFragment extends Fragment {
     LinearLayout doimk;
     LinearLayout logout;
     LinearLayout info;
+    LinearLayout get_all_user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,11 +71,44 @@ public class AcountAdminFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_acount_admin, container, false);
         doimk = view.findViewById(R.id.doimk);
         info = view.findViewById(R.id.info_admin);
+        get_all_user = view.findViewById(R.id.get_all_user);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://datn-2021.herokuapp.com/api/user/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestAPI requestAPI = retrofit.create(RequestAPI.class);
+        get_all_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                View view = LayoutInflater.from(getContext()).inflate(R.layout.all_user, null);
+                builder.setView(view);
+                TextView all_user = view.findViewById(R.id.all_user);
+                RecyclerView recyclerView = view.findViewById(R.id.rcv_alluser);
+                Call<ResponeAllUser> call = requestAPI.getAllUser();
+                call.enqueue(new Callback<ResponeAllUser>() {
+                    @Override
+                    public void onResponse(Call<ResponeAllUser> call, Response<ResponeAllUser> response) {
+                        ResponeAllUser responeAllUser = response.body();
+                        if (responeAllUser.isSuccess()==true){
+                            all_user.setText("Số lượng thành viên: "+responeAllUser.getQuantityUser());
+                            usersList = new ArrayList<>(Arrays.asList(responeAllUser.getData()));
+                            adapterAllUser = new AdapterAllUser(getContext(),usersList);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+                            recyclerView.setLayoutManager(linearLayoutManager);
+                            recyclerView.setAdapter(adapterAllUser);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponeAllUser> call, Throwable t) {
+
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

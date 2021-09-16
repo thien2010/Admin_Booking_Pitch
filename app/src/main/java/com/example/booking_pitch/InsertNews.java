@@ -109,17 +109,17 @@ public class InsertNews extends AppCompatActivity {
                         public void onResponse(Call<News> call, Response<News> response) {
                             News news = response.body();
                             if (news.isSuccess()==true){
-                                Toast.makeText(InsertNews.this, news.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(InsertNews.this, "Thêm tin tức thành công", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(InsertNews.this, AdminActivity.class);
                                 startActivity(intent);
                                 progressDialog.cancel();
                             }else {
-                                Toast.makeText(InsertNews.this, news.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(InsertNews.this, "Thêm tin tức thất bại", Toast.LENGTH_SHORT).show();
                             }
                         }
                         @Override
                         public void onFailure(Call<News> call, Throwable t) {
-
+                            Toast.makeText(InsertNews.this, "Kết nối thất bại", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }

@@ -26,6 +26,7 @@
 
 
     <!--Text size-->
+    <dimen name="text_size_11dp">11dp</dimen>
     <dimen name="text_size_14dp">14dp</dimen>
     <dimen name="text_size_16dp">16dp</dimen>
     <dimen name="text_size_20dp">20dp</dimen>

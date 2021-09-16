@@ -11,24 +11,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:padding="@dimen/padding_5dp"
-                android:scaleType="centerCrop"
-                android:id="@+id/img_ctSan"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_150dp"/>
-            <ImageView
-                android:background="@drawable/background_all_img"
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/height_150dp"/>
-        </FrameLayout>
         <TextView
             android:layout_gravity="center"
-            android:id="@+id/tv_pitchName"
+            android:id="@+id/tv_pitchName2"
             android:text="Sân Số 3"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -44,20 +29,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin_5dp"
-                android:id="@+id/tv_date"
+                android:id="@+id/tv_date2"
                 android:gravity="center"
                 android:background="@drawable/time_background"
                 android:padding="@dimen/padding_5dp"
+                android:text="Ngày"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="@dimen/text_size_14dp"
+                android:textSize="@dimen/text_size_16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:gravity="center"
-                android:id="@+id/tv_hour"
+                android:id="@+id/tv_hour2"
                 android:background="@drawable/time_background"
                 android:padding="@dimen/padding_5dp"
                 android:text="Giờ"
@@ -76,7 +61,7 @@
             <TextView
                 android:layout_weight="2"
                 android:layout_gravity="center"
-                android:id="@+id/tv_userName"
+                android:id="@+id/tv_userName2"
                 android:text="User Name"
                 android:textColor="@color/primary_color"
                 android:textStyle="bold"
@@ -95,7 +80,7 @@
                     android:layout_width="@dimen/margin_20dp"
                     android:layout_height="@dimen/margin_20dp"/>
                 <TextView
-                    android:id="@+id/tv_userID"
+                    android:id="@+id/tv_userID2"
                     android:text="SDT"
                     android:textColor="@color/primary_color"
                     android:textStyle="normal"
@@ -108,7 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <CheckBox
-                android:id="@+id/tshirt_comfim"
+                android:id="@+id/tshirt_comfim2"
                 android:text="Áo đấu"
                 android:buttonTint="@color/primary_color"
                 android:enabled="false"
@@ -118,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_30dp"/>
             <CheckBox
-                android:id="@+id/umpire_confim"
+                android:id="@+id/umpire_confim2"
                 android:text="Trọng tài"
                 android:buttonTint="@color/primary_color"
                 android:enabled="false"
@@ -128,7 +113,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_30dp"/>
         </LinearLayout>
-
         <LinearLayout
             android:layout_marginLeft="@dimen/margin_7dp"
             android:layout_width="wrap_content"
@@ -141,7 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/tv_water"
+                android:id="@+id/tv_water2"
                 android:textColor="@color/black"
                 android:textStyle="normal"
                 android:textSize="@dimen/text_size_16dp"
@@ -153,32 +137,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tv_totalPrice"
+                android:id="@+id/tv_totalPrice2"
                 android:text="200.000"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="@dimen/margin_10dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/btn_huy"
-                android:backgroundTint="@color/sub_color"
-                android:layout_marginHorizontal="@dimen/margin_10dp"
-                android:text="Hủy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:id="@+id/btn_xacNhan"
-                android:layout_marginHorizontal="@dimen/margin_10dp"
-                android:text="Xác Nhận"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

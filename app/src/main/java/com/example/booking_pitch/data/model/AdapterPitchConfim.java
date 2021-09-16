@@ -19,6 +19,8 @@ import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.repository.RequestAPI;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -77,25 +79,45 @@ public class AdapterPitchConfim extends BaseAdapter {
             Glide.with(context)
                     .load("https://datn-2021.herokuapp.com"+pro.getImage())
                     .into(viewHolder.img);
+            if (pro.getSpan().equals("1")){
+                viewHolder.span.setText("Ca 1: 7:00 - 9:00");
+            }else if (pro.getSpan().equals("2")){
+                viewHolder.span.setText("Ca 2: 9:30 - 11:30");
+            }else if (pro.getSpan().equals("3")){
+                viewHolder.span.setText("Ca 3: 13:30 - 15:30");
+            }else if (pro.getSpan().equals("4")){
+                viewHolder.span.setText("Ca 4: 16:00 - 18:00");
+            }else if (pro.getSpan().equals("5")){
+                viewHolder.span.setText("Ca 5: 19:00 - 21:00");
+            }
             String state = pro.getState();
             String _id = pro.get_id();
             String date = pro.getDate();
             Log.e("TTT",date);
-            String many_date[] = date.split("/");
-//            for (String d : many_date){
-//                String day = d.substring(0,2);
-//                String month = d.substring(2,4);
-//                String year = d.substring(4,8);
-//                viewHolder.date.setText("Ngày: "+day + "-" +month + "-"+year);
-//                Log.e("TTT","Ngày: "+day + "-" +month + "-"+year);
-//                viewHolder.date.setText(d);
-//            }
-            viewHolder.date.setText("Ngày: "+date);
+              if (pro.getCodeSpecial().isEmpty()){
+                    String day = date.substring(0,2);
+                    String month = date.substring(2,4);
+                    String year = date.substring(4,8);
+                    viewHolder.date.setText("Ngày: "+day +"-"+month+"-"+year);
+                }else {
+                  String date3="";
+                  List<String> many_date = new ArrayList<>(Arrays.asList(date.split("/")));
+                  Log.e("date",many_date+"");
+                  for (String date5 : many_date){
+                      String day = date5.substring(0,2);
+                      String month = date5.substring(2,4);
+                      String year = date5.substring(4,8);
+                      String date6 =", "+ day +"/" +month +"/"+year;
+                      date3 += date6;
+                      Log.e("date",date5+"");
+                  }
+                  viewHolder.date.setText("15/09/2021"+date3);
+
+                }
             if (!pro.getTotalPrice().equals("")){
                 viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
             }
             viewHolder.userName.setText("Người đặt: "+pro.getUserName());
-            viewHolder.span.setText(pro.getSpan());
             viewHolder.warter.setText(pro.getQuantityWater()+ " Bình");
             viewHolder.userID.setText(pro.getUserID());
             viewHolder.pitchName.setText(pro.getPitchName());
