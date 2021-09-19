@@ -68,7 +68,7 @@ public class AdminFragment_home extends Fragment {
     String to_day;
     String date_piker;
     String date_1 = "";
-
+    String get_day;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
@@ -84,6 +84,15 @@ public class AdminFragment_home extends Fragment {
         date_picker = view.findViewById(R.id.datePickerButton);
         today.setText("Lịch Hôm Nay");
         getToday();
+        if (today.getText().toString().equals("Lịch Hôm Nay")){
+            get_day = getTodaysDate();
+        }else {
+            String date_today = today.getText().toString();
+            String day = date_today.substring(0,2);
+            String month = date_today.substring(3,5);
+            String year = date_today.substring(6,10);
+            get_day = day+month+year;
+        }
         Log.e("day",getTodaysDate());
         date_picker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,11 +151,16 @@ public class AdminFragment_home extends Fragment {
             @Override
             public void onResponse(Call<ReponeAllSan> call, Response<ReponeAllSan> response) {
                 ReponeAllSan pitchClasses = response.body();
-                pitchClassList = new ArrayList<>(Arrays.asList(pitchClasses.getData()));
-                adapterRecyclerView = new AdapterRecyclerView(getContext(),pitchClassList);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
-                rcv_pitch.setLayoutManager(linearLayoutManager);
-                rcv_pitch.setAdapter(adapterRecyclerView);
+                if (pitchClasses!=null){
+                    pitchClassList = new ArrayList<>(Arrays.asList(pitchClasses.getData()));
+                    adapterRecyclerView = new AdapterRecyclerView(getContext(),pitchClassList);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+                    rcv_pitch.setLayoutManager(linearLayoutManager);
+                    rcv_pitch.setAdapter(adapterRecyclerView);
+                }else {
+                    Toast.makeText(getContext(), "Chưa có sân được tạo", Toast.LENGTH_SHORT).show();
+                }
+
             }
             @Override
             public void onFailure(Call<ReponeAllSan> call, Throwable t) {
@@ -165,11 +179,16 @@ public class AdminFragment_home extends Fragment {
             @Override
             public void onResponse(Call<ResponeNews> call, Response<ResponeNews> response) {
                 ResponeNews pitchClasses = response.body();
-                newsList = new ArrayList<>(Arrays.asList(pitchClasses.getData()));
-                adapterRecyclerNews = new AdapterRecyclerNews(getContext(),newsList);
-                LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
-                rcv_news.setLayoutManager(linearLayoutManager1);
-                rcv_news.setAdapter(adapterRecyclerNews);
+                if (pitchClasses!=null){
+                    newsList = new ArrayList<>(Arrays.asList(pitchClasses.getData()));
+                    adapterRecyclerNews = new AdapterRecyclerNews(getContext(),newsList);
+                    LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false);
+                    rcv_news.setLayoutManager(linearLayoutManager1);
+                    rcv_news.setAdapter(adapterRecyclerNews);
+                }else {
+                    Toast.makeText(getContext(), "Chưa có tin được tạo", Toast.LENGTH_SHORT).show();
+                }
+
             }
             @Override
             public void onFailure(Call<ResponeNews> call, Throwable t) {
@@ -203,16 +222,21 @@ public class AdminFragment_home extends Fragment {
             @Override
             public void onResponse(Call<ResponeSpanBusy> call, Response<ResponeSpanBusy> response) {
                 ResponeSpanBusy responeAllBusy = response.body();
-                allBusyList = new ArrayList<>(Arrays.asList(responeAllBusy.getData()));
-                if (responeAllBusy.isSuccess()==true){
-                    for (int i =0 ; i<=allBusyList.size(); i++){
-                        adapterSpanBusy = new AdapterSpanBusy(getContext(), allBusyList);
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-                        rcv_spanbusy.setLayoutManager(linearLayoutManager);
-                        rcv_spanbusy.setAdapter(adapterSpanBusy);
+                if (responeAllBusy!=null){
+                    allBusyList = new ArrayList<>(Arrays.asList(responeAllBusy.getData()));
+                    if (responeAllBusy.isSuccess()==true){
+                        for (int i =0 ; i<=allBusyList.size(); i++){
+                            adapterSpanBusy = new AdapterSpanBusy(getContext(), allBusyList);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+                            rcv_spanbusy.setLayoutManager(linearLayoutManager);
+                            rcv_spanbusy.setAdapter(adapterSpanBusy);
+                        }
+
                     }
-                    Log.e("EEE", allBusyList.get(0).getSpanBusy()+"-"+getTodaysDate());
+                }else {
+                    Toast.makeText(getContext(), "Lỗi chưa load được chi tiết ca bận", Toast.LENGTH_SHORT).show();
                 }
+
             }
             @Override
             public void onFailure(Call<ResponeSpanBusy> call, Throwable t) {
@@ -231,16 +255,21 @@ public class AdminFragment_home extends Fragment {
             @Override
             public void onResponse(Call<ResponeSpanBusy> call, Response<ResponeSpanBusy> response) {
                 ResponeSpanBusy responeAllBusy = response.body();
-                allBusyList = new ArrayList<>(Arrays.asList(responeAllBusy.getData()));
-                if (responeAllBusy.isSuccess()==true){
-                    for (int i =0 ; i<=allBusyList.size(); i++){
-                        adapterSpanBusy = new AdapterSpanBusy(getContext(), allBusyList);
-                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-                        rcv_spanbusy.setLayoutManager(linearLayoutManager);
-                        rcv_spanbusy.setAdapter(adapterSpanBusy);
+                if (responeAllBusy!=null){
+                    allBusyList = new ArrayList<>(Arrays.asList(responeAllBusy.getData()));
+                    if (responeAllBusy.isSuccess()==true){
+                        for (int i =0 ; i<=allBusyList.size(); i++){
+                            adapterSpanBusy = new AdapterSpanBusy(getContext(), allBusyList);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+                            rcv_spanbusy.setLayoutManager(linearLayoutManager);
+                            rcv_spanbusy.setAdapter(adapterSpanBusy);
+                        }
+                        Log.e("EEE", allBusyList.get(0).getSpanBusy()+"-"+getTodaysDate());
                     }
-                    Log.e("EEE", allBusyList.get(0).getSpanBusy()+"-"+getTodaysDate());
+                }else {
+                    Toast.makeText(getContext(), "Lỗi chưa load được chi tiết ca bận", Toast.LENGTH_SHORT).show();
                 }
+
             }
             @Override
             public void onFailure(Call<ResponeSpanBusy> call, Throwable t) {
@@ -255,5 +284,10 @@ public class AdminFragment_home extends Fragment {
     private String makeDateString(int day, int month, int year)
     {
         return  day+ "" + month+ year;
+    }
+
+    public String get_day(){
+        String day = get_day;
+        return day;
     }
 }

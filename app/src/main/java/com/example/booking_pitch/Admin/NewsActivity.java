@@ -112,7 +112,7 @@ public class NewsActivity extends AppCompatActivity {
                             return;
                         } else{
                             progressDialog = new ProgressDialog(NewsActivity.this);
-                            progressDialog.setMessage("Xin đợi!");
+                            progressDialog.setMessage("Đang sửa tin tức...!");
                             progressDialog.show();
                             String title = edt_title.getText().toString();
                             String content = edit_content.getText().toString();
@@ -131,14 +131,20 @@ public class NewsActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<News> call, Response<News> response) {
                                     News news = response.body();
-                                    if (news.isSuccess()==true){
-                                        Toast.makeText(NewsActivity.this, "Sửa tin tức thành công", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(NewsActivity.this, AdminActivity.class);
-                                        startActivity(intent);
-                                        progressDialog.cancel();
+                                    if (news != null){
+                                        if (news.isSuccess()==true){
+                                            Toast.makeText(NewsActivity.this, "Sửa tin tức thành công", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(NewsActivity.this, AdminActivity.class);
+                                            startActivity(intent);
+                                            progressDialog.cancel();
+                                        }else {
+                                            Toast.makeText(NewsActivity.this, "Sửa tin tức thất bại", Toast.LENGTH_SHORT).show();
+                                        }
                                     }else {
                                         Toast.makeText(NewsActivity.this, "Sửa tin tức thất bại", Toast.LENGTH_SHORT).show();
+                                        progressDialog.cancel();
                                     }
+
                                 }
                                 @Override
                                 public void onFailure(Call<News> call, Throwable t) {
@@ -174,18 +180,23 @@ public class NewsActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<News> call, Response<News> response) {
                                         News news = response.body();
-                                        if (news.isSuccess()==true){
-                                            Toast.makeText(NewsActivity.this, news.getMessage(), Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(NewsActivity.this, AdminActivity.class);
-                                            startActivity(intent);
-                                            progressDialog.cancel();
+                                        if (news!=null){
+                                            if (news.isSuccess()==true){
+                                                Toast.makeText(NewsActivity.this, "Xóa tin tức thành công", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(NewsActivity.this, AdminActivity.class);
+                                                startActivity(intent);
+                                                progressDialog.cancel();
+                                            }else {
+                                                Toast.makeText(NewsActivity.this, "Xóa tin tức thất bại", Toast.LENGTH_SHORT).show();
+                                            }
                                         }else {
-                                            Toast.makeText(NewsActivity.this, news.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(NewsActivity.this, "Xóa tin tức thất bại", Toast.LENGTH_SHORT).show();
                                         }
+
                                     }
                                     @Override
                                     public void onFailure(Call<News> call, Throwable t) {
-                                        Toast.makeText(NewsActivity.this, "Thất bại", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(NewsActivity.this, "Xóa tin tức thất bại", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -238,6 +249,7 @@ public class NewsActivity extends AppCompatActivity {
 //                tv_image.setText(sImage);
                 parth = RealPathUtil.getRealPath(this,uri);
                 tv_image.setText(parth);
+                tv_image.setVisibility(View.INVISIBLE);
                 Log.e("BBB",parth);
                 edit_image.setImageBitmap(bitmap);
             } catch (IOException e) {
@@ -268,7 +280,14 @@ public class NewsActivity extends AppCompatActivity {
     private boolean validatePassword6(){
         String passwordOld = tv_image.getText().toString().trim();
         if (passwordOld.isEmpty()) {
-            tv_image.setText("Bạn chưa chọn ảnh");
+            AlertDialog.Builder builder = new AlertDialog.Builder(NewsActivity.this);
+            builder.setMessage("Bạn chưa chọn ảnh!")
+                    .setNegativeButton("Đồng ý", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+            builder.create().show();
             return false;
         } else {
             return true;

@@ -17,7 +17,7 @@
             <ImageView
                 android:padding="@dimen/padding_5dp"
                 android:scaleType="centerCrop"
-                android:id="@+id/img_ctSan"
+                android:id="@+id/img_ctSan3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_150dp"/>
             <ImageView
@@ -28,7 +28,7 @@
         </FrameLayout>
         <TextView
             android:layout_gravity="center"
-            android:id="@+id/tv_pitchName"
+            android:id="@+id/tv_pitchName3"
             android:text="Sân Số 3"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -46,7 +46,7 @@
             <TextView
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin_5dp"
-                android:id="@+id/tv_date"
+                android:id="@+id/tv_date3"
                 android:gravity="center"
                 android:background="@drawable/time_background"
                 android:padding="@dimen/padding_5dp"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:gravity="center"
-                android:id="@+id/tv_hour"
+                android:id="@+id/tv_hour3"
                 android:background="@drawable/time_background"
                 android:padding="@dimen/padding_5dp"
                 android:text="Giờ"
@@ -76,7 +76,7 @@
             <TextView
                 android:layout_weight="2"
                 android:layout_gravity="center"
-                android:id="@+id/tv_userName"
+                android:id="@+id/tv_userName3"
                 android:text="User Name"
                 android:textColor="@color/primary_color"
                 android:textStyle="bold"
@@ -95,7 +95,7 @@
                     android:layout_width="@dimen/margin_20dp"
                     android:layout_height="@dimen/margin_20dp"/>
                 <TextView
-                    android:id="@+id/tv_userID"
+                    android:id="@+id/tv_userID3"
                     android:text="SDT"
                     android:textColor="@color/primary_color"
                     android:textStyle="normal"
@@ -108,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <CheckBox
-                android:id="@+id/tshirt_comfim"
+                android:id="@+id/tshirt_comfim3"
                 android:text="Áo đấu"
                 android:buttonTint="@color/primary_color"
                 android:enabled="false"
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_30dp"/>
             <CheckBox
-                android:id="@+id/umpire_confim"
+                android:id="@+id/umpire_confim3"
                 android:text="Trọng tài"
                 android:buttonTint="@color/primary_color"
                 android:enabled="false"
@@ -131,7 +131,7 @@
 
         <LinearLayout
             android:layout_marginLeft="@dimen/margin_7dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:text="Nước: "
@@ -141,47 +141,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/tv_water"
+                android:id="@+id/tv_water3"
                 android:textColor="@color/black"
                 android:textStyle="normal"
                 android:textSize="@dimen/text_size_16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+            <TextView
+                android:text="Trạng thái"
+                android:textStyle="italic"
+                android:gravity="right"
+                android:textColor="@color/primary_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout
+            android:layout_weight="2"
             android:layout_marginLeft="@dimen/margin_7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tv_totalPrice"
+                android:id="@+id/tv_totalPrice3"
                 android:text="200.000"
+                android:layout_weight="1"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_16dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="@dimen/margin_10dp"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/btn_huy"
-                android:backgroundTint="@color/color6"
-                android:layout_marginHorizontal="@dimen/margin_10dp"
-                android:text="Hủy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:id="@+id/btn_xacNhan"
-                android:layout_marginHorizontal="@dimen/margin_10dp"
-                android:text="Xác Nhận"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_state"
+                android:gravity="right"
+                android:text="Ca bận"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/text_size_16dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

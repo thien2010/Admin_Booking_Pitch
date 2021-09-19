@@ -42,8 +42,8 @@
 
     <LinearLayout
         android:layout_marginTop="@dimen/margin_5dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -52,11 +52,11 @@
             android:src="@drawable/ic_baseline_image_24"
             android:id="@+id/edit_image"
             android:scaleType="centerCrop"
-            android:layout_width="@dimen/height_50dp"
-            android:layout_height="@dimen/height_50dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_150dp"/>
         <TextView
             android:id="@+id/tv_image"
-            android:layout_width="@dimen/with_100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <Button
             android:text="Chọn ảnh"

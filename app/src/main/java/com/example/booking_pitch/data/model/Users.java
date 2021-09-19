@@ -1,11 +1,20 @@
 package com.example.booking_pitch.data.model;
 
 public class Users {
+    private String userID;
     private String userName;
     private String quantityCancel;
     private String quantityWating;
     private String quantityKeeping;
     private String quantityDone;
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 
     public String getUserName() {
         return userName;

@@ -22,6 +22,7 @@ public class PitchClass {
     private boolean success;
     private String message;
     private String _id;
+    private String editBy;
 
     public PitchClass() {
     }
@@ -54,6 +55,14 @@ public class PitchClass {
     public PitchClass(String _id, String state) {
         this.state = state;
         this._id = _id;
+    }
+
+    public String getEditBy() {
+        return editBy;
+    }
+
+    public void setEditBy(String editBy) {
+        this.editBy = editBy;
     }
 
     public String getCodeSpecial() {

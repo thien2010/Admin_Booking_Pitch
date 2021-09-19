@@ -87,17 +87,20 @@ public class AdapterPitch2 extends BaseAdapter {
             String date3="";
             List<String> many_date = new ArrayList<>(Arrays.asList(date.split("/")));
             Log.e("date",many_date+"");
-            for (String date5 : many_date){
-                String day = date5.substring(0,2);
-                String month = date5.substring(2,4);
-                String year = date5.substring(4,8);
-                String date6 = ", "+day +"-" +month +"-"+year+", ";
+            for (int y=0; y<many_date.size();y++){
+                String day = many_date.get(y).substring(0,2);
+                String month = many_date.get(y).substring(2,4);
+                String year = many_date.get(y).substring(4,8);
+                String date6 = "";
+                if ( y == many_date.size()-1 ){
+                    date6 = day +"/" +month +"/"+year;
+                }else {
+                    date6 = day +"/" +month +"/"+year+", ";
+                }
                 date3 += date6;
-                Log.e("date",date5+"");
             }
-            viewHolder.date.setText("15/09/2021"+date3);
+            viewHolder.date.setText(date3);
         }
-
         if (!pro.getTotalPrice().equals("")){
             viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
         }

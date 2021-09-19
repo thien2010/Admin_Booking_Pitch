@@ -104,21 +104,25 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<LoginAdminAccount> call, Response<LoginAdminAccount> response) {
                 LoginAdminAccount loginAdminAccount1 = response.body();
-                if (loginAdminAccount1.isSuccess() == true){
-                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-                    startActivity(intent);
-                    progressDialog.cancel();
-                    finish();
+                if (loginAdminAccount1!=null){
+                    if (loginAdminAccount1.isSuccess() == true){
+                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                        startActivity(intent);
+                        progressDialog.cancel();
+                        finish();
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                        builder.setMessage("Tài khoản hoặc mật khẩu không chính xác!")
+                                .setNegativeButton("ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        progressDialog.cancel();
+                                    }
+                                });
+                        builder.create().show();
+                    }
                 }else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage("Tài khoản hoặc mật khẩu không chính xác!")
-                            .setNegativeButton("ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    progressDialog.cancel();
-                                }
-                            });
-                    builder.create().show();
+                    Toast.makeText(LoginActivity.this, "Tài khoản chưa có trên hệ thống", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

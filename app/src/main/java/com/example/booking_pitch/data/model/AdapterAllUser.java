@@ -47,6 +47,7 @@ public class AdapterAllUser extends RecyclerView.Adapter<AdapterAllUser.UserView
         if (usersList == null){
             return;
         }
+        holder.user_id.setText("SDT: " + users.getUserID());
         holder.user_name.setText("Tên thành viên: "+users.getUserName());
         holder.user_quantityCancel.setText("Số sân đã hủy: "+users.getQuantityCancel());
         holder.user_quantityKeeping.setText("Số sân đang đặt: "+users.getQuantityKeeping());
@@ -65,6 +66,7 @@ public class AdapterAllUser extends RecyclerView.Adapter<AdapterAllUser.UserView
     }
 
     public class UserViewHoler extends RecyclerView.ViewHolder{
+        TextView user_id ;
         TextView user_name ;
         TextView user_quantityCancel ;
         TextView user_quantityWating ;
@@ -73,6 +75,7 @@ public class AdapterAllUser extends RecyclerView.Adapter<AdapterAllUser.UserView
         RecyclerView recyclerView;
         public UserViewHoler(@NonNull @NotNull View itemView) {
             super(itemView);
+            user_id = itemView.findViewById(R.id.user_id2);
             user_name = itemView.findViewById(R.id.user_name2);
             user_quantityCancel = itemView.findViewById(R.id.user_quantityCancel);
             user_quantityWating = itemView.findViewById(R.id.user_quantityWating);

@@ -163,13 +163,18 @@ public class PitchActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(Call<AddPitch> call, Response<AddPitch> response) {
                                     AddPitch addPitch = response.body();
-                                    if (addPitch.isSuccess()==true){
-                                        Toast.makeText(PitchActivity.this, "Sửa sân thành công", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(PitchActivity.this, AdminActivity.class);
-                                        startActivity(intent);
-                                        progressDialog.cancel();
+                                    if (addPitch!=null){
+                                        if (addPitch.isSuccess()==true){
+                                            Toast.makeText(PitchActivity.this, "Sửa sân thành công", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(PitchActivity.this, AdminActivity.class);
+                                            startActivity(intent);
+                                            progressDialog.cancel();
+                                        }else {
+                                            Toast.makeText(PitchActivity.this, "Sửa sân thất bại", Toast.LENGTH_SHORT).show();
+                                        }
                                     }else {
-                                        Toast.makeText(PitchActivity.this, "Sửa sân thất bại", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(PitchActivity.this, "Trùng tên sân vui lòng kiểm tra lại", Toast.LENGTH_SHORT).show();
+                                        progressDialog.cancel();
                                     }
                                 }
                                 @Override
@@ -206,14 +211,19 @@ public class PitchActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(Call<AddPitch> call, Response<AddPitch> response) {
                                         AddPitch pitchClass = response.body();
-                                        if (pitchClass.isSuccess()==true){
-                                            Toast.makeText(PitchActivity.this, pitchClass.getMessage(), Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(PitchActivity.this, AdminActivity.class);
-                                            startActivity(intent);
-                                            progressDialog.cancel();
+                                        if (pitchClass!=null){
+                                            if (pitchClass.isSuccess()==true){
+                                                Toast.makeText(PitchActivity.this, "Xóa sân thành công", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(PitchActivity.this, AdminActivity.class);
+                                                startActivity(intent);
+                                                progressDialog.cancel();
+                                            }else {
+                                                Toast.makeText(PitchActivity.this, "Xóa sân thất bại", Toast.LENGTH_SHORT).show();
+                                            }
                                         }else {
-                                            Toast.makeText(PitchActivity.this, pitchClass.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(PitchActivity.this, "Xóa sân thất bại", Toast.LENGTH_SHORT).show();
                                         }
+
                                     }
                                     @Override
                                     public void onFailure(Call<AddPitch> call, Throwable t) {
@@ -263,6 +273,7 @@ public class PitchActivity extends AppCompatActivity {
 //                tv_image.setText(sImage);
                 parth = RealPathUtil.getRealPath(this,uri);
                 tv_image.setText(parth);
+                tv_image.setVisibility(View.INVISIBLE);
                 Log.e("BBB",parth);
                 edit_image.setImageBitmap(bitmap);
             } catch (IOException e) {
@@ -313,7 +324,14 @@ public class PitchActivity extends AppCompatActivity {
     private boolean validatePassword6(){
         String passwordOld = tv_image.getText().toString().trim();
         if (passwordOld.isEmpty()) {
-            tv_image.setText("Bạn chưa chọn ảnh");
+            AlertDialog.Builder builder = new AlertDialog.Builder(PitchActivity.this);
+            builder.setMessage("Bạn chưa chọn ảnh!")
+                    .setNegativeButton("Đồng ý", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+            builder.create().show();
             return false;
         } else {
             return true;

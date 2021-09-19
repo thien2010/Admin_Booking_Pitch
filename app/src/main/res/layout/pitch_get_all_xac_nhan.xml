@@ -53,7 +53,7 @@
                 android:padding="@dimen/padding_5dp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="@dimen/text_size_16dp"
+                android:textSize="@dimen/text_size_14dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -170,7 +170,7 @@
             android:layout_height="wrap_content">
             <Button
                 android:id="@+id/btn_huy_dd"
-                android:backgroundTint="@color/sub_color"
+                android:backgroundTint="@color/color6"
                 android:layout_marginHorizontal="@dimen/margin_10dp"
                 android:text="Hủy"
                 android:layout_width="wrap_content"

@@ -47,8 +47,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AcountAdminFragment extends Fragment {
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;
-    AdapterAllUser adapterAllUser;
-    List<Users> usersList;
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
                     "(?=.*[0-9])" +         //at least 1 digit
@@ -80,33 +78,8 @@ public class AcountAdminFragment extends Fragment {
         get_all_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                View view = LayoutInflater.from(getContext()).inflate(R.layout.all_user, null);
-                builder.setView(view);
-                TextView all_user = view.findViewById(R.id.all_user);
-                RecyclerView recyclerView = view.findViewById(R.id.rcv_alluser);
-                Call<ResponeAllUser> call = requestAPI.getAllUser();
-                call.enqueue(new Callback<ResponeAllUser>() {
-                    @Override
-                    public void onResponse(Call<ResponeAllUser> call, Response<ResponeAllUser> response) {
-                        ResponeAllUser responeAllUser = response.body();
-                        if (responeAllUser.isSuccess()==true){
-                            all_user.setText("Số lượng thành viên: "+responeAllUser.getQuantityUser());
-                            usersList = new ArrayList<>(Arrays.asList(responeAllUser.getData()));
-                            adapterAllUser = new AdapterAllUser(getContext(),usersList);
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
-                            recyclerView.setLayoutManager(linearLayoutManager);
-                            recyclerView.setAdapter(adapterAllUser);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponeAllUser> call, Throwable t) {
-
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
+                Intent intent = new Intent(getActivity(), UserActivity.class);
+                startActivity(intent);
             }
         });
         info.setOnClickListener(new View.OnClickListener() {

@@ -107,62 +107,67 @@ public class ThongKeNgay extends Fragment {
                     @Override
                     public void onResponse(Call<ResponeGetDay> call, Response<ResponeGetDay> response) {
                         ResponeGetDay responeGetDay = response.body();
-                        ngayThangList = new ArrayList<>(Arrays.asList(responeGetDay.getArrPitch()));
-                        // thong ke
-                        layout_ngay.setVisibility(View.VISIBLE);
-                        tong_ngay.setText(numberMoney(responeGetDay.getTotalMoney())+" VND");
-                        float cp = responeGetDay.getTotalCost();
-                        float dt = Float.valueOf(responeGetDay.getTotalMoney());
-                        float loi_nhuan = dt - cp;
-                        float tong_dv = Float.valueOf(responeGetDay.getQuantitySoccer())*65000;
-                        trong_tai.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalUmpire())*150000))+" VND");
-                        dv_vs_dien.setText(numberMoney(String.valueOf(tong_dv))+" VND");
-                        so_coc.setText(responeGetDay.getTotalGiveUp());
-                        sl_san.setText(responeGetDay.getQuantitySoccer());
-                        sl_nuoc.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalWater())*18000))+" VND");
-                        chi_phi.setText(numberMoney(String.valueOf(responeGetDay.getTotalCost()))+" VND");
-                        dt_ngay.setText((numberMoney(String.valueOf(loi_nhuan)))+" VND");
+                        if (responeGetDay!=null){
+                            ngayThangList = new ArrayList<>(Arrays.asList(responeGetDay.getArrPitch()));
+                            // thong ke
+                            layout_ngay.setVisibility(View.VISIBLE);
+                            tong_ngay.setText(numberMoney(responeGetDay.getTotalMoney())+" VND");
+                            float cp = responeGetDay.getTotalCost();
+                            float dt = Float.valueOf(responeGetDay.getTotalMoney());
+                            float loi_nhuan = dt - cp;
+                            float tong_dv = Float.valueOf(responeGetDay.getQuantitySoccer())*65000;
+                            trong_tai.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalUmpire())*150000))+" VND");
+                            dv_vs_dien.setText(numberMoney(String.valueOf(tong_dv))+" VND");
+                            so_coc.setText(responeGetDay.getTotalGiveUp());
+                            sl_san.setText(responeGetDay.getQuantitySoccer());
+                            sl_nuoc.setText(numberMoney(String.valueOf(Float.valueOf(responeGetDay.getTotalWater())*18000))+" VND");
+                            chi_phi.setText(numberMoney(String.valueOf(responeGetDay.getTotalCost()))+" VND");
+                            dt_ngay.setText((numberMoney(String.valueOf(loi_nhuan)))+" VND");
 
-                        BarData barData;
-                        BarDataSet barDataSet;
-                        ArrayList chart;
-                        BarChart barChart = view.findViewById(R.id.barchart);
-                        chart = new ArrayList<>();
-                        String[] day = new String[ngayThangList.size()];
-                        for (int i = 0; i<ngayThangList.size(); i++){
-                            BarEntry barEntry = new BarEntry(i+1,ngayThangList.get(i).getTotalPrice());
-                            chart.add(barEntry);
-                            String name = ngayThangList.get(i).getPitchName();
-                            day[i] = name;
-                        }
-                        barDataSet = new BarDataSet(chart,"VND");
-                        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-                        barDataSet.setValueTextSize(15f);
-                        barData = new BarData(barDataSet);
-                        barChart.setData(barData);
-                        Description description = new Description();
-                        description.setText("VND");
-                        barChart.setDescription(description);
-                        XAxis xAxis = barChart.getXAxis();
-                        xAxis.setValueFormatter(new IndexAxisValueFormatter(day));
-                        xAxis.setLabelCount(day.length);
-                        xAxis.setDrawGridLines(false);
-                        xAxis.setDrawAxisLine(false);
-                        xAxis.setCenterAxisLabels(true);
-                        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                        xAxis.setGranularity(1f);
-                        xAxis.setGranularityEnabled(true);
+                            BarData barData;
+                            BarDataSet barDataSet;
+                            ArrayList chart;
+                            BarChart barChart = view.findViewById(R.id.barchart);
+                            chart = new ArrayList<>();
+                            String[] day = new String[ngayThangList.size()];
+                            for (int i = 0; i<ngayThangList.size(); i++){
+                                BarEntry barEntry = new BarEntry(i+1,ngayThangList.get(i).getTotalPrice());
+                                chart.add(barEntry);
+                                String name = ngayThangList.get(i).getPitchName();
+                                day[i] = name;
+                            }
+                            barDataSet = new BarDataSet(chart,"VND");
+                            barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+                            barDataSet.setValueTextSize(15f);
+                            barData = new BarData(barDataSet);
+                            barChart.setData(barData);
+                            Description description = new Description();
+                            description.setText("VND");
+                            barChart.setDescription(description);
+                            XAxis xAxis = barChart.getXAxis();
+                            xAxis.setValueFormatter(new IndexAxisValueFormatter(day));
+                            xAxis.setLabelCount(day.length);
+                            xAxis.setDrawGridLines(false);
+                            xAxis.setDrawAxisLine(false);
+                            xAxis.setCenterAxisLabels(true);
+                            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                            xAxis.setGranularity(1f);
+                            xAxis.setGranularityEnabled(true);
 
-                        barChart.setDragEnabled(true);
-                        barChart.setVisibleXRangeMaximum(3);
+                            barChart.setDragEnabled(true);
+                            barChart.setVisibleXRangeMaximum(3);
 
 //                        float barSpace = 0.05f;
 //                        float groupSpace = 1.2f;
-                        barData.setBarWidth(0.8f);
+                            barData.setBarWidth(0.8f);
 //                        barChart.getXAxis().setAxisMinimum(0);
 //                        barChart.getXAxis().setAxisMaximum(0+barChart.getBarData().getGroupWidth(groupSpace,barSpace)*ngayThangList.size());
 //                        barChart.getAxisLeft().setAxisMinimum(0);
-                        barChart.invalidate();
+                            barChart.invalidate();
+                        }else {
+                            Toast.makeText(getContext(), "Thống kê trống", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                     @Override
                     public void onFailure(Call<ResponeGetDay> call, Throwable t) {

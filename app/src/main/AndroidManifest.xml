@@ -15,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Booking_Pitch"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InsertNews"></activity>
-        <activity android:name=".InsertPitch"> </activity>
+        <activity android:name=".Admin.admin_home.UserActivity"></activity>
+        <activity android:name=".InsertNews" />
+        <activity android:name=".InsertPitch"></activity>
         <activity android:name=".Admin.NewsActivity" />
         <activity android:name=".Admin.PitchActivity" />
         <activity android:name=".Admin.AdminActivity" />

@@ -2,12 +2,14 @@ package com.example.booking_pitch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -52,7 +54,6 @@ public class InsertNews extends AppCompatActivity {
     TextInputEditText edt_title, edt_content;
     TextInputLayout layout_title,layout_content;
     ProgressDialog progressDialog;
-
     String sImage;
     String parth;
     @Override
@@ -82,32 +83,30 @@ public class InsertNews extends AppCompatActivity {
         decode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                byte[] bytes = Base64.decode(sImage,Base64.DEFAULT);
-//                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-//                load_img.setImageBitmap(bitmap);
-                if (!validatePassword1() | !validatePassword2() | validatePassword6()) {
+                if (!validatePassword1() | !validatePassword2()|!validatePassword6()){
                     return;
-                } else{
+                }else {
                     progressDialog = new ProgressDialog(InsertNews.this);
-                    progressDialog.setMessage("Xin đợi...!");
+                    progressDialog.setMessage("Đang thêm tin tức...!");
                     progressDialog.show();
-                    String title = edt_title.getText().toString();
-                    String content = edt_content.getText().toString();
-                    File file = new File(parth);
-                    RequestBody title_body = RequestBody.create(MediaType.parse("multipart/form-data"),title);
-                    RequestBody content_body = RequestBody.create(MediaType.parse("multipart/form-data"),content);
-                    RequestBody image_body = RequestBody.create(MediaType.parse("multipart/form-data"),file);
-                    MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), image_body);
-                    Retrofit retrofit = new Retrofit.Builder()
-                            .baseUrl("https://datn-2021.herokuapp.com/api/news/")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-                    RequestAPI requestAPI = retrofit.create(RequestAPI.class);
-                    Call<News> newsCall = requestAPI.createNews(title_body,content_body,body);
-                    newsCall.enqueue(new Callback<News>() {
-                        @Override
-                        public void onResponse(Call<News> call, Response<News> response) {
-                            News news = response.body();
+                String title = edt_title.getText().toString();
+                String content = edt_content.getText().toString();
+                File file = new File(parth);
+                RequestBody title_body = RequestBody.create(MediaType.parse("multipart/form-data"),title);
+                RequestBody content_body = RequestBody.create(MediaType.parse("multipart/form-data"),content);
+                RequestBody image_body = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+                MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), image_body);
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://datn-2021.herokuapp.com/api/news/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RequestAPI requestAPI = retrofit.create(RequestAPI.class);
+                Call<News> newsCall = requestAPI.createNews(title_body,content_body,body);
+                newsCall.enqueue(new Callback<News>() {
+                    @Override
+                    public void onResponse(Call<News> call, Response<News> response) {
+                        News news = response.body();
+                        if (news != null){
                             if (news.isSuccess()==true){
                                 Toast.makeText(InsertNews.this, "Thêm tin tức thành công", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(InsertNews.this, AdminActivity.class);
@@ -116,13 +115,18 @@ public class InsertNews extends AppCompatActivity {
                             }else {
                                 Toast.makeText(InsertNews.this, "Thêm tin tức thất bại", Toast.LENGTH_SHORT).show();
                             }
+                        }else {
+                            Toast.makeText(InsertNews.this, "Thêm tin tức thất bại", Toast.LENGTH_SHORT).show();
+                            progressDialog.cancel();
                         }
-                        @Override
-                        public void onFailure(Call<News> call, Throwable t) {
-                            Toast.makeText(InsertNews.this, "Kết nối thất bại", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
+
+                    }
+                    @Override
+                    public void onFailure(Call<News> call, Throwable t) {
+                        Toast.makeText(InsertNews.this, "Kết nối thất bại", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
             }
         });
     }
@@ -152,12 +156,9 @@ public class InsertNews extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
-//                byte[] bytes = stream.toByteArray();
-//                sImage = Base64.encodeToString(bytes,Base64.DEFAULT);
-//                tv_image.setText(sImage);
                 parth = RealPathUtil.getRealPath(this,uri);
                 tv_image.setText(parth);
+                tv_image.setVisibility(View.INVISIBLE);
 //                Log.e("BBB",parth);
                 load_img.setImageBitmap(bitmap);
             } catch (IOException e) {
@@ -188,7 +189,14 @@ public class InsertNews extends AppCompatActivity {
     private boolean validatePassword6(){
         String passwordOld = tv_image.getText().toString().trim();
         if (passwordOld.isEmpty()) {
-            tv_image.setText("Bạn chưa chọn ảnh");
+            AlertDialog.Builder builder = new AlertDialog.Builder(InsertNews.this);
+            builder.setMessage("Bạn chưa chọn ảnh!")
+                    .setNegativeButton("Đồng ý", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+            builder.create().show();
             return false;
         } else {
             return true;

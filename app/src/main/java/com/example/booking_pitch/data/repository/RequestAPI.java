@@ -37,8 +37,20 @@ public interface RequestAPI {
     //https://datn-2021.herokuapp.com/api/news/editNewsByAdmin/613f6c906fdb530023b0df1a
     //https://datn-2021.herokuapp.com/api/news/deleteNewsByAdmin/613f6c906fdb530023b0df1a
     //https://datn-2021.herokuapp.com/api/pitch/user/editPitch/
+    //https://datn-2021.herokuapp.com/api/news/createNewsByAdmin
+    //https://datn-2021.herokuapp.com/api/pitch/getDetailBusy
+    //https://datn-2021.herokuapp.com/api/pitch/cancelAny
 
+    @Multipart
+    @POST("cancelAny")
+    Call<ResponeCancel> cancel(@Part("userID") RequestBody userID,
+                               @Part("codeSpecial") RequestBody codeSpecial,
+                               @Part("dateDone") RequestBody dateDone,
+                               @Part("dateCancel") RequestBody dateCancel);
 
+    @Multipart
+    @POST("getDetailBusy")
+    Call<ResponeGetDetailBusy> getDetailBusy(@Part("pitchName") RequestBody pitchName, @Part("date") RequestBody date, @Part("span") RequestBody span);
 
     @GET("deleteNewsByAdmin/{id}")
     Call<News> deleteNews(@Path("id")String id);
@@ -118,7 +130,7 @@ public interface RequestAPI {
 
     @FormUrlEncoded
     @POST("editPitch/{id}")
-    Call<PitchClass> updatePitch(@Path("id") String id, @Field("state") String state,@Field("typeBooking") String typeBooking);
+    Call<PitchClass> updatePitch(@Path("id") String id, @Field("state") String state,@Field("typeBooking") String typeBooking,@Field("editBy") String editBy);
 
     //http://192.168.0.101:3000/api/user/loginAdmin
 

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.booking_pitch.R;
 import com.example.booking_pitch.data.model.AdapterPitch;
@@ -67,11 +68,14 @@ public class DaDat_admin extends Fragment {
             @Override
             public void onResponse(Call<List<PitchClass>> call, Response<List<PitchClass>> response) {
                 List<PitchClass> pitchClass = response.body();
-                pitchClassList = new ArrayList<>(pitchClass);
-                adapterPitch = new AdapterPitchConfim(getContext(),pitchClassList);
-                lv_confim.setAdapter(adapterPitch);
-                progressDialog.cancel();
-
+                if (pitchClass!=null){
+                    pitchClassList = new ArrayList<>(pitchClass);
+                    adapterPitch = new AdapterPitchConfim(getContext(),pitchClassList);
+                    lv_confim.setAdapter(adapterPitch);
+                    progressDialog.cancel();
+                }else {
+                    Toast.makeText(getContext(), "Chưa có sân đã đặt", Toast.LENGTH_SHORT).show();
+                }
             }
             @Override
             public void onFailure(Call<List<PitchClass>> call, Throwable t) {
