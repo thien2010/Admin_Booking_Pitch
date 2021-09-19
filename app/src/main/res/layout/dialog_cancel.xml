@@ -79,12 +79,26 @@
         android:textSize="@dimen/text_size_14dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <Button
-        android:layout_margin="@dimen/margin_5dp"
-        android:text="hủy"
-        android:backgroundTint="@color/color6"
-        android:layout_gravity="center"
-        android:id="@+id/btn_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_margin="@dimen/margin_5dp"
+            android:text="chọn lại"
+            android:backgroundTint="@color/primary_color"
+            android:layout_gravity="center"
+            android:id="@+id/btn_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_margin="@dimen/margin_5dp"
+            android:text="hủy"
+            android:backgroundTint="@color/color6"
+            android:layout_gravity="center"
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 </LinearLayout>

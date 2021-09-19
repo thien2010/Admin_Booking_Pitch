@@ -50,6 +50,7 @@ public class AdapterPitchConfim extends BaseAdapter {
     String date_2 = "";
     String date3="";
     String date_Done="";
+    String date6;
     String userID, codeSpecial, dateDone,dateCancel;
     public AdapterPitchConfim(Context context, List<PitchClass> pitchClassList) {
         this.context = context;
@@ -266,6 +267,7 @@ public class AdapterPitchConfim extends BaseAdapter {
                                         TextView tv_dateCancel = view.findViewById(R.id.tv_dateCancel);
                                         TextView all_date = view.findViewById(R.id.all_date);
                                         Button btn_cancel = view.findViewById(R.id.btn_cancel);
+                                        Button btn_clear = view.findViewById(R.id.btn_clear);
                                         ImageView datepicker = view.findViewById(R.id.date_picker_cancel);
                                         ImageView datepicker2 = view.findViewById(R.id.date_picker_cancel2);
                                         all_date.setText(date3);
@@ -284,7 +286,7 @@ public class AdapterPitchConfim extends BaseAdapter {
                                                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
                                                         date_1 = simpleDateFormat.format(calendar.getTime());
                                                         date_cancel.add(date_1);
-                                                        String date6 = "";
+                                                        date6 = "";
                                                         date_Done = "";
                                                         for (int y=0; y<date_cancel.size();y++){
                                                             date_cancel.get(y);
@@ -316,7 +318,7 @@ public class AdapterPitchConfim extends BaseAdapter {
                                                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
                                                         date_2 = simpleDateFormat.format(calendar.getTime());
                                                         date_cancel2.add(date_2);
-                                                        String date6 = "";
+                                                        date6 = "";
                                                         date_Candel = "";
                                                         for (int y=0; y<date_cancel2.size();y++){
                                                             date_cancel2.get(y);
@@ -360,9 +362,18 @@ public class AdapterPitchConfim extends BaseAdapter {
                                                             ResponeCancel responeCancel = response.body();
                                                             if (responeCancel!=null){
                                                                 Toast.makeText(context, responeCancel.getMessage(), Toast.LENGTH_SHORT).show();
-                                                                progressDialog.cancel();
+                                                                for (int i = 0 ; i< pitchClassList.size(); i++){
+                                                                    if (pitchClassList.get(i).get_id() == _id){
+                                                                        Log.d("t","ok"+ _id);
+                                                                        pitchClassList.remove(i);
+                                                                        setDatachange(pitchClassList);
+                                                                        progressDialog.cancel();
+                                                                    }
+                                                                }
+                                                                dialog.dismiss();
                                                             }else {
                                                                 Toast.makeText(context, responeCancel.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                dialog.dismiss();
                                                                 progressDialog.cancel();
                                                             }
                                                         }
@@ -375,7 +386,19 @@ public class AdapterPitchConfim extends BaseAdapter {
                                                 }
                                             }
                                         });
-
+                                        btn_clear.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                tv_dateDone.setText("");
+                                                tv_dateCancel.setText("");
+                                                for (int i = 0; i < date_cancel.size(); i++){
+                                                    date_cancel.remove(i);
+                                                }
+                                                for (int i = 0; i < date_cancel2.size(); i++){
+                                                    date_cancel2.remove(i);
+                                                }
+                                            }
+                                        });
                                         builder.create().show();
 //                                        Call<PitchClass> call = requestAPI.updatePitch(pro.getCodeSpecial(),"3","many","admin");
 //                                        call.enqueue(new Callback<PitchClass>() {
