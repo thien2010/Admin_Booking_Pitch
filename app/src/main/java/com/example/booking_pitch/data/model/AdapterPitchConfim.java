@@ -48,9 +48,8 @@ public class AdapterPitchConfim extends BaseAdapter {
     List<String> date_cancel2 = new ArrayList<>();
     String date_1 = "";
     String date_2 = "";
-    String date3="";
+    String date4;
     String date_Done="";
-    String date6;
     String userID, codeSpecial, dateDone,dateCancel;
     public AdapterPitchConfim(Context context, List<PitchClass> pitchClassList) {
         this.context = context;
@@ -90,6 +89,7 @@ public class AdapterPitchConfim extends BaseAdapter {
             viewHolder.img = view.findViewById(R.id.img_ctSan1);
             viewHolder.userName = view.findViewById(R.id.userName_0);
             viewHolder.btn_huy_dd = view.findViewById(R.id.btn_huy_dd);
+            viewHolder.btn_huy_st = view.findViewById(R.id.btn_huy_st);
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://datn-2021.herokuapp.com/api/pitch/user/")
                     .addConverterFactory(GsonConverterFactory.create())
@@ -119,9 +119,9 @@ public class AdapterPitchConfim extends BaseAdapter {
                     String year = date.substring(4,8);
                     viewHolder.date.setText("Ngày: "+day +"-"+month+"-"+year);
                 }else {
-
                   List<String> many_date = new ArrayList<>(Arrays.asList(date.split("/")));
                   Log.e("date",many_date+"");
+                  String date3="";
                   for (int y=0; y<many_date.size();y++){
                       String day = many_date.get(y).substring(0,2);
                       String month = many_date.get(y).substring(2,4);
@@ -135,10 +135,15 @@ public class AdapterPitchConfim extends BaseAdapter {
                       date3 += date6;
                   }
                   viewHolder.date.setText(date3);
-
+                  date4 = date3;
                 }
             if (!pro.getTotalPrice().equals("")){
                 viewHolder.totalPrice.setText("Giá: "+numberMoney(pro.getTotalPrice())+" VND");
+            }
+            if (pro.getCodeSpecial().isEmpty()){
+                viewHolder.btn_huy_st.setVisibility(View.INVISIBLE);
+            }else {
+                viewHolder.btn_huy_st.setVisibility(View.VISIBLE);
             }
             userID = pro.getUserID();
             codeSpecial = pro.getCodeSpecial();
@@ -270,7 +275,7 @@ public class AdapterPitchConfim extends BaseAdapter {
                                         Button btn_clear = view.findViewById(R.id.btn_clear);
                                         ImageView datepicker = view.findViewById(R.id.date_picker_cancel);
                                         ImageView datepicker2 = view.findViewById(R.id.date_picker_cancel2);
-                                        all_date.setText(date3);
+                                        all_date.setText(date4);
 
                                         datepicker.setOnClickListener(new View.OnClickListener() {
                                             @Override
@@ -286,7 +291,7 @@ public class AdapterPitchConfim extends BaseAdapter {
                                                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
                                                         date_1 = simpleDateFormat.format(calendar.getTime());
                                                         date_cancel.add(date_1);
-                                                        date6 = "";
+                                                        String date6 = "";
                                                         date_Done = "";
                                                         for (int y=0; y<date_cancel.size();y++){
                                                             date_cancel.get(y);
@@ -318,7 +323,7 @@ public class AdapterPitchConfim extends BaseAdapter {
                                                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("ddMMyyyy");
                                                         date_2 = simpleDateFormat.format(calendar.getTime());
                                                         date_cancel2.add(date_2);
-                                                        date6 = "";
+                                                        String date6 = "";
                                                         date_Candel = "";
                                                         for (int y=0; y<date_cancel2.size();y++){
                                                             date_cancel2.get(y);
@@ -344,6 +349,7 @@ public class AdapterPitchConfim extends BaseAdapter {
                                                 if (tv_dateDone.getText().toString().isEmpty() && tv_dateCancel.getText().toString().isEmpty()){
                                                     Toast.makeText(context, "Vui lòng chọn 1 trong 2 ngày trên", Toast.LENGTH_SHORT).show();
                                                 }else {
+
                                                     dateDone = tv_dateDone.getText().toString().trim();
                                                     dateCancel = tv_dateCancel.getText().toString().trim();
                                                     RequestBody userId = RequestBody.create(MediaType.parse("multipart/form-data"),userID);
@@ -370,12 +376,11 @@ public class AdapterPitchConfim extends BaseAdapter {
                                                                         progressDialog.cancel();
                                                                     }
                                                                 }
-                                                                dialog.dismiss();
                                                             }else {
                                                                 Toast.makeText(context, responeCancel.getMessage(), Toast.LENGTH_SHORT).show();
-                                                                dialog.dismiss();
                                                                 progressDialog.cancel();
                                                             }
+
                                                         }
 
                                                         @Override
@@ -383,6 +388,7 @@ public class AdapterPitchConfim extends BaseAdapter {
 
                                                         }
                                                     });
+                                                    dialog.dismiss();
                                                 }
                                             }
                                         });
@@ -400,27 +406,6 @@ public class AdapterPitchConfim extends BaseAdapter {
                                             }
                                         });
                                         builder.create().show();
-//                                        Call<PitchClass> call = requestAPI.updatePitch(pro.getCodeSpecial(),"3","many","admin");
-//                                        call.enqueue(new Callback<PitchClass>() {
-//                                            @Override
-//                                            public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
-//                                                for (int i = 0 ; i< pitchClassList.size(); i++){
-//                                                    if (pitchClassList.get(i).get_id() == _id){
-//                                                        Log.d("t","ok"+ _id);
-//                                                        pitchClassList.remove(i);
-//                                                        setDatachange(pitchClassList);
-//                                                        progressDialog.cancel();
-//                                                    }
-//                                                }
-//                                                Toast.makeText(context, "Hủy thành công", Toast.LENGTH_SHORT).show();
-//                                            }
-//                                            @Override
-//                                            public void onFailure(Call<PitchClass> call, Throwable t) {
-//                                                Toast.makeText(context, "Hủy thất bại", Toast.LENGTH_SHORT).show();
-//                                                Log.e("loi", "adad");
-//                                                progressDialog.cancel();
-//                                            }
-//                                        });
                                     }
                                 }
                             })
@@ -431,6 +416,55 @@ public class AdapterPitchConfim extends BaseAdapter {
                                 }
                             });
                     builder.create().show();
+                }
+            });
+            viewHolder.btn_huy_st.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage("Xác nhận hủy lịch đặt: " +pro.getPitchName()+" - "+ viewHolder.span.getText().toString())
+                            .setNegativeButton("Đồng ý", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    progressDialog = new ProgressDialog(context);
+                                    progressDialog.setMessage("Đang hủy lịch...!");
+                                    progressDialog.show();
+                                    Call<PitchClass> call = requestAPI.updatePitch(pro.getCodeSpecial(),"3","many","admin");
+                                    call.enqueue(new Callback<PitchClass>() {
+                                        @Override
+                                        public void onResponse(Call<PitchClass> call, Response<PitchClass> response) {
+                                            PitchClass pitchClass = response.body();
+                                            if (pitchClass!=null){
+                                                for (int i = 0 ; i< pitchClassList.size(); i++){
+                                                    if (pitchClassList.get(i).get_id() == _id){
+                                                        Log.d("t","ok"+ _id);
+                                                        pitchClassList.remove(i);
+                                                        setDatachange(pitchClassList);
+                                                        progressDialog.cancel();
+                                                    }
+                                                }
+                                                Toast.makeText(context, "Hủy thành công", Toast.LENGTH_SHORT).show();
+                                            }else {
+                                                Toast.makeText(context, "Hủy thất bại", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        }
+                                        @Override
+                                        public void onFailure(Call<PitchClass> call, Throwable t) {
+                                            Toast.makeText(context, "Hủy thất bại", Toast.LENGTH_SHORT).show();
+                                            Log.e("loi", "adad");
+                                            progressDialog.cancel();
+                                        }
+                                    });
+                                }
+                            }).setPositiveButton("Trở về", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.create().show();
+
                 }
             });
         return view;
@@ -447,6 +481,7 @@ public class AdapterPitchConfim extends BaseAdapter {
         ImageView img;
         Button btn_confim;
         Button btn_huy_dd;
+        Button btn_huy_st;
         TextView span;
         TextView userName;
     }

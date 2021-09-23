@@ -43,9 +43,6 @@ public class DaDat_admin extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_da_dat_admin, container, false);
         swipeRefreshLayout = view.findViewById(R.id.refreshLayout_2);
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Đang tải... Xin đợi!");
-        progressDialog.show();
         lv_confim = view.findViewById(R.id.lv_confim);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -72,7 +69,6 @@ public class DaDat_admin extends Fragment {
                     pitchClassList = new ArrayList<>(pitchClass);
                     adapterPitch = new AdapterPitchConfim(getContext(),pitchClassList);
                     lv_confim.setAdapter(adapterPitch);
-                    progressDialog.cancel();
                 }else {
                     Toast.makeText(getContext(), "Chưa có sân đã đặt", Toast.LENGTH_SHORT).show();
                 }

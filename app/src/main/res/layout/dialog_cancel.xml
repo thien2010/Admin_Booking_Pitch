@@ -9,15 +9,15 @@
         android:text="Các ngày đã đặt:"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_14dp"
+        android:textSize="@dimen/text_size_16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/all_date"
         android:gravity="center"
-        android:textStyle="normal"
+        android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_14dp"
+        android:textSize="@dimen/text_size_11dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <LinearLayout
@@ -36,7 +36,7 @@
             android:id="@+id/tv_dateDone"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_14dp"
+            android:textSize="@dimen/text_size_11dp"
             android:layout_width="@dimen/with_200dp"
             android:layout_height="wrap_content"/>
         <ImageView
@@ -61,7 +61,7 @@
             android:id="@+id/tv_dateCancel"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_14dp"
+            android:textSize="@dimen/text_size_11dp"
             android:layout_width="@dimen/with_200dp"
             android:layout_height="wrap_content"/>
         <ImageView

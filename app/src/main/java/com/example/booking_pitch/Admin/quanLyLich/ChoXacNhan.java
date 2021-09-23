@@ -43,9 +43,6 @@ public class ChoXacNhan extends Fragment {
         swipeRefreshLayout = view.findViewById(R.id.refreshLayout);
         lv_choXacNhan = view.findViewById(R.id.lv_choXacNhan);
         LoadData();
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Đang tải... Xin đợi!");
-        progressDialog.show();
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -69,19 +66,10 @@ public class ChoXacNhan extends Fragment {
                 if (pitchClass!=null){
                     pitchClassList = new ArrayList<>(pitchClass);
                     if (pitchClassList.size() == 0){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setMessage("Chưa có sân được đặt")
-                                .setNegativeButton("ok", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        progressDialog.cancel();
-                                    }
-                                });
-                        builder.create().show();
+
                     }else {
                         adapterPitch = new AdapterPitch(getContext(),pitchClassList);
                         lv_choXacNhan.setAdapter(adapterPitch);
-                        progressDialog.cancel();
                     }
                 }
             }
